@@ -155,32 +155,9 @@ html{
 }
 
 /* 4-step pipeline */
-.pipeline{ list-style:none; position:relative; padding-left:34px; }
-/* scrollbar-style orange rail on the left, outside the cards */
-.rail{
-  position:absolute;
-  left:10px;
-  top:0;
-  bottom:0;
-  width:2px;                                /* thin line */
-  display:flex;
-  flex-direction:column;
-  align-items:center;
-  justify-content:space-between;            /* junction points: top / center / bottom */
-  background:linear-gradient(180deg, #ffa23a 0%, #ff5a14 50%, #ff2e00 100%);
-  box-shadow:0 0 10px rgba(255,90,20,.5);   /* soft glow */
-  z-index:1;
-}
-.rail i{
-  width:12px;
-  height:12px;
-  background:#fff;
-  border:1px solid rgba(120,30,0,.35);
-  box-shadow:0 0 8px rgba(255,255,255,.65);
-}
-/* each step is a frosted rectangle; earlier ones fall ON TOP of later ones.
-   (.rail is excluded — it's the connector line, not a card) */
-.pipeline li:not(.rail){
+.pipeline{ list-style:none; }
+/* each step is a frosted rectangle; earlier ones fall ON TOP of later ones */
+.pipeline li{
   position:relative;
   display:flex;
   align-items:center;
@@ -194,12 +171,12 @@ html{
   margin-top:-30px;                          /* overlap the one below */
   transition:transform .28s ease, box-shadow .28s ease, background .28s ease, border-color .28s ease;
 }
-/* steps are nth-child 2..5 (the rail is nth-child 1) */
-.pipeline li:nth-child(2){ margin-top:0; z-index:4; }   /* first step, on top */
-.pipeline li:nth-child(3){ z-index:3; }
-.pipeline li:nth-child(4){ z-index:2; }
-.pipeline li:nth-child(5){ z-index:1; }
-.pipeline li:not(.rail):hover{
+.pipeline li:first-child{ margin-top:0; }
+.pipeline li:nth-child(1){ z-index:4; }      /* first sits on top of second... */
+.pipeline li:nth-child(2){ z-index:3; }
+.pipeline li:nth-child(3){ z-index:2; }
+.pipeline li:nth-child(4){ z-index:1; }
+.pipeline li:hover{
   transform:translateY(-8px);
   z-index:10;                                /* lift fully above the others */
   background:rgba(255,255,255,.72);
@@ -393,8 +370,6 @@ html{
 
   /* pipeline */
   .pipe-title{ font-size:clamp(22px,6vw,30px); }
-  .pipeline{ padding-left:26px; }
-  .rail{ left:6px; }
   .pipeline li{ padding:26px 18px; }
   .step-num{ width:36px; height:36px; font-size:13px; }
 }
