@@ -122,7 +122,7 @@ html{
   padding-right:6vw;             /* gap before the divider */
   color:#16181b;
 }
-/* gradient divider line */
+/* divider line + glow that flows out from the line toward the edges */
 .panel-content::after{
   content:"";
   position:absolute;
@@ -132,10 +132,10 @@ html{
   width:1px;
   background:linear-gradient(180deg,
     transparent 0%,
-    rgba(0,0,0,.22) 18%,
-    rgba(255,90,20,.55) 50%,
-    rgba(0,0,0,.22) 82%,
+    rgba(255,90,20,.6) 50%,
     transparent 100%);
+  box-shadow:0 0 55px 12px rgba(255,90,20,.16);   /* glow radiates outward */
+  pointer-events:none;
 }
 .panel-right{
   width:50%;                     /* right half */
