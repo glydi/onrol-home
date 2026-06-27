@@ -9,6 +9,13 @@
 </head>
 <body>
 
+<div class="preloader" id="preloader">
+  <div class="preloader-inner">
+    <span class="pre-word">ONROL</span>
+    <span class="pre-bar"><i></i></span>
+  </div>
+</div>
+
 <nav class="nav">
   <a href="#">Home</a>
   <span class="sep"></span>
@@ -65,6 +72,14 @@
 
 </section>
 
+<div class="modal" id="modal" hidden>
+  <div class="modal-card">
+    <button class="modal-x" aria-label="Close">&times;</button>
+    <p class="modal-eyebrow"></p>
+    <p class="modal-text"></p>
+  </div>
+</div>
+
 <section class="panel">
   <div class="panel-content">
     <h1>Most AI courses teach tools. <span>ONROL teaches execution.</span></h1>
@@ -81,18 +96,26 @@
       <li>
         <span class="step-num">1</span>
         <div class="step-text"><h3>Learn</h3><p>Master AI tools</p></div>
+        <button class="step-btn" data-phase="01 · Learn"
+          data-desc="Master the modern AI toolkit — prompting, agents, and the vibe-coding workflow that lets you build at the speed of thought.">+</button>
       </li>
       <li>
         <span class="step-num">2</span>
         <div class="step-text"><h3>Build</h3><p>Create real projects</p></div>
+        <button class="step-btn" data-phase="02 · Build"
+          data-desc="Apply it to real, working projects — not toy demos. Ship features, squash bugs, and create things people actually use.">+</button>
       </li>
       <li>
         <span class="step-num">3</span>
         <div class="step-text"><h3>Launch</h3><p>Ship to the web</p></div>
+        <button class="step-btn" data-phase="03 · Launch"
+          data-desc="Take your build live. Deploy to the web, get a real URL, and add a polished project to your portfolio.">+</button>
       </li>
       <li>
         <span class="step-num">4</span>
         <div class="step-text"><h3>Earn</h3><p>Monetize your skills</p></div>
+        <button class="step-btn" data-phase="04 · Earn"
+          data-desc="Turn skills into income — freelance gigs, your own products, or a role. Learn to package and sell what you can now create.">+</button>
       </li>
     </ol>
   </div>
@@ -189,6 +212,41 @@
   run();
   window.addEventListener('load', run);
   window.addEventListener('resize', function(){ placeNodes(); });
+
+  /* ---- preloader: reveal the site only after the hero image (+ fonts) load ---- */
+  (function(){
+    var pre = document.getElementById('preloader');
+    if (!pre) return;
+    function reveal(){ pre.classList.add('hidden'); }
+    var jobs = [ new Promise(function(res){
+      var img = new Image();
+      img.onload = img.onerror = res;
+      img.src = 'bag.jpeg';
+    }) ];
+    if (document.fonts && document.fonts.ready) jobs.push(document.fonts.ready);
+    var safety = new Promise(function(res){ setTimeout(res, 6000); });   /* never hang */
+    Promise.race([ Promise.all(jobs), safety ]).then(reveal);
+  })();
+
+  /* ---- phase popup ---- */
+  (function(){
+    var modal = document.getElementById('modal');
+    if (!modal) return;
+    var eyebrow = modal.querySelector('.modal-eyebrow');
+    var text = modal.querySelector('.modal-text');
+    function openModal(phase, desc){
+      eyebrow.textContent = phase;
+      text.textContent = desc;
+      modal.hidden = false;
+    }
+    function closeModal(){ modal.hidden = true; }
+    document.querySelectorAll('.step-btn').forEach(function(b){
+      b.addEventListener('click', function(){ openModal(b.dataset.phase, b.dataset.desc); });
+    });
+    modal.addEventListener('click', function(e){ if (e.target === modal) closeModal(); });
+    modal.querySelector('.modal-x').addEventListener('click', closeModal);
+    document.addEventListener('keydown', function(e){ if (e.key === 'Escape') closeModal(); });
+  })();
 
   /* ---- scroll: ONROL drifts up, background zooms in ---- */
   (function(){

@@ -20,6 +20,48 @@ body{
   overflow-x:hidden;            /* no sideways scroll from the 100vw lines */
 }
 
+/* preloader — covers the page until the hero image + fonts are ready */
+.preloader{
+  position:fixed;
+  inset:0;
+  z-index:200;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  background:#0c0c0c;
+  transition:opacity .6s ease, visibility .6s ease;
+}
+.preloader.hidden{ opacity:0; visibility:hidden; }
+.preloader-inner{ text-align:center; }
+.pre-word{
+  display:block;
+  font-family:'Space Grotesk',sans-serif;
+  font-weight:600;
+  font-size:clamp(28px,5vw,54px);
+  letter-spacing:.5em;
+  text-indent:.5em;
+  color:#fff;
+}
+.pre-bar{
+  display:block;
+  width:160px;
+  height:2px;
+  margin:22px auto 0;
+  background:rgba(255,255,255,.18);
+  overflow:hidden;
+}
+.pre-bar i{
+  display:block;
+  height:100%;
+  width:40%;
+  background:#ff5a14;
+  animation:preload 1s ease-in-out infinite;
+}
+@keyframes preload{
+  0%{   transform:translateX(-120%); }
+  100%{ transform:translateX(320%); }
+}
+
 /* custom glassmorphic scrollbar */
 html{
   scrollbar-width:thin;                               /* Firefox */
@@ -115,11 +157,12 @@ html{
 .pipeline li:not(:last-child)::before{
   content:"";
   position:absolute;
-  left:49px;                 /* number-column center: padding-left(30) + half square(20) */
+  left:48px;                 /* number-column center: padding-left(30) + half square(20) */
   top:0;
   bottom:0;
-  width:2px;
-  background:#ff5a14;        /* orange, clearly visible */
+  width:3px;
+  background:linear-gradient(180deg, #ff7a2a, #ff3a00);   /* clearer orange rail */
+  box-shadow:0 0 10px rgba(255,90,20,.55);                /* subtle glow */
   z-index:0;
 }
 /* each step is a frosted rectangle; earlier ones fall ON TOP of later ones */
@@ -183,6 +226,80 @@ html{
   background:linear-gradient(150deg, rgba(255,255,255,.6) 0%, rgba(255,255,255,0) 48%);
   pointer-events:none;
 }
+/* per-phase button */
+.step-btn{
+  margin-left:auto;             /* push to the right of the card */
+  flex:0 0 auto;
+  width:40px;
+  height:40px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-family:var(--mono);
+  font-size:22px;
+  line-height:1;
+  color:#16181b;
+  background:rgba(255,255,255,.45);
+  border:1px solid rgba(0,0,0,.28);
+  backdrop-filter:blur(6px);
+  -webkit-backdrop-filter:blur(6px);
+  cursor:pointer;
+  transition:background .2s, color .2s, transform .2s, border-color .2s;
+}
+.step-btn:hover{
+  background:#ff5a14;
+  color:#fff;
+  border-color:#ff5a14;
+  transform:translateY(-2px);
+}
+
+/* phase popup */
+.modal{
+  position:fixed;
+  inset:0;
+  z-index:100;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  background:rgba(8,10,12,.5);
+  backdrop-filter:blur(8px);
+  -webkit-backdrop-filter:blur(8px);
+}
+.modal[hidden]{ display:none; }
+.modal-card{
+  position:relative;
+  width:min(92vw,440px);
+  padding:40px 34px 36px;
+  color:#fff;
+  background:rgba(255,255,255,.14);
+  border:1px solid rgba(255,255,255,.4);
+  backdrop-filter:blur(26px) saturate(160%);
+  -webkit-backdrop-filter:blur(26px) saturate(160%);
+  box-shadow:0 30px 64px rgba(0,0,0,.45), inset 0 1px 1px rgba(255,255,255,.6);
+}
+.modal-x{
+  position:absolute;
+  top:12px;
+  right:14px;
+  background:none;
+  border:none;
+  color:#fff;
+  font-size:26px;
+  line-height:1;
+  cursor:pointer;
+  opacity:.7;
+}
+.modal-x:hover{ opacity:1; }
+.modal-eyebrow{
+  font-family:var(--mono);
+  font-size:12px;
+  letter-spacing:2px;
+  text-transform:uppercase;
+  color:#ff8a4a;
+  margin-bottom:14px;
+}
+.modal-text{ font-size:17px; line-height:1.6; }
+
 .step-text h3{
   font-family:'Space Grotesk',sans-serif;
   font-size:clamp(20px,1.9vw,28px);
