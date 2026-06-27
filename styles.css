@@ -20,33 +20,24 @@ body{
   overflow-x:hidden;            /* no sideways scroll from the 100vw lines */
 }
 
-/* preloader — covers the page until the hero image + fonts are ready */
+/* preloader — dark cover; the real ONROL logo is raised above it (exact hero place),
+   so when the image loads the cover fades out and only the logo stays put */
 .preloader{
   position:fixed;
   inset:0;
-  z-index:200;
-  display:flex;
-  align-items:center;
-  justify-content:center;
+  z-index:150;
   background:#0c0c0c;
   transition:opacity .7s ease, visibility 0s linear .7s;   /* fade out, then hide */
 }
 .preloader.hidden{ opacity:0; visibility:hidden; }
-.preloader-inner{ text-align:center; }
-.pre-word{
-  display:block;
-  font-family:'Space Grotesk',sans-serif;
-  font-weight:600;
-  font-size:clamp(28px,5vw,54px);
-  letter-spacing:.5em;
-  text-indent:.5em;
-  color:#fff;
-}
+body.loading .logo{ z-index:201; }    /* ONROL above the cover during loading */
 .pre-bar{
-  display:block;
+  position:absolute;
+  left:50%;
+  bottom:7vh;
+  transform:translateX(-50%);
   width:160px;
   height:2px;
-  margin:22px auto 0;
   background:rgba(255,255,255,.18);
   overflow:hidden;
 }
@@ -162,7 +153,7 @@ html{
   display:flex;
   align-items:center;
   gap:20px;
-  padding:clamp(36px, 6.5vh, 72px) 30px;     /* bigger */
+  padding:clamp(46px, 8vh, 96px) 38px;        /* bigger tiles */
   border:1px solid rgba(0,0,0,.18);
   background:rgba(255,255,255,.5);
   backdrop-filter:blur(6px) saturate(140%);
@@ -186,15 +177,15 @@ html{
 .step-num{
   position:relative;
   flex:0 0 auto;
-  width:40px;
-  height:40px;
+  width:48px;
+  height:48px;
   border-radius:0;              /* sharp, no curves */
   display:flex;
   align-items:center;
   justify-content:center;
   overflow:hidden;
   font-family:var(--mono);
-  font-size:14px;
+  font-size:16px;
   color:#16181b;
   z-index:1;
   /* liquid glass */
@@ -221,8 +212,8 @@ html{
 .step-btn{
   margin-left:auto;             /* push to the right of the card */
   flex:0 0 auto;
-  width:40px;
-  height:40px;
+  width:46px;
+  height:46px;
   display:flex;
   align-items:center;
   justify-content:center;
@@ -255,6 +246,7 @@ html{
   background:rgba(40,44,50,.35);
   backdrop-filter:blur(6px);
   -webkit-backdrop-filter:blur(6px);
+  animation:modalFade .28s ease;             /* backdrop fades in */
 }
 .modal[hidden]{ display:none; }
 .modal-card{
@@ -267,6 +259,12 @@ html{
   backdrop-filter:blur(26px) saturate(150%);
   -webkit-backdrop-filter:blur(26px) saturate(150%);
   box-shadow:0 30px 64px rgba(0,0,0,.25), inset 0 1px 1px rgba(255,255,255,.9);
+  animation:modalPop .34s cubic-bezier(.2,.85,.3,1);   /* card pops in */
+}
+@keyframes modalFade{ from{ opacity:0; } to{ opacity:1; } }
+@keyframes modalPop{
+  from{ opacity:0; transform:translateY(16px) scale(.96); }
+  to{   opacity:1; transform:none; }
 }
 .modal-x{
   position:absolute;
@@ -293,15 +291,15 @@ html{
 
 .step-text h3{
   font-family:'Space Grotesk',sans-serif;
-  font-size:clamp(20px,1.9vw,28px);
+  font-size:clamp(23px,2.2vw,34px);
   font-weight:600;
   color:#16181b;
   line-height:1.1;
 }
 .step-text p{
-  margin-top:6px;
+  margin-top:7px;
   font-family:var(--mono);
-  font-size:14px;
+  font-size:15px;
   color:#5a5e64;
 }
 .panel-content h1{

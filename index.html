@@ -7,13 +7,10 @@
 <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="styles.css">
 </head>
-<body>
+<body class="loading">
 
 <div class="preloader" id="preloader">
-  <div class="preloader-inner">
-    <span class="pre-word">ONROL</span>
-    <span class="pre-bar"><i></i></span>
-  </div>
+  <span class="pre-bar"><i></i></span>
 </div>
 
 <nav class="nav">
@@ -217,7 +214,10 @@
   (function(){
     var pre = document.getElementById('preloader');
     if (!pre) return;
-    function reveal(){ pre.classList.add('hidden'); }
+    function reveal(){
+      pre.classList.add('hidden');
+      setTimeout(function(){ document.body.classList.remove('loading'); }, 750);
+    }
     var jobs = [
       new Promise(function(res){
         var img = new Image();
