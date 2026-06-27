@@ -65,29 +65,32 @@ body{
 /* custom glassmorphic scrollbar */
 html{
   scrollbar-width:thin;                               /* Firefox */
-  scrollbar-color:#ff5a14 transparent;
+  scrollbar-color:rgba(255,255,255,.5) transparent;
 }
-::-webkit-scrollbar{ width:10px; height:10px; }
-::-webkit-scrollbar-track{                            /* thin center guide line */
-  background:linear-gradient(90deg,
-    transparent calc(50% - .5px),
-    rgba(255,255,255,.18) calc(50% - .5px),
-    rgba(255,255,255,.18) calc(50% + .5px),
-    transparent calc(50% + .5px));
+::-webkit-scrollbar{ width:12px; height:12px; }
+/* thin center line + 3 white junction points (top / center / bottom) */
+::-webkit-scrollbar-track{
+  background-color:transparent;
+  background-image:
+    linear-gradient(90deg, transparent calc(50% - 1px), rgba(255,255,255,.28) calc(50% - 1px), rgba(255,255,255,.28) calc(50% + 1px), transparent calc(50% + 1px)),
+    linear-gradient(#fff,#fff),
+    linear-gradient(#fff,#fff),
+    linear-gradient(#fff,#fff);
+  background-repeat:no-repeat;
+  background-size:100% 100%, 8px 8px, 8px 8px, 8px 8px;
+  background-position:center, 50% 2px, 50% 50%, 50% calc(100% - 2px);
 }
 ::-webkit-scrollbar-thumb{
   border-radius:0;                                    /* sharp, no curves */
-  background:linear-gradient(180deg, #ffa23a 0%, #ff5a14 50%, #ff2e00 100%);  /* bright orange */
-  border:1px solid rgba(255,170,90,.6);
+  background:rgba(255,255,255,.32);                   /* glass white */
+  border:1px solid rgba(255,255,255,.55);
   background-clip:padding-box;
   box-shadow:
-    0 2px 10px rgba(0,0,0,.3),                         /* shadow */
-    0 0 16px rgba(255,90,20,.65),                      /* orange glow */
-    inset 0 1px 1px rgba(255,255,255,.5);              /* inner highlight */
+    0 2px 10px rgba(0,0,0,.28),                        /* shadow */
+    0 0 12px rgba(255,255,255,.4),                     /* glow */
+    inset 0 1px 1px rgba(255,255,255,.85);             /* inner highlight */
 }
-::-webkit-scrollbar-thumb:hover{
-  background:linear-gradient(180deg, #ffb255 0%, #ff6a24 50%, #ff3a00 100%);
-}
+::-webkit-scrollbar-thumb:hover{ background:rgba(255,255,255,.5); }
 
 /* HERO — full-screen, holds the logo over the image */
 .hero{
@@ -175,8 +178,9 @@ html{
   border:1px solid rgba(120,30,0,.35);
   box-shadow:0 0 8px rgba(255,255,255,.65);
 }
-/* each step is a frosted rectangle; earlier ones fall ON TOP of later ones */
-.pipeline li{
+/* each step is a frosted rectangle; earlier ones fall ON TOP of later ones.
+   (.rail is excluded — it's the connector line, not a card) */
+.pipeline li:not(.rail){
   position:relative;
   display:flex;
   align-items:center;
@@ -190,12 +194,12 @@ html{
   margin-top:-30px;                          /* overlap the one below */
   transition:transform .28s ease, box-shadow .28s ease, background .28s ease, border-color .28s ease;
 }
-.pipeline li:first-child{ margin-top:0; }
-.pipeline li:nth-child(1){ z-index:4; }      /* first sits on top of second... */
-.pipeline li:nth-child(2){ z-index:3; }
-.pipeline li:nth-child(3){ z-index:2; }
-.pipeline li:nth-child(4){ z-index:1; }
-.pipeline li:hover{
+/* steps are nth-child 2..5 (the rail is nth-child 1) */
+.pipeline li:nth-child(2){ margin-top:0; z-index:4; }   /* first step, on top */
+.pipeline li:nth-child(3){ z-index:3; }
+.pipeline li:nth-child(4){ z-index:2; }
+.pipeline li:nth-child(5){ z-index:1; }
+.pipeline li:not(.rail):hover{
   transform:translateY(-8px);
   z-index:10;                                /* lift fully above the others */
   background:rgba(255,255,255,.72);
