@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 <title>ONROL</title>
 <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="styles.css">
@@ -93,6 +93,7 @@
     <p class="pipe-eyebrow">The Execution Path</p>
     <h2 class="pipe-title">From learning to earning.</h2>
     <ol class="pipeline">
+      <li class="rail" aria-hidden="true"><i></i><i></i><i></i></li>
       <li>
         <span class="step-num">1</span>
         <div class="step-text"><h3>Learn</h3><p>Master AI tools</p></div>
@@ -218,11 +219,14 @@
     var pre = document.getElementById('preloader');
     if (!pre) return;
     function reveal(){ pre.classList.add('hidden'); }
-    var jobs = [ new Promise(function(res){
-      var img = new Image();
-      img.onload = img.onerror = res;
-      img.src = 'bag.jpeg';
-    }) ];
+    var jobs = [
+      new Promise(function(res){
+        var img = new Image();
+        img.onload = img.onerror = res;
+        img.src = 'bag.jpeg';
+      }),
+      new Promise(function(res){ setTimeout(res, 1100); })   /* minimum on-screen time */
+    ];
     if (document.fonts && document.fonts.ready) jobs.push(document.fonts.ready);
     var safety = new Promise(function(res){ setTimeout(res, 6000); });   /* never hang */
     Promise.race([ Promise.all(jobs), safety ]).then(reveal);
