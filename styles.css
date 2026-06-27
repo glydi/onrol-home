@@ -31,6 +31,29 @@ body{
 }
 .preloader.hidden{ opacity:0; visibility:hidden; }
 body.loading .logo{ z-index:201; }    /* ONROL above the cover during loading */
+body.loading{ --la:0; }               /* hide grid lines during loading (letters only) */
+body.loading .tower{ opacity:0; }     /* hide the empty boxes + tagline during loading */
+.pre-bar{
+  position:absolute;
+  left:50%;
+  bottom:7vh;
+  transform:translateX(-50%);
+  width:160px;
+  height:2px;
+  background:rgba(255,255,255,.18);
+  overflow:hidden;
+}
+.pre-bar i{
+  display:block;
+  height:100%;
+  width:40%;
+  background:#ff5a14;
+  animation:preload 1s ease-in-out infinite;
+}
+@keyframes preload{
+  0%{   transform:translateX(-120%); }
+  100%{ transform:translateX(320%); }
+}
 
 /* custom glassmorphic scrollbar */
 html{
@@ -449,6 +472,7 @@ body::after{  right:6vw; }
   grid-auto-rows:var(--tower);
   border:1px dotted var(--line);   /* outline only */
   animation:pulseBorder 4s ease-in-out infinite;
+  transition:opacity .6s ease;     /* fades in after loading */
 }
 .tower .cell{ border:0; }          /* no lines in between the box */
 /* tagline sitting inside the bottom box */
