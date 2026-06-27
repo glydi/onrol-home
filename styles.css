@@ -156,28 +156,24 @@ html{
 /* scrollbar-style orange rail on the left, outside the cards */
 .rail{
   position:absolute;
-  left:9px;
+  left:10px;
   top:0;
   bottom:0;
-  width:10px;
+  width:2px;                                /* thin line */
   display:flex;
   flex-direction:column;
   align-items:center;
-  justify-content:space-between;          /* junctions at top / middle / end */
+  justify-content:space-between;            /* junction points: top / center / bottom */
   background:linear-gradient(180deg, #ffa23a 0%, #ff5a14 50%, #ff2e00 100%);
-  border:1px solid rgba(255,170,90,.6);
-  box-shadow:
-    0 2px 10px rgba(0,0,0,.3),
-    0 0 16px rgba(255,90,20,.6),
-    inset 0 1px 1px rgba(255,255,255,.5);
+  box-shadow:0 0 10px rgba(255,90,20,.5);   /* soft glow */
   z-index:1;
 }
 .rail i{
-  width:14px;
-  height:14px;
+  width:12px;
+  height:12px;
   background:#fff;
   border:1px solid rgba(120,30,0,.35);
-  box-shadow:0 0 8px rgba(255,255,255,.6);
+  box-shadow:0 0 8px rgba(255,255,255,.65);
 }
 /* each step is a frosted rectangle; earlier ones fall ON TOP of later ones */
 .pipeline li{
