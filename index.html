@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ONROL</title>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<nav class="nav">
+  <a href="#">Home</a>
+  <span class="sep"></span>
+  <a href="#">Programs</a>
+  <span class="sep"></span>
+  <a href="#">About</a>
+  <span class="sep"></span>
+  <a href="#">Contact</a>
+  <span class="sep"></span>
+  <a href="#">Community</a>
+</nav>
+
+<section class="hero">
+
+<div class="hero-bg"></div>
+
+<div class="logo" role="img" aria-label="O N R O L">
+
+  <!-- top band row -->
+  <div class="cell"></div><div class="cell"></div><div class="cell"></div>
+  <div class="cell"></div><div class="cell"></div><div class="cell"></div>
+  <div class="cell"></div><div class="cell"></div><div class="cell"></div>
+
+  <!-- letter row: O _ N _ R _ O _ L -->
+  <div class="cell"><svg class="glyph" aria-hidden="true"><text>O</text></svg></div>
+  <div class="cell"></div>
+  <div class="cell"><svg class="glyph" aria-hidden="true"><text>N</text></svg></div>
+  <div class="cell"></div>
+  <div class="cell"><svg class="glyph" aria-hidden="true"><text>R</text></svg></div>
+  <div class="cell"></div>
+  <div class="cell"><svg class="glyph" aria-hidden="true"><text>O</text></svg></div>
+  <div class="cell"></div>
+  <div class="cell"><svg class="glyph" aria-hidden="true"><text>L</text></svg></div>
+
+  <!-- bottom band row -->
+  <div class="cell"></div><div class="cell"></div><div class="cell"></div>
+  <div class="cell"></div><div class="cell"></div><div class="cell"></div>
+  <div class="cell"></div><div class="cell"></div><div class="cell"></div>
+
+  <!-- vertical grid box: 5 spaces UP + 5 DOWN, spanning junction 3 -> 6 -->
+  <div class="tower up">
+    <div class="cell"></div><div class="cell"></div><div class="cell"></div>
+    <div class="cell"></div><div class="cell"></div>
+    <div class="cell"></div><div class="cell"></div><div class="cell"></div>
+    <div class="cell"></div><div class="cell"></div>
+  </div>
+  <div class="tower down">
+    <div class="cell"></div><div class="cell"></div>
+    <div class="cell"></div><div class="cell"></div>
+    <div class="tagline">AI EXECUTION SCHOOL</div>
+  </div>
+
+</div>
+
+</section>
+
+<section class="panel">
+  <div class="panel-content">
+    <h1>Most AI courses teach tools. <span>ONROL teaches execution.</span></h1>
+    <p>Stop watching tutorials and start building. Join India&rsquo;s AI Execution School to master vibe coding and launch real-world projects you can put in your portfolio.</p>
+    <div class="cta">
+      <a class="btn primary" href="#">Apply Now</a>
+      <a class="btn secondary" href="#">See What You&rsquo;ll Build</a>
+    </div>
+  </div>
+  <div class="panel-right">
+    <p class="pipe-eyebrow">The Execution Path</p>
+    <h2 class="pipe-title">From learning to earning.</h2>
+    <ol class="pipeline">
+      <li>
+        <span class="step-num">1</span>
+        <div class="step-text"><h3>Learn</h3><p>Master AI tools</p></div>
+      </li>
+      <li>
+        <span class="step-num">2</span>
+        <div class="step-text"><h3>Build</h3><p>Create real projects</p></div>
+      </li>
+      <li>
+        <span class="step-num">3</span>
+        <div class="step-text"><h3>Launch</h3><p>Ship to the web</p></div>
+      </li>
+      <li>
+        <span class="step-num">4</span>
+        <div class="step-text"><h3>Earn</h3><p>Monetize your skills</p></div>
+      </li>
+    </ol>
+  </div>
+</section>
+
+<script>
+  /* ---- letters: stretch each glyph's exact ink box to fill its cell (zero gaps) ---- */
+  var FONT = '500 100px "Space Grotesk", sans-serif';
+  var OX = 90, OY = 220, CW = 360, CH = 360;
+
+  function inkViewBox(letter){
+    var c = document.createElement('canvas');
+    c.width = CW; c.height = CH;
+    var ctx = c.getContext('2d');
+    ctx.font = FONT; ctx.textAlign = 'left'; ctx.textBaseline = 'alphabetic';
+    ctx.fillStyle = '#fff';
+    ctx.fillText(letter, OX, OY);
+    var d = ctx.getImageData(0, 0, CW, CH).data;
+    var minX = CW, minY = CH, maxX = -1, maxY = -1;
+    for (var y = 0; y < CH; y++){
+      var row = y * CW * 4;
+      for (var x = 0; x < CW; x++){
+        if (d[row + x * 4 + 3] > 16){
+          if (x < minX) minX = x; if (x > maxX) maxX = x;
+          if (y < minY) minY = y; if (y > maxY) maxY = y;
+        }
+      }
+    }
+    if (maxX < 0) return null;
+    return (minX - OX) + ' ' + (minY - OY) + ' ' + (maxX - minX + 1) + ' ' + (maxY - minY + 1);
+  }
+
+  function fitGlyphs(){
+    document.querySelectorAll('.glyph').forEach(function(svg){
+      var vb = inkViewBox(svg.querySelector('text').textContent);
+      if (vb){ svg.setAttribute('viewBox', vb); svg.setAttribute('preserveAspectRatio', 'none'); }
+    });
+  }
+
+  /* ---- junction highlights: a white square at every grid-line intersection ---- */
+  function placeNodes(){
+    var logo = document.querySelector('.logo');
+    logo.querySelectorAll('.node').forEach(function(n){ n.remove(); });
+    var lr = logo.getBoundingClientRect();
+    var seen = {};
+    function addNode(px, py){
+      var x = Math.round(px - lr.left - logo.clientLeft);
+      var y = Math.round(py - lr.top  - logo.clientTop);
+      var key = x + ',' + y;
+      if (seen[key]) return;
+      seen[key] = 1;
+      var n = document.createElement('div');
+      n.className = 'node';
+      n.style.left = x + 'px';
+      n.style.top  = y + 'px';
+      logo.appendChild(n);
+    }
+
+    // main grid: junctions ONLY at the ends (outer top & bottom edges).
+    // the inner lines that touch the letters get no junctions.
+    var main = [];
+    logo.querySelectorAll('.cell').forEach(function(c){ if (!c.closest('.tower')) main.push(c); });
+    main.forEach(function(c, i){
+      var r = c.getBoundingClientRect();
+      if (i < 9){                              // top band row -> grid TOP edge
+        addNode(r.left, r.top); addNode(r.right, r.top);
+      } else if (i >= main.length - 9){        // bottom band row -> grid BOTTOM edge
+        addNode(r.left, r.bottom); addNode(r.right, r.bottom);
+      }
+      // letter row -> no junctions (those lines touch the letters)
+    });
+
+    // empty box: junctions at its corners only (the ends), not internal divisions
+    logo.querySelectorAll('.tower').forEach(function(t){
+      var r = t.getBoundingClientRect();
+      addNode(r.left, r.top);    addNode(r.right, r.top);
+      addNode(r.left, r.bottom); addNode(r.right, r.bottom);
+    });
+  }
+
+  function refresh(){ fitGlyphs(); placeNodes(); }
+
+  function run(){
+    placeNodes();                 // junctions don't need the font -> place them now
+    fitGlyphs();                  // first pass (may use fallback metrics)
+    if (document.fonts) {
+      var jobs = [];
+      if (document.fonts.load)  jobs.push(document.fonts.load(FONT));
+      if (document.fonts.ready) jobs.push(document.fonts.ready);
+      if (jobs.length) Promise.all(jobs).then(refresh, refresh);   // re-fit with real font
+    }
+  }
+
+  run();
+  window.addEventListener('load', run);
+  window.addEventListener('resize', function(){ placeNodes(); });
+
+  /* ---- scroll: ONROL drifts up, background zooms in ---- */
+  (function(){
+    var bg = document.querySelector('.hero-bg');
+    var logo = document.querySelector('.logo');
+    var ticking = false;
+    function apply(){
+      ticking = false;
+      var p = window.scrollY / window.innerHeight;       // hero progress 0..1+
+      p = p < 0 ? 0 : (p > 1 ? 1 : p);
+      if (bg)   bg.style.transform   = 'scale(' + (1 + p * 0.35) + ')';
+      if (logo) logo.style.transform = 'translateY(' + (16 - p * 55) + 'vh)';
+      // grid lines + junctions fade out smoothly while scrolling
+      var la = 1 - p * 1.4;
+      document.documentElement.style.setProperty('--la', la < 0 ? 0 : la);
+    }
+    window.addEventListener('scroll', function(){
+      if (!ticking){ ticking = true; requestAnimationFrame(apply); }
+    }, { passive:true });
+    apply();
+  })();
+</script>
+
+</body>
+</html>

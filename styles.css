@@ -1,0 +1,428 @@
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+}
+
+:root{
+  --la:1;                 /* line alpha — scroll fades this 1 -> 0 */
+  --line-lo:rgba(255,255,255, calc(.3 * var(--la)));
+  --line-hi:rgba(255,255,255, calc(.6 * var(--la)));
+  --line:rgba(255,255,255, calc(.45 * var(--la)));
+  --band:42px;            /* space between the letters and the outer top/bottom lines */
+  --tower:22px;           /* height of each vertical "space" cell */
+  --mono:'JetBrains Mono', ui-monospace, monospace;   /* modern thin monospace */
+}
+
+body{
+  background:#0c0c0c;
+  font-family:'Space Grotesk',sans-serif;
+  overflow-x:hidden;            /* no sideways scroll from the 100vw lines */
+}
+
+/* custom glassmorphic scrollbar */
+html{
+  scrollbar-width:thin;                               /* Firefox */
+  scrollbar-color:#ff5a14 transparent;
+}
+::-webkit-scrollbar{ width:10px; height:10px; }
+::-webkit-scrollbar-track{                            /* thin center guide line */
+  background:linear-gradient(90deg,
+    transparent calc(50% - .5px),
+    rgba(255,255,255,.18) calc(50% - .5px),
+    rgba(255,255,255,.18) calc(50% + .5px),
+    transparent calc(50% + .5px));
+}
+::-webkit-scrollbar-thumb{
+  border-radius:0;                                    /* sharp, no curves */
+  background:linear-gradient(180deg, #ffa23a 0%, #ff5a14 50%, #ff2e00 100%);  /* bright orange */
+  border:1px solid rgba(255,170,90,.6);
+  background-clip:padding-box;
+  box-shadow:
+    0 2px 10px rgba(0,0,0,.3),                         /* shadow */
+    0 0 16px rgba(255,90,20,.65),                      /* orange glow */
+    inset 0 1px 1px rgba(255,255,255,.5);              /* inner highlight */
+}
+::-webkit-scrollbar-thumb:hover{
+  background:linear-gradient(180deg, #ffb255 0%, #ff6a24 50%, #ff3a00 100%);
+}
+
+/* HERO — full-screen, holds the logo over the image */
+.hero{
+  position:relative;
+  height:100vh;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  overflow:hidden;
+  background:#0c0c0c;
+}
+/* background image on its own layer so it can zoom on scroll */
+.hero-bg{
+  position:absolute;
+  inset:0;
+  background:url('bag.jpeg') center/cover no-repeat;
+  transform-origin:center;
+  will-change:transform;
+  z-index:0;
+}
+
+/* SECTION below — grey → orange gradient */
+.panel{
+  min-height:100vh;
+  background:linear-gradient(180deg, #fafbfc 0%, #c4c8ce 100%);
+  display:flex;
+  align-items:stretch;
+  padding:0 6vw;                 /* align with the margin lines */
+}
+.panel-content{
+  width:50%;                     /* left half */
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  padding-right:6vw;             /* gap before the divider */
+  border-right:1px solid rgba(0,0,0,.18);   /* thin divider line */
+  color:#16181b;
+}
+.panel-right{
+  width:50%;                     /* right half */
+  padding-left:6vw;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+}
+/* pipeline heading */
+.pipe-eyebrow{
+  font-family:var(--mono);
+  font-size:12px;
+  letter-spacing:2px;
+  text-transform:uppercase;
+  color:#ff5a14;
+  margin-bottom:10px;
+}
+.pipe-title{
+  font-family:'Space Grotesk',sans-serif;
+  font-size:clamp(24px,2.4vw,38px);
+  font-weight:600;
+  line-height:1.12;
+  color:#16181b;
+  margin-bottom:clamp(26px,4vh,46px);
+}
+
+/* 4-step pipeline */
+.pipeline{ list-style:none; }
+/* 3 connecting segments — one between each pair of steps (skip the last) */
+.pipeline li:not(:last-child)::before{
+  content:"";
+  position:absolute;
+  left:49px;                 /* number-column center: padding-left(30) + half square(20) */
+  top:0;
+  bottom:0;
+  width:2px;
+  background:#ff5a14;        /* orange, clearly visible */
+  z-index:0;
+}
+/* each step is a frosted rectangle; earlier ones fall ON TOP of later ones */
+.pipeline li{
+  position:relative;
+  display:flex;
+  align-items:center;
+  gap:20px;
+  padding:clamp(36px, 6.5vh, 72px) 30px;     /* bigger */
+  border:1px solid rgba(0,0,0,.18);
+  background:rgba(255,255,255,.5);
+  backdrop-filter:blur(6px) saturate(140%);
+  -webkit-backdrop-filter:blur(6px) saturate(140%);
+  box-shadow:0 12px 22px rgba(0,0,0,.13);    /* casts onto the rectangle below */
+  margin-top:-30px;                          /* overlap the one below */
+  transition:transform .28s ease, box-shadow .28s ease, background .28s ease, border-color .28s ease;
+}
+.pipeline li:first-child{ margin-top:0; }
+.pipeline li:nth-child(1){ z-index:4; }      /* first sits on top of second... */
+.pipeline li:nth-child(2){ z-index:3; }
+.pipeline li:nth-child(3){ z-index:2; }
+.pipeline li:nth-child(4){ z-index:1; }
+.pipeline li:hover{
+  transform:translateY(-8px);
+  z-index:10;                                /* lift fully above the others */
+  background:rgba(255,255,255,.72);
+  border-color:rgba(0,0,0,.3);
+  box-shadow:0 22px 38px rgba(0,0,0,.22);
+}
+.step-num{
+  position:relative;
+  flex:0 0 auto;
+  width:40px;
+  height:40px;
+  border-radius:0;              /* sharp, no curves */
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  overflow:hidden;
+  font-family:var(--mono);
+  font-size:14px;
+  color:#16181b;
+  z-index:1;
+  /* liquid glass */
+  border:1px solid rgba(255,255,255,.7);
+  background:linear-gradient(145deg, rgba(255,255,255,.7) 0%, rgba(255,255,255,.25) 100%);
+  backdrop-filter:blur(8px) saturate(150%);
+  -webkit-backdrop-filter:blur(8px) saturate(150%);
+  /* lighting: depth shadow + soft glow + inner highlights */
+  box-shadow:
+    0 6px 16px rgba(20,24,30,.16),
+    0 0 18px rgba(255,255,255,.45),
+    inset 0 1px 1px rgba(255,255,255,.95),
+    inset 0 -2px 5px rgba(255,255,255,.35);
+}
+/* specular sheen */
+.step-num::after{
+  content:"";
+  position:absolute;
+  inset:0;
+  background:linear-gradient(150deg, rgba(255,255,255,.6) 0%, rgba(255,255,255,0) 48%);
+  pointer-events:none;
+}
+.step-text h3{
+  font-family:'Space Grotesk',sans-serif;
+  font-size:clamp(20px,1.9vw,28px);
+  font-weight:600;
+  color:#16181b;
+  line-height:1.1;
+}
+.step-text p{
+  margin-top:6px;
+  font-family:var(--mono);
+  font-size:14px;
+  color:#5a5e64;
+}
+.panel-content h1{
+  font-size:clamp(30px,3.4vw,56px);
+  font-weight:600;
+  line-height:1.12;
+  letter-spacing:-.01em;
+}
+.panel-content h1 span{ color:#ff5a14; }   /* "ONROL teaches execution." */
+.panel-content p{
+  margin-top:22px;
+  max-width:48ch;
+  font-size:clamp(15px,1.15vw,19px);
+  line-height:1.6;
+  color:#41454b;
+}
+.panel-content .cta{
+  margin-top:34px;
+  display:flex;
+  gap:16px;
+  flex-wrap:wrap;
+}
+.panel-content .btn{
+  display:inline-block;
+  padding:14px 30px;
+  font-family:var(--mono);
+  font-size:13px;
+  font-weight:500;
+  text-transform:uppercase;
+  letter-spacing:1px;
+  text-decoration:none;
+  transition:opacity .2s, transform .2s;
+}
+.panel-content .btn.primary{ background:#ff5a14; color:#fff; }
+.panel-content .btn.secondary{
+  background:transparent;
+  color:#16181b;
+  border:1px solid rgba(0,0,0,.35);
+}
+.panel-content .btn:hover{ opacity:.85; }
+
+/* ---------- responsive ---------- */
+@media(max-width:900px){
+  .nav a{ padding:3px 24px; }
+}
+
+@media(max-width:760px){
+  :root{ --band:22px; --tower:13px; }   /* scale the grid bands down on small screens */
+
+  /* nav: compact, wraps to fit, separators hidden */
+  .nav{ top:14px; padding:5px 8px; flex-wrap:wrap; justify-content:center; max-width:92vw; }
+  .nav a{ padding:5px 12px; font-size:10.5px; letter-spacing:.6px; }
+  .nav .sep{ display:none; }
+
+  /* logo a touch higher so the upward box clears the wrapped nav */
+  .logo{ transform:translateY(8vh); }
+  .node{ width:4px; height:4px; }       /* smaller junctions on mobile */
+  .tower.down .tagline{ letter-spacing:.22em; text-indent:.22em; }
+
+  /* second section stacks into one column */
+  .panel{ flex-direction:column; padding:16vh 7vw 9vh; }
+  .panel-content{ width:100%; border-right:none; padding-right:0; }
+  .panel-content h1{ font-size:clamp(26px,7vw,40px); }
+  .panel-content p{ font-size:15px; max-width:none; }
+  .panel-right{ width:100%; padding-left:0; padding-top:46px; }
+
+  /* pipeline */
+  .pipe-title{ font-size:clamp(22px,6vw,30px); }
+  .pipeline li{ padding:26px 18px; }
+  .pipeline li:not(:last-child)::before{ left:35px; }   /* re-align segments to the number column */
+  .step-num{ width:36px; height:36px; font-size:13px; }
+}
+
+@media(max-width:430px){
+  .nav a{ padding:4px 9px; font-size:9.5px; letter-spacing:.4px; }
+  .panel-content .cta{ gap:12px; }
+  .panel-content .btn{ flex:1 1 auto; text-align:center; padding:13px 16px; }
+}
+
+/* site-wide margin guide lines (left & right) — fixed across all sections */
+body::before,
+body::after{
+  content:"";
+  position:fixed;
+  top:0;
+  height:100vh;
+  border-left:1px solid var(--line);
+  z-index:40;
+  animation:pulseBorder 4s ease-in-out infinite;
+  pointer-events:none;
+}
+body::before{ left:6vw; }
+body::after{  right:6vw; }
+
+/* NAVBAR — sharp, centered, 5 items with separators */
+.nav{
+  position:fixed;
+  top:26px;
+  left:50%;
+  transform:translateX(-50%);
+  z-index:50;
+  display:flex;
+  align-items:stretch;
+  padding:3px 24px;
+  background:transparent;                       /* no color, just blur */
+  border:1px solid rgba(255,255,255,.18);
+  backdrop-filter:blur(20px);
+  -webkit-backdrop-filter:blur(20px);
+}
+.nav a{
+  display:flex;
+  align-items:center;
+  color:#fff;
+  text-decoration:none;
+  font-family:var(--mono);
+  font-size:12px;
+  font-weight:400;
+  text-transform:uppercase;
+  letter-spacing:1.5px;
+  padding:2px 42px;
+  white-space:nowrap;
+  transition:opacity .2s;
+}
+.nav a:hover{ opacity:.6; }
+.nav .sep{
+  width:1px;
+  background:rgba(255,255,255,.3);
+}
+
+/* LOGO — connected grid: top band / letter row / bottom band */
+.logo{
+  position:relative;
+  display:grid;
+  grid-template-columns:repeat(4, 11vw 3vw) 11vw;   /* letter / narrow space / ... */
+  grid-template-rows:var(--band) 11vw var(--band);
+  /* container draws the top + left lines; cells draw right + bottom -> one clean,
+     fully connected grid (verticals run through the bands to the outer lines) */
+  border-top:1px dotted var(--line);
+  border-left:1px dotted var(--line);
+  transform:translateY(16vh);                       /* sit lower on the page */
+  animation:pulseBorder 4s ease-in-out infinite;
+  z-index:2;                                         /* above the background layer */
+}
+
+/* extend the top & bottom line PAIRS full-width across the screen (dotted) */
+.logo::before,
+.logo::after{
+  content:"";
+  position:absolute;
+  left:50%;
+  transform:translateX(-50%);
+  width:100vw;
+  height:var(--band);
+  border-top:1px dotted var(--line);
+  border-bottom:1px dotted var(--line);
+  z-index:5;
+  animation:pulseBorder 4s ease-in-out infinite;
+}
+.logo::before{ top:0; }      /* outer top line + band line below */
+.logo::after{  bottom:0; }   /* band line above + outer bottom line */
+
+/* VERTICAL GRID BOX — empty "spaces" stacking up & down, spanning junction 3 -> 6 */
+.tower{
+  position:absolute;
+  left:17vw;                       /* one space-column (3vw) in from N's left edge */
+  width:33vw;                      /* 1 space less on each side, still centered */
+  display:grid;
+  grid-template-columns:33vw;
+  grid-auto-rows:var(--tower);
+  border:1px dotted var(--line);   /* outline only */
+  animation:pulseBorder 4s ease-in-out infinite;
+}
+.tower .cell{ border:0; }          /* no lines in between the box */
+/* tagline sitting inside the bottom box */
+.tower.down .tagline{
+  position:absolute;
+  inset:0;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  color:#fff;
+  font-family:var(--mono);
+  font-size:clamp(9px,1.1vw,15px);
+  font-weight:300;
+  letter-spacing:.36em;
+  text-indent:.36em;               /* balance the trailing letter-spacing */
+  white-space:nowrap;
+  pointer-events:none;
+}
+.tower.up{   bottom:100%; }        /* directly above the logo */
+.tower.down{ top:100%; }           /* directly below the logo */
+
+/* GRID CELLS */
+.cell{
+  position:relative;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  border-right:1px dotted var(--line);
+  border-bottom:1px dotted var(--line);
+  animation:pulseBorder 4s ease-in-out infinite;
+}
+
+/* LETTERS — each glyph is stretched to fill its cell (zero gaps, no overflow) */
+.cell .glyph{
+  display:block;
+  width:100%;
+  height:100%;
+  user-select:none;
+}
+.cell .glyph text{
+  fill:#fff;
+  font-family:'Space Grotesk',sans-serif;
+  font-weight:500;
+  font-size:100px;          /* arbitrary: the JS viewBox normalises it to the cell */
+}
+
+/* JUNCTION HIGHLIGHTS — placed by JS at every line intersection */
+.node{
+  position:absolute;
+  width:6px;
+  height:6px;
+  background:rgba(255,255,255, var(--la));   /* fades with the grid lines */
+  transform:translate(-50%,-50%);
+  z-index:20;
+}
+
+/* pulse the borders and the full-width lines together */
+@keyframes pulseBorder{
+  0%,100%{ border-color:var(--line-lo); }
+  50%{     border-color:var(--line-hi); }
+}
