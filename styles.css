@@ -1176,10 +1176,6 @@ body::after{  right:6vw; }
   .block-eyebrow{ font-size:clamp(42px,12vw,92px); }
   .build-block.has-img > h3{ font-size:clamp(18px,4.6vw,24px); }
 
-  /* big play button: a touch smaller on phones */
-  .vid-play-big{ width:66px; height:66px; }
-  .vid-play-big .ic{ width:27px; height:27px; }
-
   /* who section: tighter padding */
   .who{ padding:72px 7vw; }
   .who-card{ padding:26px 22px; }
