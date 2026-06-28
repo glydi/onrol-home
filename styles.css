@@ -433,20 +433,20 @@ html{
   position:absolute;
   inset:0;
   background:
-    /* lumps bulging inward at varying heights & depths (distinct waves) */
-    radial-gradient(13% 10% at 0% 9%,  rgba(200,35,12,.96),  transparent 64%),
-    radial-gradient(20% 12% at 0% 25%, rgba(255,95,20,.92),  transparent 66%),
-    radial-gradient(10% 9%  at 0% 40%, rgba(205,40,14,.96),  transparent 64%),
-    radial-gradient(22% 13% at 0% 56%, rgba(255,115,25,.92), transparent 66%),
-    radial-gradient(12% 9%  at 0% 72%, rgba(200,35,12,.96),  transparent 64%),
-    radial-gradient(18% 12% at 0% 88%, rgba(255,95,20,.92),  transparent 66%),
-    radial-gradient(11% 9%  at 0% 99%, rgba(205,40,14,.96),  transparent 64%),
-    radial-gradient(12% 10% at 100% 14%, rgba(200,35,12,.96),  transparent 64%),
-    radial-gradient(21% 12% at 100% 30%, rgba(255,95,20,.92),  transparent 66%),
-    radial-gradient(10% 9%  at 100% 46%, rgba(205,40,14,.96),  transparent 64%),
-    radial-gradient(23% 13% at 100% 62%, rgba(255,115,25,.92), transparent 66%),
-    radial-gradient(12% 9%  at 100% 78%, rgba(200,35,12,.96),  transparent 64%),
-    radial-gradient(19% 12% at 100% 94%, rgba(255,95,20,.92),  transparent 66%),
+    /* lumps bulging inward at varying depths, edges softened so they blend */
+    radial-gradient(13% 17% at 0% 9%,  rgba(200,35,12,.9),  transparent 82%),
+    radial-gradient(20% 19% at 0% 25%, rgba(255,95,20,.85), transparent 84%),
+    radial-gradient(10% 16% at 0% 40%, rgba(205,40,14,.9),  transparent 82%),
+    radial-gradient(22% 20% at 0% 56%, rgba(255,115,25,.85),transparent 84%),
+    radial-gradient(12% 16% at 0% 72%, rgba(200,35,12,.9),  transparent 82%),
+    radial-gradient(18% 19% at 0% 88%, rgba(255,95,20,.85), transparent 84%),
+    radial-gradient(11% 16% at 0% 99%, rgba(205,40,14,.9),  transparent 82%),
+    radial-gradient(12% 17% at 100% 14%, rgba(200,35,12,.9),  transparent 82%),
+    radial-gradient(21% 19% at 100% 30%, rgba(255,95,20,.85), transparent 84%),
+    radial-gradient(10% 16% at 100% 46%, rgba(205,40,14,.9),  transparent 82%),
+    radial-gradient(23% 20% at 100% 62%, rgba(255,115,25,.85),transparent 84%),
+    radial-gradient(12% 16% at 100% 78%, rgba(200,35,12,.9),  transparent 82%),
+    radial-gradient(19% 19% at 100% 94%, rgba(255,95,20,.85), transparent 84%),
     /* thin continuous base strip the lumps grow out of */
     linear-gradient(90deg,
       rgba(190,30,10,.95) 0,
