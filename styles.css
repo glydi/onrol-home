@@ -167,17 +167,6 @@ html{
   padding-right:6vw;             /* gap before the divider */
   color:#16181b;
 }
-/* soft light backdrop so the text stays readable over the 3D graphic */
-.panel-content::before{
-  content:"";
-  position:absolute;
-  inset:-8vh -2vw -8vh -6vw;
-  background:radial-gradient(75% 62% at 36% 50%, rgba(248,249,250,.86) 0%, rgba(248,249,250,.55) 55%, transparent 100%);
-  z-index:-1;
-  pointer-events:none;
-}
-.panel-content h1,
-.panel-content > p{ text-shadow:0 1px 10px rgba(255,255,255,.85); }   /* lift text off the graphic */
 /* 3D asterisk graphic: roughly section-tall, half bleeding off the left edge */
 .panel-aster{
   position:absolute;
