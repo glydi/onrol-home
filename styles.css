@@ -420,12 +420,20 @@ html{
   overflow:hidden;
   min-height:100vh;
   color:#16181b;
-  /* strong orange + red gradient: red at the edges -> warm light toward the centre */
-  background:radial-gradient(125% 125% at 50% 50%, #fff7f1 16%, rgba(255,110,30,.62) 58%, rgba(200,35,12,.92) 100%);
+  background:#fff;                 /* white margins */
   display:grid;
   grid-template-columns:1fr 1fr;   /* 2x2 grid: video | text / block | block */
   grid-template-rows:1fr 1fr;      /* all four cells exactly equal */
   padding:0 6vw;                   /* follow the side margins */
+}
+/* strong orange + red gradient (red edges -> warm centre), contained within the 6vw margins */
+.build::before{
+  content:"";
+  position:absolute;
+  inset:0 6vw;                     /* does not cross the side margins */
+  background:radial-gradient(125% 125% at 50% 50%, #fff7f1 16%, rgba(255,110,30,.62) 58%, rgba(200,35,12,.92) 100%);
+  z-index:0;
+  pointer-events:none;
 }
 /* cells sit above the background */
 .build-video,
