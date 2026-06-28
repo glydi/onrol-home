@@ -368,7 +368,7 @@ html{
   display:flex;
   flex-direction:column;
   gap:0;
-  padding:0;                     /* full-bleed: all cells fill edge to edge */
+  padding:0 6vw;                 /* follow the side margins; cells stay flush within */
 }
 /* detailed lit crystal background */
 .build-bg{
