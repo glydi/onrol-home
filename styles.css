@@ -830,3 +830,13 @@ body::after{  right:6vw; }
   0%,100%{ border-color:var(--line-lo); }
   50%{     border-color:var(--line-hi); }
 }
+
+/* accessibility: respect reduced-motion preference */
+@media (prefers-reduced-motion: reduce){
+  *, *::before, *::after{
+    animation-duration:.001ms !important;
+    animation-iteration-count:1 !important;
+    transition-duration:.001ms !important;
+    scroll-behavior:auto !important;
+  }
+}
