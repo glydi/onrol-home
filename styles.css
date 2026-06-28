@@ -159,6 +159,7 @@ html{
 .panel::after{  right:6vw; }
 .panel-content{
   position:relative;
+  z-index:1;                     /* above the asterisk watermark */
   width:50%;                     /* left half */
   display:flex;
   flex-direction:column;
@@ -166,12 +167,16 @@ html{
   padding-right:6vw;             /* gap before the divider */
   color:#16181b;
 }
-/* decorative asterisk under the left-column text */
+/* 3D asterisk graphic: only its right half shows, bleeding in from the left edge */
 .panel-aster{
-  display:block;
-  width:clamp(80px,9vw,140px);
+  position:absolute;
+  left:0;
+  top:50%;
+  transform:translate(-50%,-50%);   /* centre on the left edge -> half off-screen */
+  width:clamp(260px,34vw,520px);
   height:auto;
-  margin-top:clamp(28px,4.5vh,60px);
+  z-index:0;
+  pointer-events:none;
 }
 /* divider line + glow that flows out from the line toward the edges */
 .panel-content::after{
@@ -649,12 +654,14 @@ html{
   line-height:1.7;
   color:#5e554d;
 }
-/* all-white matrix: white grid lines (seamless); orange junction dots mark the crossings */
+/* white cells with visible grid lines (full-bleed to the edges) */
 .who-grid{
   display:grid;
   grid-template-columns:repeat(3,1fr);
   gap:1px;
-  background:#fff;
+  background:rgba(0,0,0,.16);
+  border-top:1px solid rgba(0,0,0,.16);
+  border-bottom:1px solid rgba(0,0,0,.16);
 }
 .who-card{
   position:relative;             /* containing block for the junction nodes + hover lift */
