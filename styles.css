@@ -395,12 +395,12 @@ html{
 .build-row{
   flex:1;                        /* top half */
   display:flex;
-  align-items:center;
+  align-items:stretch;           /* video + text fill the half height */
   gap:5vw;
 }
 .build-video{
   width:50%;
-  aspect-ratio:16 / 9;
+  height:100%;                   /* fill the half — no padding/empty space */
   background:#000;
   border:1px solid rgba(255,110,40,.4);
   overflow:hidden;
@@ -412,7 +412,12 @@ html{
   height:100%;
   object-fit:cover;
 }
-.build-text{ width:50%; }
+.build-text{
+  width:50%;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;        /* keep text vertically centered */
+}
 .build-title{
   font-family:'Space Grotesk',sans-serif;
   font-size:clamp(26px,2.8vw,44px);
@@ -657,7 +662,7 @@ html{
   /* section 3 stacks */
   .build{ gap:6vh; padding:14vh 7vw 10vh; }
   .build-row{ flex:none; flex-direction:column; gap:6vh; }
-  .build-video{ width:100%; }
+  .build-video{ width:100%; height:auto; aspect-ratio:16 / 9; }
   .build-text{ width:100%; }
   .build-blocks{ flex:none; grid-template-columns:1fr; grid-template-rows:none; }
 
