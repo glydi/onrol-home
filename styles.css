@@ -583,16 +583,15 @@ html{
   content:"";
   position:absolute;
   inset:0;                       /* full-bleed — image not limited to margins */
-  background:
-    radial-gradient(74% 66% at 50% 50%, rgba(6,3,1,.84) 0%, rgba(6,3,1,.58) 38%, rgba(6,3,1,.18) 68%, transparent 86%),  /* strong dim behind text, edges stay bright */
-    url('bag_1.jpeg') center / cover no-repeat;
-  filter:saturate(1.18) brightness(1.0);    /* glowy edges, scrim holds */
+  background:url('bag_1.jpeg') center / cover no-repeat;   /* full bright, not dimmed */
+  filter:saturate(1.18) brightness(1.05);    /* bright & glowy */
   z-index:0;
 }
 .cta-section > *{ position:relative; z-index:1; }
-.cta-title{ text-shadow:0 2px 30px rgba(0,0,0,.75); }
-.cta-sub{ text-shadow:0 1px 18px rgba(0,0,0,.7); }
-.cta-eyebrow{ text-shadow:0 1px 14px rgba(0,0,0,.65); }
+/* dark halo so white text reads on the bright image (no image dimming) */
+.cta-title{ text-shadow:0 0 3px rgba(0,0,0,.6), 0 0 16px rgba(0,0,0,.6), 0 2px 28px rgba(0,0,0,.55); }
+.cta-sub{ text-shadow:0 0 2px rgba(0,0,0,.6), 0 0 12px rgba(0,0,0,.55), 0 1px 18px rgba(0,0,0,.5); }
+.cta-eyebrow{ text-shadow:0 0 2px rgba(0,0,0,.6), 0 0 10px rgba(0,0,0,.55); }
 .cta-eyebrow{
   font-family:var(--mono);
   font-size:12px;
