@@ -557,7 +557,7 @@
   (function(){
     var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     // plain-text headings only (skip the panel h1 — it has a styled <span>)
-    var targets = document.querySelectorAll('.build-title, .who-title, .cta-title, .cta-eyebrow, .pipe-title, .who-head .pipe-eyebrow, .panel-right .pipe-eyebrow, .build-text .pipe-eyebrow');
+    var targets = document.querySelectorAll('.build-title, .who-title, .pipe-title, .who-head .pipe-eyebrow, .panel-right .pipe-eyebrow, .build-text .pipe-eyebrow');
     if (!targets.length || reduce || !('IntersectionObserver' in window)) return;
     var CH = '!<>-_\\/[]{}=+*^?#@%$&';
 
