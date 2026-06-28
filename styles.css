@@ -432,10 +432,18 @@ html{
   content:"";
   position:absolute;
   inset:0;
-  /* hero image at both edges, masked to fade out before the middle (like the gradient) */
-  background:url('bag.jpeg') center / cover no-repeat;
-  -webkit-mask:linear-gradient(90deg, #000 0%, rgba(0,0,0,.85) 18%, transparent 38%, transparent 62%, rgba(0,0,0,.85) 82%, #000 100%);
-          mask:linear-gradient(90deg, #000 0%, rgba(0,0,0,.85) 18%, transparent 38%, transparent 62%, rgba(0,0,0,.85) 82%, #000 100%);
+  /* warm orange glow (like the hero) at both edges, fading out before the middle */
+  background:linear-gradient(90deg,
+    rgba(170,38,8,.9)    0%,
+    rgba(255,90,20,.7)   10%,
+    rgba(255,150,45,.4)  22%,
+    rgba(255,185,90,.16) 32%,
+    transparent          40%,
+    transparent          60%,
+    rgba(255,185,90,.16) 68%,
+    rgba(255,150,45,.4)  78%,
+    rgba(255,90,20,.7)   90%,
+    rgba(170,38,8,.9)    100%);
   z-index:0;
   pointer-events:none;
 }
