@@ -486,11 +486,13 @@ html{
   text-align:center;
   gap:16px;
   padding:14vh 6vw;
-  /* grid lines over the orange gradient */
+  /* bag_1 cover image, darkened for legibility, with grid lines on top */
   background:
-    repeating-linear-gradient(0deg,  rgba(255,255,255,.12) 0 1px, transparent 1px 64px),
-    repeating-linear-gradient(90deg, rgba(255,255,255,.12) 0 1px, transparent 1px 64px),
-    linear-gradient(135deg, #ff7a1f 0%, #ff3d00 100%);
+    repeating-linear-gradient(0deg,  rgba(255,255,255,.1) 0 1px, transparent 1px 64px),
+    repeating-linear-gradient(90deg, rgba(255,255,255,.1) 0 1px, transparent 1px 64px),
+    linear-gradient(180deg, rgba(15,8,3,.5) 0%, rgba(15,8,3,.66) 100%),
+    url('bag_1.jpeg') center / cover no-repeat;
+  background-color:#1a0f06;
   color:#fff;
 }
 .cta-eyebrow{
