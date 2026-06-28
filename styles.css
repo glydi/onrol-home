@@ -17,7 +17,7 @@
 body{
   background:#0c0c0c;
   font-family:'Space Grotesk',sans-serif;
-  overflow-x:hidden;            /* no sideways scroll from the 100vw lines */
+  overflow-x:clip;              /* stop sideways scroll WITHOUT a scroll container (keeps custom scrollbar) */
 }
 
 /* preloader — dark cover; the real ONROL logo is raised above it (exact hero place),
