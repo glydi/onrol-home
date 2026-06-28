@@ -481,6 +481,20 @@ html{
 }
 .build-block.has-img > h3,
 .build-block.has-img > p{ position:relative; z-index:2; }
+.block-eyebrow{
+  font-family:var(--mono);
+  font-size:12px;
+  font-weight:400;
+  letter-spacing:2px;
+  text-transform:uppercase;
+  color:#ff8a4a;
+  margin-bottom:8px;
+}
+.block-desc{
+  font-weight:300;               /* thinner description */
+  color:rgba(255,255,255,.82);
+  margin-top:8px;
+}
 .build-block.has-img::after{     /* legibility scrim over the image */
   content:"";
   position:absolute;
