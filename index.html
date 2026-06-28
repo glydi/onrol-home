@@ -407,6 +407,8 @@
     var CH = '!<>-_\\/[]{}=+*^?#@%$&';
 
     function decode(el, delay){
+      if (el._dec) return;                 // already scrambling -> don't overlap
+      el._dec = true;
       var finalText = el.getAttribute('data-text') || el.textContent;
       el.setAttribute('data-text', finalText);
       var queue = [], frame = 0;
@@ -430,12 +432,19 @@
         el.innerHTML = out;
         frame++;
         if (done < queue.length) requestAnimationFrame(run);
-        else el.textContent = finalText;
+        else { el.textContent = finalText; el._dec = false; }
       })();
     }
 
     var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     if (reduce) return;   // leave footer text as-is, no scramble
+
+    // decode on hover (links + headings)
+    footer.querySelectorAll('a, h3, h4, .f-tag').forEach(function(el){
+      el.addEventListener('mouseenter', function(){ decode(el, 0); });
+    });
+
+    // decode once when the footer scrolls into view
     var io = new IntersectionObserver(function(entries){
       entries.forEach(function(e){
         if (e.isIntersecting){
