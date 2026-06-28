@@ -35,6 +35,8 @@ body{
 @media (prefers-reduced-motion: reduce){
   .reveal{ opacity:1; transform:none; transition:none; }
 }
+/* scramble characters during the decode "texting" effect */
+.dec{ color:var(--orange); }
 
 /* preloader — dark cover; the real ONROL logo is raised above it (exact hero place),
    so when the image loads the cover fades out and only the logo stays put */

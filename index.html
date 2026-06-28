@@ -558,6 +558,52 @@
     io.observe(footer);
   })();
 
+  /* ---- section headings: decode/scramble "texting" effect when scrolled into view ---- */
+  (function(){
+    var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    // plain-text headings only (skip the panel h1 — it has a styled <span>)
+    var targets = document.querySelectorAll('.build-title, .who-title, .cta-title, .cta-eyebrow, .pipe-title, .who-head .pipe-eyebrow, .panel-right .pipe-eyebrow, .build-text .pipe-eyebrow');
+    if (!targets.length || reduce || !('IntersectionObserver' in window)) return;
+    var CH = '!<>-_\\/[]{}=+*^?#@%$&';
+
+    function decode(el, delay){
+      if (el._dec) return;
+      el._dec = true;
+      var finalText = el.getAttribute('data-text') || el.textContent;
+      el.setAttribute('data-text', finalText);
+      var queue = [], frame = 0;
+      for (var i = 0; i < finalText.length; i++){
+        var c = finalText[i];
+        if (c === ' '){ queue.push({to:' ', start:0, end:0}); continue; }
+        var start = delay + Math.floor(Math.random() * 16);
+        var end = start + 14 + Math.floor(Math.random() * 24);
+        queue.push({to:c, start:start, end:end, ch:''});
+      }
+      (function run(){
+        var out = '', done = 0;
+        for (var i = 0; i < queue.length; i++){
+          var q = queue[i];
+          if (frame >= q.end){ done++; out += q.to; }
+          else if (frame >= q.start){
+            if (!q.ch || Math.random() < 0.3) q.ch = CH[Math.floor(Math.random() * CH.length)];
+            out += '<span class="dec">' + q.ch + '</span>';
+          }
+        }
+        el.innerHTML = out;
+        frame++;
+        if (done < queue.length) requestAnimationFrame(run);
+        else { el.textContent = finalText; el._dec = false; }
+      })();
+    }
+
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(e){
+        if (e.isIntersecting){ decode(e.target, 0); io.unobserve(e.target); }
+      });
+    }, { threshold:0.35 });
+    targets.forEach(function(el){ io.observe(el); });
+  })();
+
   /* ---- custom video play / mute controls ---- */
   (function(){
     var bv = document.querySelector('.build-video');
