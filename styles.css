@@ -433,25 +433,26 @@ html{
   position:absolute;
   inset:0;
   background:
-    radial-gradient(7% 13% at 0% 8%,   rgba(200,35,12,.95), transparent 68%),
-    radial-gradient(6% 16% at 0% 26%,  rgba(255,95,20,.88),  transparent 70%),
-    radial-gradient(8% 12% at 0% 44%,  rgba(205,40,14,.92),  transparent 68%),
-    radial-gradient(6% 17% at 0% 63%,  rgba(255,100,25,.88), transparent 70%),
-    radial-gradient(7% 13% at 0% 82%,  rgba(200,35,12,.95),  transparent 68%),
-    radial-gradient(6% 14% at 0% 97%,  rgba(255,95,20,.85),  transparent 70%),
-    radial-gradient(7% 14% at 100% 15%, rgba(200,35,12,.95),  transparent 68%),
-    radial-gradient(6% 16% at 100% 34%, rgba(255,95,20,.88),  transparent 70%),
-    radial-gradient(8% 12% at 100% 53%, rgba(205,40,14,.92),  transparent 68%),
-    radial-gradient(6% 17% at 100% 72%, rgba(255,100,25,.88), transparent 70%),
-    radial-gradient(7% 13% at 100% 90%, rgba(200,35,12,.95),  transparent 68%),
-    /* continuous linear base so the waves blend into one band */
+    radial-gradient(11% 22% at 0% 6%,   rgba(200,35,12,.9),  transparent 78%),
+    radial-gradient(10% 26% at 0% 24%,  rgba(255,95,20,.85),  transparent 80%),
+    radial-gradient(12% 22% at 0% 42%,  rgba(205,40,14,.9),   transparent 78%),
+    radial-gradient(10% 27% at 0% 60%,  rgba(255,110,25,.85), transparent 80%),
+    radial-gradient(12% 22% at 0% 78%,  rgba(200,35,12,.9),   transparent 78%),
+    radial-gradient(10% 24% at 0% 96%,  rgba(255,95,20,.85),  transparent 80%),
+    radial-gradient(11% 24% at 100% 12%, rgba(200,35,12,.9),   transparent 78%),
+    radial-gradient(10% 26% at 100% 30%, rgba(255,95,20,.85),  transparent 80%),
+    radial-gradient(12% 22% at 100% 48%, rgba(205,40,14,.9),   transparent 78%),
+    radial-gradient(10% 27% at 100% 66%, rgba(255,110,25,.85), transparent 80%),
+    radial-gradient(12% 22% at 100% 84%, rgba(200,35,12,.9),   transparent 78%),
+    radial-gradient(10% 24% at 100% 99%, rgba(255,95,20,.85),  transparent 80%),
+    /* continuous linear base so the waves blend into one mixed band */
     linear-gradient(90deg,
-      rgba(200,35,12,.85) 0,
-      rgba(255,100,25,.45) 3vw,
-      rgba(255,100,25,0)   6vw,
-      rgba(255,100,25,0)   calc(100% - 6vw),
-      rgba(255,100,25,.45) calc(100% - 3vw),
-      rgba(200,35,12,.85)  100%);
+      rgba(200,35,12,.9)  0,
+      rgba(255,100,25,.6) 3.5vw,
+      rgba(255,120,40,0)  7.5vw,
+      rgba(255,120,40,0)  calc(100% - 7.5vw),
+      rgba(255,100,25,.6) calc(100% - 3.5vw),
+      rgba(200,35,12,.9)  100%);
   z-index:0;
   pointer-events:none;
 }
