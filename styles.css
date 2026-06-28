@@ -185,11 +185,11 @@ html{
 .pipeline li:nth-child(3){ z-index:2; }
 .pipeline li:nth-child(4){ z-index:1; }
 .pipeline li:hover{
-  transform:translateY(-18px) scale(1.02);   /* clearly rise up + grow a touch */
-  z-index:10;                                /* pop fully above the others */
-  background:rgba(255,255,255,.82);
+  transform:translateY(18px) scale(1.01);    /* reveal by sliding DOWN (not popping up) */
+  z-index:10;                                /* come forward above the others */
+  background:rgba(255,255,255,.85);
   border-color:rgba(0,0,0,.3);
-  box-shadow:0 32px 54px rgba(0,0,0,.3);
+  box-shadow:0 24px 44px rgba(0,0,0,.28);
 }
 .step-num{
   position:relative;
