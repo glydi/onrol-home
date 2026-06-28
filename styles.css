@@ -370,13 +370,10 @@ html{
   grid-template-rows:1fr 1fr;      /* all four cells exactly equal */
   padding:0 6vw;                   /* follow the side margins */
 }
-/* irregular grid-lines background — kept within the side margins */
+/* irregular grid-lines background — full width (into the margins too) */
 .build-bg{
   position:absolute;
-  top:0;
-  bottom:0;
-  left:6vw;
-  right:6vw;
+  inset:0;
   z-index:0;
 }
 .build-bg svg{
@@ -672,7 +669,6 @@ html{
 
   /* section 3 stacks into one column */
   .build{ grid-template-columns:1fr; grid-template-rows:auto; gap:6vh; padding:14vh 7vw 10vh; }
-  .build-bg{ left:7vw; right:7vw; }
   .build-video{ aspect-ratio:16 / 9; }
   .build-text{ padding:0; border:none; }
 
