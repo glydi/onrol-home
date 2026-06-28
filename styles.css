@@ -365,10 +365,10 @@ html{
   min-height:100vh;
   color:#fff;
   background:linear-gradient(180deg, #241a12 0%, #18110b 100%);   /* fallback under the crystal */
-  display:flex;
-  flex-direction:column;
-  gap:0;
-  padding:0 6vw;                 /* follow the side margins; cells stay flush within */
+  display:grid;
+  grid-template-columns:1fr 1fr;   /* 2x2 grid: video | text / block | block */
+  grid-template-rows:1fr 1fr;      /* all four cells exactly equal */
+  padding:0 6vw;                   /* follow the side margins */
 }
 /* detailed lit crystal background */
 .build-bg{
@@ -390,21 +390,14 @@ html{
     radial-gradient(120% 75% at 50% 112%, rgba(255,95,25,.38) 0%, transparent 60%),    /* upward glow from bottom */
     linear-gradient(180deg, rgba(18,11,6,.5) 0%, rgba(18,11,6,.3) 45%, rgba(18,11,6,.5) 100%);
 }
-/* content sits above the crystal */
-.build-row,
-.build-blocks{ position:relative; z-index:1; }
-.build-row{
-  flex:1;                        /* top half */
-  display:flex;
-  align-items:stretch;           /* video + text fill the half height */
-  gap:0;                         /* video | text flush */
-}
+/* cells sit above the crystal */
+.build-video,
+.build-text,
+.build-block{ position:relative; z-index:1; }
 .build-video{
-  width:50%;
-  height:100%;                   /* fill the half — no padding/empty space */
   background:#000;
   border:1px solid rgba(255,110,40,.4);
-  overflow:hidden;               /* no drop shadow -> halves sit flush */
+  overflow:hidden;               /* fills its grid cell */
 }
 .build-video video{
   display:block;
@@ -413,11 +406,10 @@ html{
   object-fit:cover;
 }
 .build-text{
-  width:50%;
   display:flex;
   flex-direction:column;
-  justify-content:center;        /* keep text vertically centered */
-  padding:clamp(20px,3vh,40px) clamp(30px,3.5vw,64px);   /* fills its cell, text breathing room */
+  justify-content:center;        /* text vertically centered, cell fills via grid */
+  padding:clamp(20px,3vh,40px) clamp(30px,3.5vw,64px);
   border:1px solid rgba(255,120,50,.22);                 /* boxed like the others */
 }
 /* merge top & bottom halves — no border seam at the midline */
@@ -438,13 +430,6 @@ html{
   max-width:48ch;
 }
 /* second half: 2 blocks at 50% height of the bottom half, centered */
-.build-blocks{
-  flex:1;                        /* bottom half region */
-  display:grid;
-  grid-template-columns:repeat(2,1fr);
-  grid-template-rows:1fr;        /* boxes fill the full bottom half */
-  gap:0;                         /* zero gap — boxes touch and fill */
-}
 .build-block{
   display:flex;
   flex-direction:column;
@@ -663,12 +648,10 @@ html{
   .pipeline li{ padding:26px 18px; }
   .step-num{ width:36px; height:36px; font-size:13px; }
 
-  /* section 3 stacks */
-  .build{ gap:6vh; padding:14vh 7vw 10vh; }
-  .build-row{ flex:none; flex-direction:column; gap:6vh; }
-  .build-video{ width:100%; height:auto; aspect-ratio:16 / 9; }
-  .build-text{ width:100%; padding:0; border:none; }
-  .build-blocks{ flex:none; grid-template-columns:1fr; grid-template-rows:none; }
+  /* section 3 stacks into one column */
+  .build{ grid-template-columns:1fr; grid-template-rows:auto; gap:6vh; padding:14vh 7vw 10vh; }
+  .build-video{ aspect-ratio:16 / 9; }
+  .build-text{ padding:0; border:none; }
 
   /* footer collapses */
   .footer-grid{ grid-template-columns:1fr 1fr; gap:32px 24px; }
