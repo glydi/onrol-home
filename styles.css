@@ -627,13 +627,19 @@ html{
   border:1px solid rgba(var(--orange-rgb),.22);
 }
 .who-card{
+  position:relative;             /* containing block for the junction nodes + hover lift */
   display:flex;
   flex-direction:column;
   background:#0c0c0c;
   padding:clamp(26px,3vw,40px);
-  transition:background .25s ease;
+  transition:background .25s ease, transform .28s ease, box-shadow .28s ease;
 }
-.who-card:hover{ background:rgba(var(--orange-rgb),.06); }
+.who-card:hover{
+  background:rgba(var(--orange-rgb),.08);
+  transform:scale(1.06);         /* grow on hover */
+  z-index:5;                     /* rise above neighbours + junction nodes */
+  box-shadow:0 20px 46px rgba(0,0,0,.5);
+}
 /* junction nodes at every grid-line crossing (corners of each card) */
 .who-card::before,
 .who-card::after{
@@ -953,10 +959,11 @@ body::after{  right:6vw; }
   display:flex;
   align-items:stretch;
   padding:3px 24px;
-  background:transparent;                       /* no color, just blur */
-  border:1px solid rgba(255,255,255,.18);
-  backdrop-filter:blur(20px);
-  -webkit-backdrop-filter:blur(20px);
+  background:rgba(10,10,12,.45);                /* dark frosted pill — readable on light & dark sections */
+  border:1px solid rgba(255,255,255,.22);
+  box-shadow:0 6px 24px rgba(0,0,0,.28);
+  backdrop-filter:blur(20px) saturate(140%);
+  -webkit-backdrop-filter:blur(20px) saturate(140%);
 }
 .nav a{
   display:flex;
