@@ -17,13 +17,13 @@
   </button>
   <div class="nav-links" id="navLinks">
     <a href="#">Home</a>
-    <span class="sep"></span>
+    <span class="sep" aria-hidden="true"></span>
     <a href="#">Programs</a>
-    <span class="sep"></span>
+    <span class="sep" aria-hidden="true"></span>
     <a href="#">About</a>
-    <span class="sep"></span>
+    <span class="sep" aria-hidden="true"></span>
     <a href="#">Contact</a>
-    <span class="sep"></span>
+    <span class="sep" aria-hidden="true"></span>
     <a href="#">Community</a>
   </div>
 </nav>
@@ -96,25 +96,25 @@
       <li>
         <span class="step-num">1</span>
         <div class="step-text"><h3>Learn</h3><p>Master AI tools</p></div>
-        <button class="step-btn" data-phase="01 · Learn"
+        <button class="step-btn" aria-label="Learn — view phase details" data-phase="01 · Learn"
           data-desc="Master the modern AI toolkit — prompting, agents, and the vibe-coding workflow that lets you build at the speed of thought.">+</button>
       </li>
       <li>
         <span class="step-num">2</span>
         <div class="step-text"><h3>Build</h3><p>Create real projects</p></div>
-        <button class="step-btn" data-phase="02 · Build"
+        <button class="step-btn" aria-label="Build — view phase details" data-phase="02 · Build"
           data-desc="Apply it to real, working projects — not toy demos. Ship features, squash bugs, and create things people actually use.">+</button>
       </li>
       <li>
         <span class="step-num">3</span>
         <div class="step-text"><h3>Launch</h3><p>Ship to the web</p></div>
-        <button class="step-btn" data-phase="03 · Launch"
+        <button class="step-btn" aria-label="Launch — view phase details" data-phase="03 · Launch"
           data-desc="Take your build live. Deploy to the web, get a real URL, and add a polished project to your portfolio.">+</button>
       </li>
       <li>
         <span class="step-num">4</span>
         <div class="step-text"><h3>Earn</h3><p>Monetize your skills</p></div>
-        <button class="step-btn" data-phase="04 · Earn"
+        <button class="step-btn" aria-label="Earn — view phase details" data-phase="04 · Earn"
           data-desc="Turn skills into income — freelance gigs, your own products, or a role. Learn to package and sell what you can now create.">+</button>
       </li>
     </ol>
@@ -122,36 +122,6 @@
 </section>
 
 <section class="build reveal">
-  <div class="build-bg" aria-hidden="true">
-    <svg preserveAspectRatio="none" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
-      <g stroke="rgba(255,150,80,.16)" stroke-width="1">
-        <!-- irregular vertical lines (denser) -->
-        <line vector-effect="non-scaling-stroke" x1="5"  y1="0" x2="5"  y2="100"/>
-        <line vector-effect="non-scaling-stroke" x1="12" y1="0" x2="12" y2="100"/>
-        <line vector-effect="non-scaling-stroke" x1="19" y1="0" x2="19" y2="100"/>
-        <line vector-effect="non-scaling-stroke" x1="28" y1="0" x2="28" y2="100"/>
-        <line vector-effect="non-scaling-stroke" x1="36" y1="0" x2="36" y2="100"/>
-        <line vector-effect="non-scaling-stroke" x1="44" y1="0" x2="44" y2="100"/>
-        <line vector-effect="non-scaling-stroke" x1="53" y1="0" x2="53" y2="100"/>
-        <line vector-effect="non-scaling-stroke" x1="61" y1="0" x2="61" y2="100"/>
-        <line vector-effect="non-scaling-stroke" x1="69" y1="0" x2="69" y2="100"/>
-        <line vector-effect="non-scaling-stroke" x1="76" y1="0" x2="76" y2="100"/>
-        <line vector-effect="non-scaling-stroke" x1="84" y1="0" x2="84" y2="100"/>
-        <line vector-effect="non-scaling-stroke" x1="92" y1="0" x2="92" y2="100"/>
-        <!-- irregular horizontal lines (denser) -->
-        <line vector-effect="non-scaling-stroke" x1="0" y1="8"  x2="100" y2="8"/>
-        <line vector-effect="non-scaling-stroke" x1="0" y1="17" x2="100" y2="17"/>
-        <line vector-effect="non-scaling-stroke" x1="0" y1="27" x2="100" y2="27"/>
-        <line vector-effect="non-scaling-stroke" x1="0" y1="36" x2="100" y2="36"/>
-        <line vector-effect="non-scaling-stroke" x1="0" y1="46" x2="100" y2="46"/>
-        <line vector-effect="non-scaling-stroke" x1="0" y1="55" x2="100" y2="55"/>
-        <line vector-effect="non-scaling-stroke" x1="0" y1="64" x2="100" y2="64"/>
-        <line vector-effect="non-scaling-stroke" x1="0" y1="74" x2="100" y2="74"/>
-        <line vector-effect="non-scaling-stroke" x1="0" y1="83" x2="100" y2="83"/>
-        <line vector-effect="non-scaling-stroke" x1="0" y1="91" x2="100" y2="91"/>
-      </g>
-    </svg>
-  </div>
   <div class="build-video is-muted">
     <video id="aboutVid" playsinline muted loop preload="metadata">
       <source src="about_onrol.mp4" type="video/mp4">
@@ -182,7 +152,7 @@
     <p>Every module ends with a deployed build you can show &mdash; not notes you forget.</p>
   </article>
   <article class="build-block has-img">
-    <img class="block-img" src="ai_gen_cover_desktop.png" alt="">
+    <img class="block-img" src="ai_gen_cover_desktop.png" alt="A figure stepping through a glowing doorway">
     <p class="block-eyebrow">AI Generalist</p>
     <h3>Go from curious beginner to AI Generalist.</h3>
     <a class="block-link" href="#">Know More <span>&rarr;</span></a>
@@ -331,7 +301,8 @@
       <h4>Newsletter</h4>
       <p>Practical AI playbooks for India &mdash; straight to your inbox. No spam.</p>
       <form class="f-form" onsubmit="return false">
-        <input type="email" placeholder="you@email.com" aria-label="Email">
+        <label for="newsletterEmail" class="visually-hidden">Email address</label>
+        <input type="email" id="newsletterEmail" name="email" placeholder="you@email.com" autocomplete="email" aria-label="Email address">
         <button type="submit">Subscribe</button>
       </form>
     </div>
