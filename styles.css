@@ -634,6 +634,19 @@ html{
   transition:background .25s ease;
 }
 .who-card:hover{ background:rgba(var(--orange-rgb),.06); }
+/* junction nodes at every grid-line crossing (corners of each card) */
+.who-card::before,
+.who-card::after{
+  content:"";
+  position:absolute;
+  width:6px;
+  height:6px;
+  background:var(--orange-lt);
+  z-index:3;
+  pointer-events:none;
+}
+.who-card::before{ top:0;    left:0;  transform:translate(-50%,-50%); }
+.who-card::after{  bottom:0; right:0; transform:translate(50%,50%); }
 .who-num{
   font-family:var(--mono);
   font-size:clamp(28px,3vw,46px);
