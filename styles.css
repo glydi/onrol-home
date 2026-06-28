@@ -500,11 +500,15 @@ html{
   left:6vw;
   right:6vw;
   background:
-    linear-gradient(180deg, rgba(15,8,3,.45) 0%, rgba(15,8,3,.62) 100%),
+    radial-gradient(75% 65% at 50% 54%, rgba(8,4,2,.34) 0%, transparent 74%),  /* soft dim behind text only */
     url('bag_1.jpeg') center / cover no-repeat;
+  filter:saturate(1.18) brightness(1.1);    /* bright & glowy */
   z-index:0;
 }
 .cta-section > *{ position:relative; z-index:1; }
+.cta-title{ text-shadow:0 2px 26px rgba(0,0,0,.5); }
+.cta-sub{ text-shadow:0 1px 16px rgba(0,0,0,.5); }
+.cta-eyebrow{ text-shadow:0 1px 12px rgba(0,0,0,.5); }
 .cta-eyebrow{
   font-family:var(--mono);
   font-size:12px;
@@ -535,18 +539,26 @@ html{
 }
 .cta-section .btn{
   display:inline-block;
-  padding:15px 32px;
+  padding:20px 48px;            /* bigger */
   font-family:var(--mono);
-  font-size:13px;
+  font-size:15px;
   font-weight:500;
   text-transform:uppercase;
   letter-spacing:1px;
   text-decoration:none;
-  transition:transform .2s ease, opacity .2s ease;
+  transition:transform .2s ease, opacity .2s ease, background .2s ease;
 }
 .cta-section .btn.primary{ background:#120c08; color:#fff; }
-.cta-section .btn.ghost{ background:transparent; color:#fff; border:1px solid rgba(255,255,255,.7); }
-.cta-section .btn:hover{ transform:translateY(-2px); opacity:.92; }
+/* frosted-glass secondary (Book a Free Masterclass) */
+.cta-section .btn.ghost{
+  background:rgba(255,255,255,.12);
+  color:#fff;
+  border:1px solid rgba(255,255,255,.5);
+  backdrop-filter:blur(12px) saturate(140%);
+  -webkit-backdrop-filter:blur(12px) saturate(140%);
+}
+.cta-section .btn.ghost:hover{ background:rgba(255,255,255,.2); }
+.cta-section .btn:hover{ transform:translateY(-2px); opacity:.95; }
 
 /* ---------- FOOTER ---------- */
 .footer{
