@@ -621,13 +621,13 @@ html{
 .f-desc{
   font-size:13px;
   line-height:1.65;
-  color:rgba(255,255,255,.55);
+  color:#fff;
   max-width:36ch;
   margin-bottom:18px;
 }
 .f-contact a{
   display:block;
-  color:rgba(255,255,255,.82);
+  color:#fff;
   text-decoration:none;
   font-size:13px;
   margin-bottom:5px;
@@ -644,16 +644,16 @@ html{
 .f-col ul{ list-style:none; }
 .f-col li{ margin-bottom:11px; }
 .f-col a{
-  color:rgba(255,255,255,.6);
+  color:#fff;
   text-decoration:none;
   font-size:13px;
   transition:color .2s;
 }
-.f-col a:hover{ color:#fff; }
+.f-col a:hover{ color:#ff8a4a; }
 .f-news p{
   font-size:13px;
   line-height:1.65;
-  color:rgba(255,255,255,.55);
+  color:#fff;
   margin-bottom:16px;
 }
 .f-form{ display:flex; }
@@ -687,7 +687,7 @@ html{
   padding-top:24px;
   border-top:1px solid rgba(255,255,255,.1);
   font-size:12px;
-  color:rgba(255,255,255,.4);
+  color:rgba(255,255,255,.85);
   text-align:center;
 }
 
