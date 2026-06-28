@@ -117,6 +117,27 @@
 </section>
 
 <section class="build">
+  <div class="build-bg" aria-hidden="true">
+    <svg preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <filter id="xtal" x="0" y="0" width="100%" height="100%" color-interpolation-filters="sRGB">
+          <feTurbulence type="fractalNoise" baseFrequency="0.011 0.02" numOctaves="4" seed="9" stitchTiles="stitch" result="n"/>
+          <feDiffuseLighting in="n" surfaceScale="3.2" diffuseConstant="1.05" lighting-color="#ff6f28">
+            <feDistantLight azimuth="228" elevation="48"/>
+          </feDiffuseLighting>
+        </filter>
+        <filter id="spark" x="0" y="0" width="100%" height="100%" color-interpolation-filters="sRGB">
+          <feTurbulence type="fractalNoise" baseFrequency="0.011 0.02" numOctaves="4" seed="9" stitchTiles="stitch" result="n"/>
+          <feSpecularLighting in="n" surfaceScale="6" specularConstant="0.9" specularExponent="24" lighting-color="#ffe3b0" result="s">
+            <feDistantLight azimuth="228" elevation="64"/>
+          </feSpecularLighting>
+        </filter>
+      </defs>
+      <rect width="100%" height="100%" fill="#150d07"/>
+      <rect width="100%" height="100%" filter="url(#xtal)" opacity="0.9"/>
+      <rect width="100%" height="100%" filter="url(#spark)" opacity="0.55" style="mix-blend-mode:screen"/>
+    </svg>
+  </div>
   <div class="build-row">
     <div class="build-video">
       <video controls playsinline poster="bag.jpeg">

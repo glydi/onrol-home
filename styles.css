@@ -360,19 +360,38 @@ html{
 
 /* ---------- SECTION 3 — video + about (top), 2 blocks (bottom) ---------- */
 .build{
+  position:relative;
+  overflow:hidden;
   min-height:100vh;
   color:#fff;
-  /* sci-fi: warm dark base (not pure black) + orange neon glow + faint grid */
-  background:
-    radial-gradient(120% 95% at 50% -5%, rgba(255,105,35,.32) 0%, transparent 56%),
-    repeating-linear-gradient(0deg,  rgba(255,255,255,.025) 0 1px, transparent 1px 44px),
-    repeating-linear-gradient(90deg, rgba(255,255,255,.025) 0 1px, transparent 1px 44px),
-    linear-gradient(180deg, #241a12 0%, #18110b 100%);
+  background:linear-gradient(180deg, #241a12 0%, #18110b 100%);   /* fallback under the crystal */
   display:flex;
   flex-direction:column;
   gap:clamp(24px,4vh,56px);
   padding:12vh 6vw;
 }
+/* detailed lit crystal background */
+.build-bg{
+  position:absolute;
+  inset:0;
+  z-index:0;
+}
+.build-bg svg{
+  width:100%;
+  height:100%;
+  display:block;
+}
+.build-bg::after{                 /* keep content legible over the crystal */
+  content:"";
+  position:absolute;
+  inset:0;
+  background:
+    radial-gradient(120% 90% at 50% -5%, rgba(255,105,35,.18) 0%, transparent 55%),
+    linear-gradient(180deg, rgba(18,11,6,.55) 0%, rgba(18,11,6,.34) 45%, rgba(18,11,6,.7) 100%);
+}
+/* content sits above the crystal */
+.build-row,
+.build-blocks{ position:relative; z-index:1; }
 .build-row{
   flex:1;                        /* top half */
   display:flex;
