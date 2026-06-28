@@ -607,12 +607,12 @@ html{
 }
 .f-brand h3{
   font-family:'Space Grotesk',sans-serif;
-  font-size:19px;
+  font-size:24px;
   font-weight:500;
-  margin-bottom:10px;
+  margin-bottom:12px;
 }
 .f-tag{
-  font-size:11px;
+  font-size:13px;
   letter-spacing:2px;
   text-transform:uppercase;
   color:#ff5a14;
@@ -635,7 +635,7 @@ html{
 .f-contact a:hover{ color:#ff5a14; }
 .f-col h4,
 .f-news h4{
-  font-size:11px;
+  font-size:14px;
   letter-spacing:2px;
   text-transform:uppercase;
   color:#ff8a4a;
