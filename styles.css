@@ -506,9 +506,9 @@ html{
 .build-block.has-img > p{ position:relative; z-index:2; color:#fff; }   /* over image: stay white */
 .block-eyebrow{
   font-family:'Space Grotesk',sans-serif;
-  font-size:clamp(360px,72vw,1300px);  /* enormous — letters overflow/crop within the block */
+  font-size:clamp(56px,9vw,170px);     /* big & fully visible — the vw term drives the size */
   font-weight:600;
-  line-height:.8;
+  line-height:.9;
   letter-spacing:-.02em;
   color:#fff;
   margin-bottom:8px;
