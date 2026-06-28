@@ -252,6 +252,8 @@
   </div>
 </section>
 
+<div class="know-cursor" id="knowCursor" aria-hidden="true">Know More &rarr;</div>
+
 <footer class="footer">
   <div class="footer-grid">
     <div class="f-brand">
@@ -614,6 +616,19 @@
     muteBtn.addEventListener('click', function(){
       vid.muted = !vid.muted;
       bv.classList.toggle('is-muted', vid.muted);
+    });
+  })();
+
+  /* ---- "Know More" cursor over the AI Generalist block ---- */
+  (function(){
+    var block = document.querySelector('.build-block.has-img');
+    var cur = document.getElementById('knowCursor');
+    if (!block || !cur) return;
+    block.addEventListener('mouseenter', function(){ cur.classList.add('show'); });
+    block.addEventListener('mouseleave', function(){ cur.classList.remove('show'); });
+    block.addEventListener('mousemove', function(e){
+      cur.style.left = e.clientX + 'px';
+      cur.style.top  = e.clientY + 'px';
     });
   })();
 
