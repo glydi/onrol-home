@@ -358,47 +358,46 @@ html{
 }
 .panel-content .btn:hover{ opacity:.85; }
 
-/* ---------- SECTION 3 — What You'll Build (content in left 50%) ---------- */
+/* ---------- SECTION 3 — What You'll Build (top 50% / bottom 50%, content down) ---------- */
 .build{
   min-height:100vh;
   background:#0c0c0c;
   color:#fff;
   display:flex;
-  align-items:stretch;
-  padding:0 6vw;
+  flex-direction:column;
 }
+.build-top{ flex:1 1 50%; }      /* empty top half */
 .build-content{
   position:relative;
-  width:50%;                     /* content occupies the left half */
+  flex:1 1 50%;                  /* content in the bottom half */
   display:flex;
   flex-direction:column;
   justify-content:center;
-  padding:14vh 6vw 14vh 0;
+  padding:0 6vw;
 }
-/* gradient divider with outward glow (matches section 2) */
+/* horizontal gradient divider between the halves, glow flowing out */
 .build-content::after{
   content:"";
   position:absolute;
-  top:0;
-  bottom:0;
+  left:0;
   right:0;
-  width:1px;
-  background:linear-gradient(180deg, transparent 0%, rgba(255,90,20,.6) 50%, transparent 100%);
+  top:0;
+  height:1px;
+  background:linear-gradient(90deg, transparent 0%, rgba(255,90,20,.6) 50%, transparent 100%);
   box-shadow:0 0 55px 12px rgba(255,90,20,.16);
   pointer-events:none;
 }
-.build-right{ width:50%; }       /* right half */
 .build-title{
   font-family:'Space Grotesk',sans-serif;
-  font-size:clamp(26px,2.6vw,40px);
+  font-size:clamp(26px,2.8vw,44px);
   font-weight:600;
   line-height:1.12;
-  margin:12px 0 clamp(26px,4vh,44px);
+  margin:12px 0 clamp(24px,3.5vh,40px);
 }
 .build-grid{
   display:grid;
-  grid-template-columns:1fr;     /* stacked in the half-width column */
-  gap:16px;
+  grid-template-columns:repeat(3,1fr);   /* 3 across (full width now) */
+  gap:24px;
 }
 .build-card{
   padding:clamp(30px,4vh,46px) clamp(26px,2vw,34px);
@@ -458,10 +457,10 @@ html{
   .step-num{ width:36px; height:36px; font-size:13px; }
 
   /* section 3 stacks */
-  .build{ flex-direction:column; padding:14vh 7vw 10vh; }
-  .build-content{ width:100%; padding:0; }
-  .build-content::after{ display:none; }
-  .build-right{ display:none; }
+  .build{ padding:0 7vw; }
+  .build-top{ flex:0 0 14vh; }            /* small top gap on mobile */
+  .build-content{ padding:0 0 10vh; }
+  .build-grid{ grid-template-columns:1fr; }
 }
 
 @media(max-width:430px){
