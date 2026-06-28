@@ -642,14 +642,12 @@ html{
   line-height:1.7;
   color:#5e554d;
 }
-/* hairline grid: 1px gap + tinted backdrop shows between the glass cells; whole matrix is lifted */
+/* all-white matrix: white grid lines (seamless); orange junction dots mark the crossings */
 .who-grid{
   display:grid;
   grid-template-columns:repeat(3,1fr);
-  gap:1px;                              /* thin grid lines, full width to the edges */
-  background:rgba(0,0,0,.14);
-  border-top:1px solid rgba(0,0,0,.14);
-  border-bottom:1px solid rgba(0,0,0,.14);
+  gap:1px;
+  background:#fff;
 }
 .who-card{
   position:relative;             /* containing block for the junction nodes + hover lift */
