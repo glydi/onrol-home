@@ -488,7 +488,7 @@ html{
   text-align:center;
   gap:16px;
   padding:14vh 6vw;
-  background:#0c0c0c;            /* page-dark shows in the side margins */
+  background:#fff;              /* white side margins around the contained image */
   color:#fff;
 }
 /* bag_1 image contained within the side margins, darkened for legibility */
