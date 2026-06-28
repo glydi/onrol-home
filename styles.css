@@ -368,7 +368,7 @@ html{
   display:flex;
   flex-direction:column;
   gap:0;
-  padding:12vh 6vw;
+  padding:0;                     /* full-bleed: all cells fill edge to edge */
 }
 /* detailed lit crystal background */
 .build-bg{
@@ -396,7 +396,7 @@ html{
   flex:1;                        /* top half */
   display:flex;
   align-items:stretch;           /* video + text fill the half height */
-  gap:5vw;
+  gap:0;                         /* video | text flush */
 }
 .build-video{
   width:50%;
@@ -417,6 +417,8 @@ html{
   display:flex;
   flex-direction:column;
   justify-content:center;        /* keep text vertically centered */
+  padding:clamp(20px,3vh,40px) clamp(30px,3.5vw,64px);   /* fills its cell, text breathing room */
+  border:1px solid rgba(255,120,50,.22);                 /* boxed like the others */
 }
 .build-title{
   font-family:'Space Grotesk',sans-serif;
@@ -662,7 +664,7 @@ html{
   .build{ gap:6vh; padding:14vh 7vw 10vh; }
   .build-row{ flex:none; flex-direction:column; gap:6vh; }
   .build-video{ width:100%; height:auto; aspect-ratio:16 / 9; }
-  .build-text{ width:100%; }
+  .build-text{ width:100%; padding:0; border:none; }
   .build-blocks{ flex:none; grid-template-columns:1fr; grid-template-rows:none; }
 
   /* footer collapses */
