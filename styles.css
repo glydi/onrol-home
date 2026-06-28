@@ -176,7 +176,7 @@ html{
   backdrop-filter:blur(6px) saturate(140%);
   -webkit-backdrop-filter:blur(6px) saturate(140%);
   box-shadow:0 12px 22px rgba(0,0,0,.13);    /* casts onto the rectangle below */
-  margin-top:-30px;                          /* overlap the one below */
+  margin-top:-14px;                          /* slight overlap — more of each tile shows */
   transition:transform .28s ease, box-shadow .28s ease, background .28s ease, border-color .28s ease;
 }
 .pipeline li:first-child{ margin-top:0; }
