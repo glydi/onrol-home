@@ -12,15 +12,20 @@
 <div class="preloader" id="preloader"><span class="pre-bar"><i></i></span></div>
 
 <nav class="nav">
-  <a href="#">Home</a>
-  <span class="sep"></span>
-  <a href="#">Programs</a>
-  <span class="sep"></span>
-  <a href="#">About</a>
-  <span class="sep"></span>
-  <a href="#">Contact</a>
-  <span class="sep"></span>
-  <a href="#">Community</a>
+  <button class="nav-toggle" id="navToggle" type="button" aria-label="Menu" aria-expanded="false" aria-controls="navLinks">
+    <span></span><span></span><span></span>
+  </button>
+  <div class="nav-links" id="navLinks">
+    <a href="#">Home</a>
+    <span class="sep"></span>
+    <a href="#">Programs</a>
+    <span class="sep"></span>
+    <a href="#">About</a>
+    <span class="sep"></span>
+    <a href="#">Contact</a>
+    <span class="sep"></span>
+    <a href="#">Community</a>
+  </div>
 </nav>
 
 <section class="hero">
@@ -482,23 +487,41 @@
     document.addEventListener('keydown', function(e){ if (e.key === 'Escape') closeModal(); });
   })();
 
-  /* ---- scroll: ONROL drifts up, background zooms in ---- */
+  /* ---- scroll: ONROL drifts up (background zoom disabled) ---- */
   (function(){
-    var bg = document.querySelector('.hero-bg');
     var logo = document.querySelector('.logo');
+    if (!logo) return;
     var ticking = false;
     function apply(){
       ticking = false;
       var p = window.scrollY / window.innerHeight;       // hero progress 0..1+
       p = p < 0 ? 0 : (p > 1 ? 1 : p);
-      // hero image zooms in, ONROL drifts up (stays visible) — composited transforms
-      if (bg)   bg.style.transform   = 'scale(' + (1 + p * 0.45) + ')';
-      if (logo) logo.style.transform = 'translateY(' + (16 - p * 55) + 'vh)';
+      // ONROL drifts up on scroll; centered on mobile, sits lower on desktop
+      var base = window.innerWidth <= 760 ? 0 : 16;      // resting vertical offset (vh)
+      logo.style.transform = 'translateY(' + (base - p * 55) + 'vh)';
     }
     window.addEventListener('scroll', function(){
       if (!ticking){ ticking = true; requestAnimationFrame(apply); }
     }, { passive:true });
+    window.addEventListener('resize', apply);
     apply();
+  })();
+
+  /* ---- mobile menu toggle ---- */
+  (function(){
+    var nav = document.querySelector('.nav');
+    var toggle = document.getElementById('navToggle');
+    if (!nav || !toggle) return;
+    toggle.addEventListener('click', function(){
+      var open = nav.classList.toggle('open');
+      toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+    });
+    nav.querySelectorAll('.nav-links a').forEach(function(a){
+      a.addEventListener('click', function(){
+        nav.classList.remove('open');
+        toggle.setAttribute('aria-expanded', 'false');
+      });
+    });
   })();
 
   /* ---- footer: decoding/scramble effect when it scrolls into view ---- */
