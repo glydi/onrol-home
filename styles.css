@@ -185,11 +185,10 @@ html{
 .pipeline li:nth-child(3){ z-index:2; }
 .pipeline li:nth-child(4){ z-index:1; }
 .pipeline li:hover{
-  transform:translateY(18px) scale(1.01);    /* reveal by sliding DOWN (not popping up) */
-  z-index:10;                                /* come forward above the others */
-  background:rgba(255,255,255,.85);
+  transform:translateY(18px) scale(1.01);    /* slides DOWN, staying under the tile above */
+  background:rgba(255,255,255,.92);
   border-color:rgba(0,0,0,.3);
-  box-shadow:0 24px 44px rgba(0,0,0,.28);
+  box-shadow:0 18px 34px rgba(0,0,0,.22);
 }
 .step-num{
   position:relative;
@@ -370,12 +369,8 @@ html{
   grid-template-rows:1fr 1fr;      /* all four cells exactly equal */
   padding:0 6vw;                   /* follow the side margins */
 }
-/* irregular grid-lines background — full width (into the margins too) */
-.build-bg{
-  position:absolute;
-  inset:0;
-  z-index:0;
-}
+/* grid lines removed */
+.build-bg{ display:none; }
 .build-bg svg{
   width:100%;
   height:100%;
