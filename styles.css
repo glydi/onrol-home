@@ -584,7 +584,7 @@ html{
   position:absolute;
   inset:0;                       /* full-bleed — image not limited to margins */
   background:
-    radial-gradient(58% 52% at 50% 50%, rgba(8,4,1,.62) 0%, rgba(8,4,1,.32) 42%, transparent 70%),  /* soft glow behind text only; edges stay bright */
+    radial-gradient(56% 50% at 50% 50%, rgba(8,4,1,.4) 0%, rgba(8,4,1,.2) 42%, transparent 70%),  /* light glow behind text only; edges stay bright */
     url('bag_1.jpeg') center / cover no-repeat;
   filter:saturate(1.18) brightness(1.04);    /* bright & glowy */
   z-index:0;
