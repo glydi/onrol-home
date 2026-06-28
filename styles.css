@@ -613,18 +613,13 @@ html{
 .who{
   position:relative;
   color:#1a120c;
-  padding:clamp(80px,13vh,150px) 6vw;
-  /* vivid warm light-blobs so the frosted cells have colour to refract */
-  background:
-    radial-gradient(38% 48% at 12% 18%, rgba(255,120,40,.50) 0%, transparent 62%),
-    radial-gradient(42% 52% at 88% 26%, rgba(255,175,95,.45) 0%, transparent 62%),
-    radial-gradient(48% 58% at 72% 96%, rgba(255,90,20,.42) 0%, transparent 62%),
-    radial-gradient(40% 50% at 22% 92%, rgba(255,205,160,.55) 0%, transparent 62%),
-    linear-gradient(160deg, #fff6f0 0%, #ffe9dc 100%);
+  padding:clamp(80px,13vh,150px) 0;   /* no side padding -> grid lines reach the edges */
+  background:#fff;                     /* plain white */
 }
 .who-head{
   max-width:760px;
   margin:0 auto clamp(40px,6vh,70px);
+  padding:0 6vw;                       /* keep the heading inset */
   text-align:center;
 }
 .who-title{
@@ -645,43 +640,24 @@ html{
 .who-grid{
   display:grid;
   grid-template-columns:repeat(3,1fr);
-  gap:1px;
-  background:rgba(255,120,60,.30);
-  border:1px solid rgba(255,120,60,.32);
-  box-shadow:0 34px 80px rgba(120,40,10,.18);
+  gap:1px;                              /* thin grid lines, full width to the edges */
+  background:rgba(0,0,0,.14);
+  border-top:1px solid rgba(0,0,0,.14);
+  border-bottom:1px solid rgba(0,0,0,.14);
 }
 .who-card{
   position:relative;             /* containing block for the junction nodes + hover lift */
   display:flex;
   flex-direction:column;
   padding:clamp(26px,3vw,40px);
-  /* liquid glass: translucent body + diagonal gloss streak over the colour behind */
-  background:
-    linear-gradient(118deg, transparent 0%, transparent 14%, rgba(255,255,255,.55) 22%, transparent 34%, transparent 100%),
-    linear-gradient(140deg, rgba(255,255,255,.42) 0%, rgba(255,255,255,.12) 46%, rgba(255,255,255,.04) 100%);
-  backdrop-filter:blur(16px) saturate(185%) brightness(1.06);
-  -webkit-backdrop-filter:blur(16px) saturate(185%) brightness(1.06);
-  box-shadow:
-    inset 0 1px 0 rgba(255,255,255,.95),           /* bright top rim */
-    inset 1px 0 0 rgba(255,255,255,.55),            /* left rim catch */
-    inset 0 -18px 36px rgba(255,150,80,.14),         /* warm base bleed */
-    inset -1px -1px 0 rgba(180,90,40,.12);           /* bottom-right dark edge (bevel) */
-  transition:transform .28s ease, box-shadow .28s ease, background .28s ease;
+  background:#fff;               /* plain white cell */
+  transition:transform .28s ease, box-shadow .28s ease, background .25s ease;
 }
 .who-card:hover{
-  transform:scale(1.06);         /* grow on hover */
+  transform:scale(1.04);         /* grow on hover */
   z-index:5;                     /* rise above neighbours + junction nodes */
-  backdrop-filter:blur(18px) saturate(200%) brightness(1.08);
-  -webkit-backdrop-filter:blur(18px) saturate(200%) brightness(1.08);
-  background:
-    linear-gradient(118deg, transparent 0%, transparent 12%, rgba(255,255,255,.72) 22%, transparent 36%, transparent 100%),
-    linear-gradient(140deg, rgba(255,255,255,.58) 0%, rgba(255,255,255,.2) 46%, rgba(255,255,255,.08) 100%);
-  box-shadow:
-    0 26px 56px rgba(150,60,20,.28),                /* lifted drop shadow */
-    0 0 42px rgba(var(--orange-rgb),.25),           /* orange glow */
-    inset 0 1px 0 rgba(255,255,255,1),
-    inset 1px 0 0 rgba(255,255,255,.7),
-    inset 0 -18px 36px rgba(255,150,80,.2);
+  background:#fff7f2;            /* faint warm tint */
+  box-shadow:0 14px 32px rgba(0,0,0,.12);
 }
 /* junction nodes at every grid-line crossing (corners of each card) */
 .who-card::before,
@@ -690,8 +666,7 @@ html{
   position:absolute;
   width:6px;
   height:6px;
-  background:var(--orange);
-  box-shadow:0 0 9px rgba(255,90,20,.7);      /* lit junction point */
+  background:var(--orange);                   /* solid junction point */
   z-index:3;
   pointer-events:none;
 }
