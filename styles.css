@@ -506,7 +506,7 @@ html{
 .build-block.has-img > p{ position:relative; z-index:2; color:#fff; }   /* over image: stay white */
 .block-eyebrow{
   font-family:'Space Grotesk',sans-serif;
-  font-size:clamp(58px,12vw,168px);    /* huge — nearly fills the block */
+  font-size:clamp(72px,16vw,240px);    /* huge — nearly fills the block */
   font-weight:600;
   line-height:.88;
   letter-spacing:-.02em;
