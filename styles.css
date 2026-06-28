@@ -365,11 +365,11 @@ html{
   color:#fff;
   display:flex;
   flex-direction:column;
-  justify-content:center;
-  gap:clamp(40px,7vh,84px);
-  padding:14vh 6vw;
+  gap:clamp(24px,4vh,56px);
+  padding:12vh 6vw;
 }
 .build-row{
+  flex:1;                        /* top half */
   display:flex;
   align-items:center;
   gap:5vw;
@@ -403,13 +403,18 @@ html{
   color:rgba(255,255,255,.62);
   max-width:48ch;
 }
-/* second half: 2 blocks */
+/* second half: 2 blocks filling the bottom 50% */
 .build-blocks{
+  flex:1;                        /* bottom half */
   display:grid;
   grid-template-columns:repeat(2,1fr);
+  grid-template-rows:1fr;        /* blocks fill the half's height */
   gap:24px;
 }
 .build-block{
+  display:flex;
+  flex-direction:column;
+  justify-content:center;        /* center content in the tall block */
   padding:clamp(28px,4vh,42px) clamp(26px,2vw,34px);
   background:rgba(255,255,255,.05);
   border:1px solid rgba(255,255,255,.12);
@@ -468,10 +473,10 @@ html{
 
   /* section 3 stacks */
   .build{ gap:6vh; padding:14vh 7vw 10vh; }
-  .build-row{ flex-direction:column; gap:6vh; }
+  .build-row{ flex:none; flex-direction:column; gap:6vh; }
   .build-video{ width:100%; }
   .build-text{ width:100%; }
-  .build-blocks{ grid-template-columns:1fr; }
+  .build-blocks{ flex:none; grid-template-columns:1fr; grid-template-rows:none; }
 }
 
 @media(max-width:430px){
