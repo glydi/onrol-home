@@ -457,10 +457,10 @@ html{
   border:1px solid rgba(var(--orange-rgb),.4);
   overflow:hidden;               /* fills its grid cell */
 }
-/* custom video controls (no native player) */
+/* custom video controls (no native player) — bottom-right */
 .vid-controls{
   position:absolute;
-  left:14px;
+  right:14px;
   bottom:14px;
   display:flex;
   gap:8px;
@@ -487,21 +487,6 @@ html{
 .build-video.is-playing .ic-pause{ display:block; }
 .build-video.is-muted .ic-muted{ display:block; }
 .build-video:not(.is-muted) .ic-sound{ display:block; }
-/* big play button, centered over the video (mute stays bottom-left) */
-.vid-play-big{
-  position:absolute;
-  top:50%;
-  left:50%;
-  transform:translate(-50%,-50%);
-  width:88px;
-  height:88px;
-  z-index:4;                          /* above the poster (z-index 2) */
-  transition:background .2s ease, border-color .2s ease, transform .2s ease, opacity .25s ease;
-}
-.vid-play-big .ic{ width:36px; height:36px; }
-.vid-play-big:hover{ transform:translate(-50%,-50%) scale(1.07); }
-/* hide the big button while playing (click the video to pause -> it returns) */
-.build-video.is-playing .vid-play-big{ opacity:0; pointer-events:none; }
 /* text thumbnail (custom poster) shown until first play */
 .vid-poster{
   position:absolute;
