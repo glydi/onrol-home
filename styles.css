@@ -504,10 +504,9 @@ html{
 }
 .build-block.has-img > h3,
 .build-block.has-img > p{ position:relative; z-index:2; color:#fff; }   /* over image: stay white */
-.build-block.has-img > h3{ font-size:clamp(30px,3.4vw,52px); line-height:1.1; }   /* bigger caption */
 .block-eyebrow{
   font-family:'Space Grotesk',sans-serif;
-  font-size:clamp(300px,60vw,1000px);  /* enormous — letters overflow/crop within the block */
+  font-size:clamp(360px,72vw,1300px);  /* enormous — letters overflow/crop within the block */
   font-weight:600;
   line-height:.8;
   letter-spacing:-.02em;
