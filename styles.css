@@ -167,13 +167,13 @@ html{
   padding-right:6vw;             /* gap before the divider */
   color:#16181b;
 }
-/* 3D asterisk graphic: roughly section-tall, half bleeding off the left edge */
+/* 3D asterisk graphic: sits up top (clear of the centred text), brought in from the left */
 .panel-aster{
   position:absolute;
-  left:2vw;                          /* nudged a little to the right */
-  top:50%;
-  transform:translate(-50%,-50%);    /* centred on that point -> ~half off-screen */
-  height:92vh;
+  top:0;
+  left:30%;                          /* moved in from the left toward the centre */
+  transform:translate(-50%,-55%);    /* bleeds off the top edge, above the headline */
+  height:72vh;
   width:auto;
   max-width:none;
   z-index:0;
@@ -420,7 +420,8 @@ html{
   overflow:hidden;
   min-height:100vh;
   color:#16181b;
-  background:#fff;                 /* white section */
+  /* strong orange + red gradient: red at the edges -> warm light toward the centre */
+  background:radial-gradient(125% 125% at 50% 50%, #fff7f1 16%, rgba(255,110,30,.62) 58%, rgba(200,35,12,.92) 100%);
   display:grid;
   grid-template-columns:1fr 1fr;   /* 2x2 grid: video | text / block | block */
   grid-template-rows:1fr 1fr;      /* all four cells exactly equal */
@@ -828,6 +829,7 @@ html{
   padding:clamp(60px,9vh,110px) 8vw clamp(34px,4vh,50px);
   font-family:var(--mono);
   font-weight:300;                 /* thin */
+  text-transform:uppercase;        /* all footer text in caps */
 }
 .footer-grid{
   display:grid;
