@@ -363,8 +363,8 @@ html{
   position:relative;
   overflow:hidden;
   min-height:100vh;
-  color:#fff;
-  background:linear-gradient(180deg, #241a12 0%, #18110b 100%);   /* fallback under the crystal */
+  color:#16181b;
+  background:#fff;                 /* white section */
   display:grid;
   grid-template-columns:1fr 1fr;   /* 2x2 grid: video | text / block | block */
   grid-template-rows:1fr 1fr;      /* all four cells exactly equal */
@@ -421,6 +421,32 @@ html{
 .build-video.is-playing .ic-pause{ display:block; }
 .build-video.is-muted .ic-muted{ display:block; }
 .build-video:not(.is-muted) .ic-sound{ display:block; }
+/* text thumbnail (custom poster) shown until first play */
+.vid-poster{
+  position:absolute;
+  inset:0;
+  z-index:2;
+  background:#fff;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  padding:7% 6%;
+  font-family:'Space Grotesk',sans-serif;
+  font-weight:700;
+  text-transform:lowercase;
+  letter-spacing:-.02em;
+  line-height:1;
+  color:#0a0a0a;
+}
+.vid-poster span{
+  display:block;
+  font-size:clamp(26px,7vw,86px);
+  border-bottom:1px solid #ff5a14;
+  padding-bottom:.05em;
+  margin-bottom:.12em;
+}
+.vid-poster .r{ text-align:right; }
+.build-video.started .vid-poster{ display:none; }
 .build-video video{
   display:block;
   width:100%;
@@ -448,7 +474,7 @@ html{
   font-family:var(--mono);
   font-size:15px;
   line-height:1.7;
-  color:rgba(255,255,255,.62);
+  color:#41454b;
   max-width:48ch;
 }
 /* second half: 2 blocks at 50% height of the bottom half, centered */
@@ -480,12 +506,12 @@ html{
   padding:clamp(22px,3vh,38px);
 }
 .build-block.has-img > h3,
-.build-block.has-img > p{ position:relative; z-index:2; }
+.build-block.has-img > p{ position:relative; z-index:2; color:#fff; }   /* over image: stay white */
 .block-eyebrow{
   font-family:'Space Grotesk',sans-serif;
-  font-size:clamp(48px,7.5vw,120px);   /* h1 size */
+  font-size:clamp(46px,9vw,112px);     /* huge — nearly fills the block */
   font-weight:600;
-  line-height:.95;
+  line-height:.9;
   letter-spacing:-.02em;
   color:#fff;
   margin-bottom:8px;
@@ -537,7 +563,7 @@ html{
   font-family:var(--mono);
   font-size:14px;
   line-height:1.6;
-  color:rgba(255,255,255,.6);
+  color:#41454b;
 }
 
 /* ---------- SECTION 4 — closing CTA ---------- */

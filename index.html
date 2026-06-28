@@ -148,9 +148,14 @@
     </svg>
   </div>
   <div class="build-video is-muted">
-    <video id="aboutVid" playsinline muted loop preload="metadata" poster="vid_thumb.png">
+    <video id="aboutVid" playsinline muted loop preload="metadata">
       <source src="about_onrol.mp4" type="video/mp4">
     </video>
+    <div class="vid-poster" aria-hidden="true">
+      <span>know</span>
+      <span>about</span>
+      <span class="r">onrol</span>
+    </div>
     <div class="vid-controls">
       <button class="vid-btn" id="vidPlay" type="button" aria-label="Play / pause">
         <svg class="ic ic-play"  viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
@@ -481,7 +486,7 @@
     var playBtn = document.getElementById('vidPlay');
     var muteBtn = document.getElementById('vidMute');
     playBtn.addEventListener('click', function(){ if (vid.paused) vid.play(); else vid.pause(); });
-    vid.addEventListener('play',  function(){ bv.classList.add('is-playing'); });
+    vid.addEventListener('play',  function(){ bv.classList.add('is-playing', 'started'); });
     vid.addEventListener('pause', function(){ bv.classList.remove('is-playing'); });
     muteBtn.addEventListener('click', function(){
       vid.muted = !vid.muted;
