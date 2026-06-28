@@ -111,7 +111,7 @@ html{
   background:linear-gradient(180deg, #fafbfc 0%, #c4c8ce 100%);
   display:flex;
   align-items:stretch;
-  padding:0 6vw;                 /* align with the margin lines */
+  padding:clamp(72px,12vh,140px) 6vw;   /* vertical breathing room + align with margin lines */
 }
 .panel-content{
   position:relative;
@@ -584,9 +584,9 @@ html{
   position:absolute;
   inset:0;                       /* full-bleed — image not limited to margins */
   background:
-    radial-gradient(68% 58% at 50% 52%, rgba(6,3,1,.66) 0%, rgba(6,3,1,.3) 46%, transparent 76%),  /* dim behind text, edges stay bright */
+    radial-gradient(74% 66% at 50% 50%, rgba(6,3,1,.84) 0%, rgba(6,3,1,.58) 38%, rgba(6,3,1,.18) 68%, transparent 86%),  /* strong dim behind text, edges stay bright */
     url('bag_1.jpeg') center / cover no-repeat;
-  filter:saturate(1.18) brightness(1.05);    /* bright & glowy edges */
+  filter:saturate(1.18) brightness(1.0);    /* glowy edges, scrim holds */
   z-index:0;
 }
 .cta-section > *{ position:relative; z-index:1; }
