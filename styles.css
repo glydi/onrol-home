@@ -614,11 +614,13 @@ html{
   position:relative;
   color:#1a120c;
   padding:clamp(80px,13vh,150px) 6vw;
-  /* white base with warm orange light pools */
+  /* vivid warm light-blobs so the frosted cells have colour to refract */
   background:
-    radial-gradient(90% 70% at 18% 0%, rgba(255,150,90,.20) 0%, transparent 60%),
-    radial-gradient(90% 80% at 100% 100%, rgba(255,110,40,.16) 0%, transparent 55%),
-    linear-gradient(160deg, #ffffff 0%, #f4efea 58%, #ffffff 100%);
+    radial-gradient(38% 48% at 12% 18%, rgba(255,120,40,.50) 0%, transparent 62%),
+    radial-gradient(42% 52% at 88% 26%, rgba(255,175,95,.45) 0%, transparent 62%),
+    radial-gradient(48% 58% at 72% 96%, rgba(255,90,20,.42) 0%, transparent 62%),
+    radial-gradient(40% 50% at 22% 92%, rgba(255,205,160,.55) 0%, transparent 62%),
+    linear-gradient(160deg, #fff6f0 0%, #ffe9dc 100%);
 }
 .who-head{
   max-width:760px;
@@ -653,29 +655,33 @@ html{
   display:flex;
   flex-direction:column;
   padding:clamp(26px,3vw,40px);
-  /* white liquid glass: specular sheen over a faint warm tint */
+  /* liquid glass: translucent body + diagonal gloss streak over the colour behind */
   background:
-    linear-gradient(150deg, rgba(255,255,255,.75) 0%, rgba(255,255,255,.30) 32%),
-    linear-gradient(160deg, rgba(255,120,60,.12) 0%, rgba(255,255,255,.55) 54%, rgba(var(--orange-rgb),.10) 100%);
-  backdrop-filter:blur(14px) saturate(150%);
-  -webkit-backdrop-filter:blur(14px) saturate(150%);
+    linear-gradient(118deg, transparent 0%, transparent 14%, rgba(255,255,255,.55) 22%, transparent 34%, transparent 100%),
+    linear-gradient(140deg, rgba(255,255,255,.42) 0%, rgba(255,255,255,.12) 46%, rgba(255,255,255,.04) 100%);
+  backdrop-filter:blur(16px) saturate(185%) brightness(1.06);
+  -webkit-backdrop-filter:blur(16px) saturate(185%) brightness(1.06);
   box-shadow:
-    inset 0 1px 1px rgba(255,255,255,.95),         /* bright top reflective edge */
-    inset 0 -24px 40px rgba(255,150,90,.10),        /* warm base */
-    inset 0 0 50px rgba(255,255,255,.35);           /* inner glow */
+    inset 0 1px 0 rgba(255,255,255,.95),           /* bright top rim */
+    inset 1px 0 0 rgba(255,255,255,.55),            /* left rim catch */
+    inset 0 -18px 36px rgba(255,150,80,.14),         /* warm base bleed */
+    inset -1px -1px 0 rgba(180,90,40,.12);           /* bottom-right dark edge (bevel) */
   transition:transform .28s ease, box-shadow .28s ease, background .28s ease;
 }
 .who-card:hover{
   transform:scale(1.06);         /* grow on hover */
   z-index:5;                     /* rise above neighbours + junction nodes */
+  backdrop-filter:blur(18px) saturate(200%) brightness(1.08);
+  -webkit-backdrop-filter:blur(18px) saturate(200%) brightness(1.08);
   background:
-    linear-gradient(150deg, rgba(255,255,255,.90) 0%, rgba(255,255,255,.40) 32%),
-    linear-gradient(160deg, rgba(255,120,60,.20) 0%, rgba(255,255,255,.60) 52%, rgba(var(--orange-rgb),.16) 100%);
+    linear-gradient(118deg, transparent 0%, transparent 12%, rgba(255,255,255,.72) 22%, transparent 36%, transparent 100%),
+    linear-gradient(140deg, rgba(255,255,255,.58) 0%, rgba(255,255,255,.2) 46%, rgba(255,255,255,.08) 100%);
   box-shadow:
-    0 28px 56px rgba(120,40,10,.22),                /* lifted drop shadow */
-    0 0 40px rgba(var(--orange-rgb),.22),           /* orange glow */
-    inset 0 1px 1px rgba(255,255,255,1),
-    inset 0 -24px 40px rgba(255,150,90,.16);
+    0 26px 56px rgba(150,60,20,.28),                /* lifted drop shadow */
+    0 0 42px rgba(var(--orange-rgb),.25),           /* orange glow */
+    inset 0 1px 0 rgba(255,255,255,1),
+    inset 1px 0 0 rgba(255,255,255,.7),
+    inset 0 -18px 36px rgba(255,150,80,.2);
 }
 /* junction nodes at every grid-line crossing (corners of each card) */
 .who-card::before,
