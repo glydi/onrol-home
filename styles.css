@@ -358,71 +358,44 @@ html{
 }
 .panel-content .btn:hover{ opacity:.85; }
 
-/* ---------- SECTION 3 — What You'll Build (top 50% / bottom 50%, content down) ---------- */
+/* ---------- SECTION 3 — video (left 50%) + about ONROL (right 50%) ---------- */
 .build{
   min-height:100vh;
   background:#0c0c0c;
   color:#fff;
   display:flex;
-  flex-direction:column;
+  align-items:center;
+  gap:5vw;
+  padding:14vh 6vw;
 }
-.build-top{ flex:1 1 50%; }      /* empty top half */
-.build-content{
-  position:relative;
-  flex:1 1 50%;                  /* content in the bottom half */
-  display:flex;
-  flex-direction:column;
-  justify-content:center;
-  padding:0 6vw;
+.build-video{
+  width:50%;
+  aspect-ratio:16 / 9;
+  background:#000;
+  border:1px solid rgba(255,255,255,.15);
+  overflow:hidden;
+  box-shadow:0 26px 64px rgba(0,0,0,.45);
 }
-/* horizontal gradient divider between the halves, glow flowing out */
-.build-content::after{
-  content:"";
-  position:absolute;
-  left:0;
-  right:0;
-  top:0;
-  height:1px;
-  background:linear-gradient(90deg, transparent 0%, rgba(255,90,20,.6) 50%, transparent 100%);
-  box-shadow:0 0 55px 12px rgba(255,90,20,.16);
-  pointer-events:none;
+.build-video video{
+  display:block;
+  width:100%;
+  height:100%;
+  object-fit:cover;
 }
+.build-text{ width:50%; }
 .build-title{
   font-family:'Space Grotesk',sans-serif;
   font-size:clamp(26px,2.8vw,44px);
   font-weight:600;
-  line-height:1.12;
-  margin:12px 0 clamp(24px,3.5vh,40px);
+  line-height:1.14;
+  margin:12px 0 18px;
 }
-.build-grid{
-  display:grid;
-  grid-template-columns:repeat(3,1fr);   /* 3 across (full width now) */
-  gap:24px;
-}
-.build-card{
-  padding:clamp(30px,4vh,46px) clamp(26px,2vw,34px);
-  background:rgba(255,255,255,.05);
-  border:1px solid rgba(255,255,255,.12);
-  backdrop-filter:blur(8px);
-  -webkit-backdrop-filter:blur(8px);
-  transition:transform .25s ease, background .25s ease, border-color .25s ease;
-}
-.build-card:hover{
-  transform:translateY(-6px);
-  background:rgba(255,255,255,.08);
-  border-color:rgba(255,90,20,.55);
-}
-.build-card h3{
-  font-family:'Space Grotesk',sans-serif;
-  font-size:clamp(20px,1.8vw,26px);
-  font-weight:600;
-  margin-bottom:12px;
-}
-.build-card p{
+.build-desc{
   font-family:var(--mono);
-  font-size:14px;
-  line-height:1.6;
-  color:rgba(255,255,255,.6);
+  font-size:15px;
+  line-height:1.7;
+  color:rgba(255,255,255,.62);
+  max-width:48ch;
 }
 
 /* ---------- responsive ---------- */
@@ -456,11 +429,10 @@ html{
   .pipeline li{ padding:26px 18px; }
   .step-num{ width:36px; height:36px; font-size:13px; }
 
-  /* section 3 stacks */
-  .build{ padding:0 7vw; }
-  .build-top{ flex:0 0 14vh; }            /* small top gap on mobile */
-  .build-content{ padding:0 0 10vh; }
-  .build-grid{ grid-template-columns:1fr; }
+  /* section 3 stacks: video on top, text below */
+  .build{ flex-direction:column; gap:6vh; padding:14vh 7vw 10vh; }
+  .build-video{ width:100%; }
+  .build-text{ width:100%; }
 }
 
 @media(max-width:430px){
