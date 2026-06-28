@@ -173,7 +173,7 @@ html{
   position:absolute;
   top:0;
   left:25%;                          /* a bit further left */
-  transform:translate(-50%,-46%);    /* brought down a bit from the top */
+  transform:translate(-50%,-30%);    /* brought further down from the top */
   height:72vh;
   width:auto;
   max-width:none;
