@@ -500,15 +500,15 @@ html{
   left:6vw;
   right:6vw;
   background:
-    radial-gradient(75% 65% at 50% 54%, rgba(8,4,2,.34) 0%, transparent 74%),  /* soft dim behind text only */
+    radial-gradient(68% 58% at 50% 52%, rgba(6,3,1,.66) 0%, rgba(6,3,1,.3) 46%, transparent 76%),  /* dim behind text, edges stay bright */
     url('bag_1.jpeg') center / cover no-repeat;
-  filter:saturate(1.18) brightness(1.1);    /* bright & glowy */
+  filter:saturate(1.18) brightness(1.05);    /* bright & glowy edges */
   z-index:0;
 }
 .cta-section > *{ position:relative; z-index:1; }
-.cta-title{ text-shadow:0 2px 26px rgba(0,0,0,.5); }
-.cta-sub{ text-shadow:0 1px 16px rgba(0,0,0,.5); }
-.cta-eyebrow{ text-shadow:0 1px 12px rgba(0,0,0,.5); }
+.cta-title{ text-shadow:0 2px 30px rgba(0,0,0,.75); }
+.cta-sub{ text-shadow:0 1px 18px rgba(0,0,0,.7); }
+.cta-eyebrow{ text-shadow:0 1px 14px rgba(0,0,0,.65); }
 .cta-eyebrow{
   font-family:var(--mono);
   font-size:12px;
