@@ -367,7 +367,7 @@ html{
   background:linear-gradient(180deg, #241a12 0%, #18110b 100%);   /* fallback under the crystal */
   display:flex;
   flex-direction:column;
-  gap:clamp(24px,4vh,56px);
+  gap:0;
   padding:12vh 6vw;
 }
 /* detailed lit crystal background */
@@ -533,7 +533,7 @@ html{
   background:linear-gradient(180deg, #18110b 0%, #120c08 100%);
   color:#fff;
   border-top:1px solid rgba(255,90,20,.32);
-  padding:clamp(54px,8vh,96px) 6vw clamp(28px,4vh,44px);
+  padding:clamp(60px,9vh,110px) 8vw clamp(34px,4vh,50px);
   font-family:var(--mono);
   font-weight:300;                 /* thin */
 }
