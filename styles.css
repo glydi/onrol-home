@@ -456,10 +456,12 @@ html{
   width:88px;
   height:88px;
   z-index:4;                          /* above the poster (z-index 2) */
-  transition:background .2s ease, border-color .2s ease, transform .2s ease;
+  transition:background .2s ease, border-color .2s ease, transform .2s ease, opacity .25s ease;
 }
 .vid-play-big .ic{ width:36px; height:36px; }
 .vid-play-big:hover{ transform:translate(-50%,-50%) scale(1.07); }
+/* hide the big button while playing (click the video to pause -> it returns) */
+.build-video.is-playing .vid-play-big{ opacity:0; pointer-events:none; }
 /* text thumbnail (custom poster) shown until first play */
 .vid-poster{
   position:absolute;
@@ -933,6 +935,26 @@ html{
   .build{ grid-template-columns:1fr; grid-template-rows:auto; gap:6vh; padding:14vh 7vw 10vh; }
   .build-video{ aspect-ratio:16 / 9; }
   .build-text{ padding:0; border:none; }
+  .build-title{ font-size:clamp(24px,5.5vw,34px); }
+  .build-block{ padding:30px 22px; }
+  .build-block.has-img{ min-height:64vw; }     /* keep the cover image visible when stacked */
+  .block-eyebrow{ font-size:clamp(42px,12vw,92px); }
+  .build-block.has-img > h3{ font-size:clamp(18px,4.6vw,24px); }
+
+  /* big play button: a touch smaller on phones */
+  .vid-play-big{ width:66px; height:66px; }
+  .vid-play-big .ic{ width:27px; height:27px; }
+
+  /* who section: tighter padding */
+  .who{ padding:72px 7vw; }
+  .who-card{ padding:26px 22px; }
+  .who-title{ font-size:clamp(26px,7vw,40px); }
+
+  /* closing CTA: stack buttons full-width */
+  .cta-section{ padding:12vh 7vw; }
+  .cta-title{ font-size:clamp(26px,7.5vw,42px); }
+  .cta-actions{ width:100%; gap:12px; }
+  .cta-section .btn{ flex:1 1 100%; text-align:center; padding:16px 20px; }
 
   /* footer collapses */
   .footer-grid{ grid-template-columns:1fr 1fr; gap:32px 24px; }

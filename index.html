@@ -611,7 +611,9 @@
     if (!bv || !vid) return;
     var playBtn = document.getElementById('vidPlay');
     var muteBtn = document.getElementById('vidMute');
-    playBtn.addEventListener('click', function(){ if (vid.paused) vid.play(); else vid.pause(); });
+    function toggle(){ if (vid.paused) vid.play(); else vid.pause(); }
+    playBtn.addEventListener('click', toggle);
+    vid.addEventListener('click', toggle);     // click the video to pause -> big button returns
     vid.addEventListener('play',  function(){ bv.classList.add('is-playing', 'started'); });
     vid.addEventListener('pause', function(){ bv.classList.remove('is-playing'); });
     muteBtn.addEventListener('click', function(){
