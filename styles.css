@@ -433,29 +433,28 @@ html{
   position:absolute;
   inset:0;
   background:
-    radial-gradient(16% 32% at 0% 4%,   rgba(190,30,10,.85), transparent 85%),
-    radial-gradient(15% 34% at 0% 20%,  rgba(255,90,18,.8),  transparent 86%),
-    radial-gradient(17% 30% at 0% 36%,  rgba(255,150,40,.7), transparent 85%),
-    radial-gradient(15% 35% at 0% 52%,  rgba(205,40,12,.82), transparent 86%),
-    radial-gradient(17% 31% at 0% 68%,  rgba(255,110,25,.8), transparent 85%),
-    radial-gradient(15% 34% at 0% 84%,  rgba(255,150,40,.7), transparent 86%),
-    radial-gradient(16% 30% at 0% 99%,  rgba(190,30,10,.85), transparent 85%),
-    radial-gradient(16% 32% at 100% 10%, rgba(190,30,10,.85), transparent 85%),
-    radial-gradient(15% 34% at 100% 26%, rgba(255,90,18,.8),  transparent 86%),
-    radial-gradient(17% 30% at 100% 42%, rgba(255,150,40,.7), transparent 85%),
-    radial-gradient(15% 35% at 100% 58%, rgba(205,40,12,.82), transparent 86%),
-    radial-gradient(17% 31% at 100% 74%, rgba(255,110,25,.8), transparent 85%),
-    radial-gradient(15% 34% at 100% 90%, rgba(255,150,40,.7), transparent 86%),
-    /* continuous linear base so the waves blend into one mixed band */
+    /* lumps bulging inward at varying heights & depths (distinct waves) */
+    radial-gradient(13% 10% at 0% 9%,  rgba(200,35,12,.96),  transparent 64%),
+    radial-gradient(20% 12% at 0% 25%, rgba(255,95,20,.92),  transparent 66%),
+    radial-gradient(10% 9%  at 0% 40%, rgba(205,40,14,.96),  transparent 64%),
+    radial-gradient(22% 13% at 0% 56%, rgba(255,115,25,.92), transparent 66%),
+    radial-gradient(12% 9%  at 0% 72%, rgba(200,35,12,.96),  transparent 64%),
+    radial-gradient(18% 12% at 0% 88%, rgba(255,95,20,.92),  transparent 66%),
+    radial-gradient(11% 9%  at 0% 99%, rgba(205,40,14,.96),  transparent 64%),
+    radial-gradient(12% 10% at 100% 14%, rgba(200,35,12,.96),  transparent 64%),
+    radial-gradient(21% 12% at 100% 30%, rgba(255,95,20,.92),  transparent 66%),
+    radial-gradient(10% 9%  at 100% 46%, rgba(205,40,14,.96),  transparent 64%),
+    radial-gradient(23% 13% at 100% 62%, rgba(255,115,25,.92), transparent 66%),
+    radial-gradient(12% 9%  at 100% 78%, rgba(200,35,12,.96),  transparent 64%),
+    radial-gradient(19% 12% at 100% 94%, rgba(255,95,20,.92),  transparent 66%),
+    /* thin continuous base strip the lumps grow out of */
     linear-gradient(90deg,
-      rgba(190,30,10,.92)  0,
-      rgba(255,95,20,.72)  5vw,
-      rgba(255,150,50,.34) 10vw,
-      rgba(255,150,50,0)   15vw,
-      rgba(255,150,50,0)   calc(100% - 15vw),
-      rgba(255,150,50,.34) calc(100% - 10vw),
-      rgba(255,95,20,.72)  calc(100% - 5vw),
-      rgba(190,30,10,.92)  100%);
+      rgba(190,30,10,.95) 0,
+      rgba(255,95,20,.55) 3vw,
+      rgba(255,95,20,0)   6vw,
+      rgba(255,95,20,0)   calc(100% - 6vw),
+      rgba(255,95,20,.55) calc(100% - 3vw),
+      rgba(190,30,10,.95) 100%);
   z-index:0;
   pointer-events:none;
 }
