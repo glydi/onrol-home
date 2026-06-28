@@ -112,7 +112,7 @@ html{
   background:linear-gradient(180deg, #fafbfc 0%, #c4c8ce 100%);
   display:flex;
   align-items:stretch;
-  padding:clamp(72px,12vh,140px) 6vw;   /* vertical breathing room + align with margin lines */
+  padding:clamp(72px,12vh,140px) 10vw;   /* vertical breathing room + left/right margin (inset past the 6vw guide lines) */
 }
 /* visible dark margin lines for this light section (the global white ones disappear here) */
 .panel::before,
