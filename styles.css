@@ -473,6 +473,7 @@ html{
   border-top:1px solid rgba(255,90,20,.32);
   padding:clamp(54px,8vh,96px) 6vw clamp(28px,4vh,44px);
   font-family:var(--mono);
+  font-weight:300;                 /* thin */
 }
 .footer-grid{
   display:grid;
@@ -482,7 +483,7 @@ html{
 .f-brand h3{
   font-family:'Space Grotesk',sans-serif;
   font-size:19px;
-  font-weight:600;
+  font-weight:500;
   margin-bottom:10px;
 }
 .f-tag{
