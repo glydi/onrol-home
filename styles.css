@@ -599,7 +599,7 @@ html{
   font-size:12px;
   letter-spacing:2px;
   text-transform:uppercase;
-  color:#ff8a4d;                 /* bright orange accent over the glow */
+  color:#fff;                    /* white like the rest of the CTA */
 }
 .cta-title{
   font-family:'Space Grotesk',sans-serif;
