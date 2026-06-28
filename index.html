@@ -75,7 +75,7 @@
   </div>
 </div>
 
-<section class="panel">
+<section class="panel reveal">
   <div class="panel-content">
     <h1>Most AI courses teach tools. <span>ONROL teaches execution.</span></h1>
     <p>Stop watching tutorials and start building. Join India&rsquo;s AI Execution School to master vibe coding and launch real-world projects you can put in your portfolio.</p>
@@ -116,7 +116,7 @@
   </div>
 </section>
 
-<section class="build">
+<section class="build reveal">
   <div class="build-bg" aria-hidden="true">
     <svg preserveAspectRatio="none" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
       <g stroke="rgba(255,150,80,.16)" stroke-width="1">
@@ -184,7 +184,7 @@
   </article>
 </section>
 
-<section class="cta-section">
+<section class="cta-section reveal">
   <p class="cta-eyebrow">Ready when you are</p>
   <h2 class="cta-title">Stop watching. Start shipping.</h2>
   <p class="cta-sub">Join the next ONROL cohort and build real AI products from day one &mdash; with mentorship, not just videos.</p>
@@ -490,6 +490,23 @@
       vid.muted = !vid.muted;
       bv.classList.toggle('is-muted', vid.muted);
     });
+  })();
+
+  /* scroll-reveal: fade + rise sections as they enter the viewport */
+  (function(){
+    var els = document.querySelectorAll('.reveal');
+    if (!els.length) return;
+    var noMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (noMotion || !('IntersectionObserver' in window)){
+      els.forEach(function(el){ el.classList.add('in'); });   // show immediately
+      return;
+    }
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(e){
+        if (e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); }
+      });
+    }, { threshold:0.12, rootMargin:'0px 0px -8% 0px' });
+    els.forEach(function(el){ io.observe(el); });
   })();
 </script>
 

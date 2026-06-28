@@ -12,12 +12,28 @@
   --band:42px;            /* space between the letters and the outer top/bottom lines */
   --tower:22px;           /* height of each vertical "space" cell */
   --mono:'JetBrains Mono', ui-monospace, monospace;   /* modern thin monospace */
+  /* brand orange — single source of truth */
+  --orange-rgb:255,90,20;                  /* base RGB for alpha tints */
+  --orange:rgb(var(--orange-rgb));         /* #ff5a14 — primary brand orange */
+  --orange-lt:#ff8a4a;                     /* lighter accent / hover */
 }
 
 body{
   background:#0c0c0c;
   font-family:'Space Grotesk',sans-serif;
   overflow-x:clip;              /* stop sideways scroll WITHOUT a scroll container (keeps custom scrollbar) */
+}
+
+/* scroll-reveal — sections fade + rise as they enter the viewport */
+.reveal{
+  opacity:0;
+  transform:translateY(30px);
+  transition:opacity .7s ease, transform .7s ease;
+  will-change:opacity, transform;
+}
+.reveal.in{ opacity:1; transform:none; }
+@media (prefers-reduced-motion: reduce){
+  .reveal{ opacity:1; transform:none; transition:none; }
 }
 
 /* preloader — dark cover; the real ONROL logo is raised above it (exact hero place),
@@ -47,7 +63,7 @@ body.loading .tower{ opacity:0; }     /* hide the empty boxes + tagline during l
   display:block;
   height:100%;
   width:40%;
-  background:#ff5a14;
+  background:var(--orange);
   animation:preload 1s ease-in-out infinite;
 }
 @keyframes preload{
@@ -145,9 +161,9 @@ html{
   width:1px;
   background:linear-gradient(180deg,
     transparent 0%,
-    rgba(255,90,20,.6) 50%,
+    rgba(var(--orange-rgb),.6) 50%,
     transparent 100%);
-  box-shadow:0 0 55px 12px rgba(255,90,20,.16);   /* glow radiates outward */
+  box-shadow:0 0 55px 12px rgba(var(--orange-rgb),.16);   /* glow radiates outward */
   pointer-events:none;
 }
 .panel-right{
@@ -163,7 +179,7 @@ html{
   font-size:12px;
   letter-spacing:2px;
   text-transform:uppercase;
-  color:#ff5a14;
+  color:var(--orange);
   margin-bottom:10px;
 }
 .pipe-title{
@@ -258,9 +274,9 @@ html{
   transition:background .2s, color .2s, transform .2s, border-color .2s;
 }
 .step-btn:hover{
-  background:#ff5a14;
+  background:var(--orange);
   color:#fff;
-  border-color:#ff5a14;
+  border-color:var(--orange);
   transform:translateY(-2px);
 }
 
@@ -313,7 +329,7 @@ html{
   font-size:12px;
   letter-spacing:2px;
   text-transform:uppercase;
-  color:#ff5a14;
+  color:var(--orange);
   margin-bottom:14px;
 }
 .modal-text{ font-size:17px; line-height:1.6; color:#33363b; }
@@ -337,7 +353,7 @@ html{
   line-height:1.12;
   letter-spacing:-.01em;
 }
-.panel-content h1 span{ color:#ff5a14; }   /* "ONROL teaches execution." */
+.panel-content h1 span{ color:var(--orange); }   /* "ONROL teaches execution." */
 .panel-content p{
   margin-top:22px;
   max-width:48ch;
@@ -362,7 +378,7 @@ html{
   text-decoration:none;
   transition:opacity .2s, transform .2s;
 }
-.panel-content .btn.primary{ background:#ff5a14; color:#fff; }
+.panel-content .btn.primary{ background:var(--orange); color:#fff; }
 .panel-content .btn.secondary{
   background:transparent;
   color:#16181b;
@@ -396,7 +412,7 @@ html{
 .build-video{
   position:relative;
   background:#000;
-  border:1px solid rgba(255,110,40,.4);
+  border:1px solid rgba(var(--orange-rgb),.4);
   overflow:hidden;               /* fills its grid cell */
 }
 /* custom video controls (no native player) */
@@ -423,7 +439,7 @@ html{
   -webkit-backdrop-filter:blur(8px);
   transition:background .2s ease, border-color .2s ease;
 }
-.vid-btn:hover{ background:rgba(255,90,20,.7); border-color:rgba(255,140,60,.9); }
+.vid-btn:hover{ background:rgba(var(--orange-rgb),.7); border-color:rgba(var(--orange-rgb),.9); }
 .vid-btn .ic{ width:19px; height:19px; display:none; }
 .build-video:not(.is-playing) .ic-play{ display:block; }
 .build-video.is-playing .ic-pause{ display:block; }
@@ -449,7 +465,7 @@ html{
 .vid-poster span{
   display:block;
   font-size:clamp(26px,7vw,86px);
-  border-bottom:1px solid #ff5a14;
+  border-bottom:1px solid var(--orange);
   padding-bottom:.05em;
   margin-bottom:.12em;
 }
@@ -466,9 +482,9 @@ html{
   flex-direction:column;
   justify-content:center;        /* text vertically centered, cell fills via grid */
   padding:clamp(20px,3vh,40px) clamp(30px,3.5vw,64px);
-  background:rgba(255,90,20,.04);                         /* same tint as its diagonal block */
-  box-shadow:inset 0 0 40px rgba(255,90,20,.05);
-  border:1px solid rgba(255,120,50,.22);                 /* boxed like the others */
+  background:rgba(var(--orange-rgb),.04);                         /* same tint as its diagonal block */
+  box-shadow:inset 0 0 40px rgba(var(--orange-rgb),.05);
+  border:1px solid rgba(var(--orange-rgb),.22);                 /* boxed like the others */
 }
 /* merge top & bottom halves — no border seam at the midline */
 .build-video, .build-text{ border-bottom:0; }
@@ -495,9 +511,9 @@ html{
   flex-direction:column;
   justify-content:center;        /* center content in the tall block */
   padding:clamp(28px,4vh,4px) clamp(26px,2vw,34px);
-  background:rgba(255,90,20,.04);
-  border:1px solid rgba(255,120,50,.22);
-  box-shadow:inset 0 0 40px rgba(255,90,20,.05);
+  background:rgba(var(--orange-rgb),.04);
+  border:1px solid rgba(var(--orange-rgb),.22);
+  box-shadow:inset 0 0 40px rgba(var(--orange-rgb),.05);
   backdrop-filter:blur(8px);
   -webkit-backdrop-filter:blur(8px);
   transition:transform .25s ease, background .25s ease, border-color .25s ease, box-shadow .25s ease;
@@ -548,7 +564,7 @@ html{
   transition:background .2s ease, border-color .2s ease, transform .2s ease;
 }
 .block-link span{ transition:transform .2s ease; }
-.block-link:hover{ background:#ff5a14; border-color:#ff5a14; transform:translateY(-2px); }
+.block-link:hover{ background:var(--orange); border-color:var(--orange); transform:translateY(-2px); }
 .block-link:hover span{ transform:translateX(4px); }
 .build-block.has-img::after{     /* legibility scrim over the image */
   content:"";
@@ -559,9 +575,9 @@ html{
 }
 .build-block:hover{
   transform:translateY(-6px);
-  background:rgba(255,90,20,.08);
-  border-color:rgba(255,110,40,.7);
-  box-shadow:0 0 34px rgba(255,90,20,.22), inset 0 0 40px rgba(255,90,20,.1);
+  background:rgba(var(--orange-rgb),.08);
+  border-color:rgba(var(--orange-rgb),.7);
+  box-shadow:0 0 34px rgba(var(--orange-rgb),.22), inset 0 0 40px rgba(var(--orange-rgb),.1);
 }
 .build-block h3{
   font-family:'Space Grotesk',sans-serif;
@@ -662,7 +678,7 @@ html{
 .footer{
   background:linear-gradient(180deg, #18110b 0%, #120c08 100%);
   color:#fff;
-  border-top:1px solid rgba(255,90,20,.32);
+  border-top:1px solid rgba(var(--orange-rgb),.32);
   padding:clamp(60px,9vh,110px) 8vw clamp(34px,4vh,50px);
   font-family:var(--mono);
   font-weight:300;                 /* thin */
@@ -682,7 +698,7 @@ html{
   font-size:13px;
   letter-spacing:2px;
   text-transform:uppercase;
-  color:#ff5a14;
+  color:var(--orange);
   margin-bottom:14px;
 }
 .f-desc{
@@ -699,13 +715,13 @@ html{
   font-size:13px;
   margin-bottom:5px;
 }
-.f-contact a:hover{ color:#ff5a14; }
+.f-contact a:hover{ color:var(--orange); }
 .f-col h4,
 .f-news h4{
   font-size:14px;
   letter-spacing:2px;
   text-transform:uppercase;
-  color:#ff8a4a;
+  color:var(--orange-lt);
   margin-bottom:16px;
 }
 .f-col ul{ list-style:none; }
@@ -716,7 +732,7 @@ html{
   font-size:13px;
   transition:color .2s;
 }
-.f-col a:hover{ color:#ff8a4a; }
+.f-col a:hover{ color:var(--orange-lt); }
 .f-news p{
   font-size:13px;
   line-height:1.65;
@@ -742,13 +758,13 @@ html{
   text-transform:uppercase;
   letter-spacing:1px;
   color:#fff;
-  background:#ff5a14;
+  background:var(--orange);
   border:none;
   cursor:pointer;
   transition:background .2s;
 }
-.f-form button:hover{ background:#ff6a24; }
-.footer .dec{ color:#ff7a2e; }     /* scrambling chars during decode */
+.f-form button:hover{ background:var(--orange-lt); }
+.footer .dec{ color:var(--orange-lt); }     /* scrambling chars during decode */
 .footer-bottom{
   margin-top:clamp(40px,6vh,72px);
   padding-top:24px;
