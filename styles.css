@@ -358,15 +358,21 @@ html{
 }
 .panel-content .btn:hover{ opacity:.85; }
 
-/* ---------- SECTION 3 — video (left 50%) + about ONROL (right 50%) ---------- */
+/* ---------- SECTION 3 — video + about (top), 2 blocks (bottom) ---------- */
 .build{
   min-height:100vh;
   background:#0c0c0c;
   color:#fff;
   display:flex;
+  flex-direction:column;
+  justify-content:center;
+  gap:clamp(40px,7vh,84px);
+  padding:14vh 6vw;
+}
+.build-row{
+  display:flex;
   align-items:center;
   gap:5vw;
-  padding:14vh 6vw;
 }
 .build-video{
   width:50%;
@@ -396,6 +402,37 @@ html{
   line-height:1.7;
   color:rgba(255,255,255,.62);
   max-width:48ch;
+}
+/* second half: 2 blocks */
+.build-blocks{
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:24px;
+}
+.build-block{
+  padding:clamp(28px,4vh,42px) clamp(26px,2vw,34px);
+  background:rgba(255,255,255,.05);
+  border:1px solid rgba(255,255,255,.12);
+  backdrop-filter:blur(8px);
+  -webkit-backdrop-filter:blur(8px);
+  transition:transform .25s ease, background .25s ease, border-color .25s ease;
+}
+.build-block:hover{
+  transform:translateY(-6px);
+  background:rgba(255,255,255,.08);
+  border-color:rgba(255,90,20,.55);
+}
+.build-block h3{
+  font-family:'Space Grotesk',sans-serif;
+  font-size:clamp(19px,1.6vw,25px);
+  font-weight:600;
+  margin-bottom:10px;
+}
+.build-block p{
+  font-family:var(--mono);
+  font-size:14px;
+  line-height:1.6;
+  color:rgba(255,255,255,.6);
 }
 
 /* ---------- responsive ---------- */
@@ -429,10 +466,12 @@ html{
   .pipeline li{ padding:26px 18px; }
   .step-num{ width:36px; height:36px; font-size:13px; }
 
-  /* section 3 stacks: video on top, text below */
-  .build{ flex-direction:column; gap:6vh; padding:14vh 7vw 10vh; }
+  /* section 3 stacks */
+  .build{ gap:6vh; padding:14vh 7vw 10vh; }
+  .build-row{ flex-direction:column; gap:6vh; }
   .build-video{ width:100%; }
   .build-text{ width:100%; }
+  .build-blocks{ grid-template-columns:1fr; }
 }
 
 @media(max-width:430px){
