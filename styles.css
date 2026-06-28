@@ -478,6 +478,8 @@ html{
 
 /* ---------- SECTION 4 — closing CTA ---------- */
 .cta-section{
+  position:relative;
+  overflow:hidden;
   min-height:74vh;
   display:flex;
   flex-direction:column;
@@ -486,15 +488,23 @@ html{
   text-align:center;
   gap:16px;
   padding:14vh 6vw;
-  /* bag_1 cover image, darkened for legibility, with grid lines on top */
-  background:
-    repeating-linear-gradient(0deg,  rgba(255,255,255,.1) 0 1px, transparent 1px 64px),
-    repeating-linear-gradient(90deg, rgba(255,255,255,.1) 0 1px, transparent 1px 64px),
-    linear-gradient(180deg, rgba(15,8,3,.5) 0%, rgba(15,8,3,.66) 100%),
-    url('bag_1.jpeg') center / cover no-repeat;
-  background-color:#1a0f06;
+  background:#0c0c0c;            /* page-dark shows in the side margins */
   color:#fff;
 }
+/* bag_1 image contained within the side margins, darkened for legibility */
+.cta-section::before{
+  content:"";
+  position:absolute;
+  top:0;
+  bottom:0;
+  left:6vw;
+  right:6vw;
+  background:
+    linear-gradient(180deg, rgba(15,8,3,.45) 0%, rgba(15,8,3,.62) 100%),
+    url('bag_1.jpeg') center / cover no-repeat;
+  z-index:0;
+}
+.cta-section > *{ position:relative; z-index:1; }
 .cta-eyebrow{
   font-family:var(--mono);
   font-size:12px;
