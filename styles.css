@@ -576,28 +576,30 @@ html{
   gap:16px;
   padding:14vh 6vw;
   background:#fff;              /* white side margins around the contained image */
-  color:#140d06;               /* dark text — reads on the bright image, no dimming */
+  color:#fff;                  /* white text over the soft center glow */
 }
 /* bag_1 image contained within the side margins, darkened for legibility */
 .cta-section::before{
   content:"";
   position:absolute;
   inset:0;                       /* full-bleed — image not limited to margins */
-  background:url('bag_1.jpeg') center / cover no-repeat;   /* full bright, not dimmed */
-  filter:saturate(1.18) brightness(1.05);    /* bright & glowy */
+  background:
+    radial-gradient(58% 52% at 50% 50%, rgba(8,4,1,.62) 0%, rgba(8,4,1,.32) 42%, transparent 70%),  /* soft glow behind text only; edges stay bright */
+    url('bag_1.jpeg') center / cover no-repeat;
+  filter:saturate(1.18) brightness(1.04);    /* bright & glowy */
   z-index:0;
 }
 .cta-section > *{ position:relative; z-index:1; }
-/* subtle light lift so dark text stays crisp over the orange wave (no image dimming) */
-.cta-title{ text-shadow:0 1px 2px rgba(255,255,255,.45); }
-.cta-sub{ text-shadow:0 1px 2px rgba(255,255,255,.4); }
-.cta-eyebrow{ text-shadow:0 1px 2px rgba(255,255,255,.4); }
+/* dark shadow so white text stays crisp over the soft center glow */
+.cta-title{ text-shadow:0 2px 22px rgba(0,0,0,.7); }
+.cta-sub{ text-shadow:0 1px 16px rgba(0,0,0,.65); }
+.cta-eyebrow{ text-shadow:0 1px 12px rgba(0,0,0,.6); }
 .cta-eyebrow{
   font-family:var(--mono);
   font-size:12px;
   letter-spacing:2px;
   text-transform:uppercase;
-  color:#b8390a;                 /* deep-orange accent on the bright bg */
+  color:#ff8a4d;                 /* bright orange accent over the glow */
 }
 .cta-title{
   font-family:'Space Grotesk',sans-serif;
@@ -610,7 +612,7 @@ html{
   font-family:var(--mono);
   font-size:clamp(14px,1.4vw,18px);
   line-height:1.6;
-  color:#2c2118;
+  color:rgba(255,255,255,.92);
   max-width:48ch;
 }
 .cta-actions{
@@ -632,15 +634,15 @@ html{
   transition:transform .2s ease, opacity .2s ease, background .2s ease;
 }
 .cta-section .btn.primary{ background:#120c08; color:#fff; }
-/* frosted-glass secondary (Book a Free Masterclass) — dark outline for the bright bg */
+/* frosted-glass secondary (Book a Free Masterclass) */
 .cta-section .btn.ghost{
-  background:rgba(255,255,255,.28);
-  color:#140d06;
-  border:1px solid rgba(20,12,6,.55);
+  background:rgba(255,255,255,.14);
+  color:#fff;
+  border:1px solid rgba(255,255,255,.55);
   backdrop-filter:blur(12px) saturate(140%);
   -webkit-backdrop-filter:blur(12px) saturate(140%);
 }
-.cta-section .btn.ghost:hover{ background:rgba(255,255,255,.5); }
+.cta-section .btn.ghost:hover{ background:rgba(255,255,255,.24); }
 .cta-section .btn:hover{ transform:translateY(-2px); opacity:.95; }
 
 /* ---------- FOOTER ---------- */
