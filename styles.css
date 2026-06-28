@@ -483,12 +483,12 @@ html{
 .build-block.has-img > p{ position:relative; z-index:2; }
 .block-eyebrow{
   font-family:'Space Grotesk',sans-serif;
-  font-size:clamp(38px,5.5vw,86px);   /* extremely big */
+  font-size:clamp(48px,7.5vw,120px);   /* h1 size */
   font-weight:600;
-  line-height:.98;
-  letter-spacing:-.015em;
+  line-height:.95;
+  letter-spacing:-.02em;
   color:#fff;
-  margin-bottom:6px;
+  margin-bottom:8px;
 }
 .build-block.has-img::after{     /* legibility scrim over the image */
   content:"";
