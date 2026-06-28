@@ -381,13 +381,14 @@ html{
   height:100%;
   display:block;
 }
-.build-bg::after{                 /* keep content legible over the crystal */
+.build-bg::after{                 /* keep content legible over the crystal + glows */
   content:"";
   position:absolute;
   inset:0;
   background:
-    radial-gradient(120% 90% at 50% -5%, rgba(255,105,35,.18) 0%, transparent 55%),
-    linear-gradient(180deg, rgba(18,11,6,.55) 0%, rgba(18,11,6,.34) 45%, rgba(18,11,6,.7) 100%);
+    radial-gradient(120% 90% at 50% -5%, rgba(255,105,35,.18) 0%, transparent 55%),   /* top glow */
+    radial-gradient(120% 75% at 50% 112%, rgba(255,95,25,.38) 0%, transparent 60%),    /* upward glow from bottom */
+    linear-gradient(180deg, rgba(18,11,6,.5) 0%, rgba(18,11,6,.3) 45%, rgba(18,11,6,.5) 100%);
 }
 /* content sits above the crystal */
 .build-row,
@@ -403,8 +404,7 @@ html{
   height:100%;                   /* fill the half — no padding/empty space */
   background:#000;
   border:1px solid rgba(255,110,40,.4);
-  overflow:hidden;
-  box-shadow:0 0 44px rgba(255,90,20,.22), 0 26px 64px rgba(0,0,0,.55);
+  overflow:hidden;               /* no drop shadow -> halves sit flush */
 }
 .build-video video{
   display:block;
