@@ -504,7 +504,7 @@ html{
 }
 .build-block.has-img > h3,
 .build-block.has-img > p{ position:relative; z-index:2; color:#fff; }   /* over image: stay white */
-.block-eyebrow{
+.build-block .block-eyebrow{           /* must out-specify `.build-block p` (font-size:14px) */
   font-family:'Space Grotesk',sans-serif;
   font-size:clamp(56px,9vw,170px);     /* big & fully visible — the vw term drives the size */
   font-weight:600;
