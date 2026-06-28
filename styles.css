@@ -612,13 +612,13 @@ html{
 /* ---------- SECTION — who it's for (12 personas) ---------- */
 .who{
   position:relative;
-  color:#fff;
+  color:#1a120c;
   padding:clamp(80px,13vh,150px) 6vw;
-  /* dark base with maroon (top-left) + orange (bottom-right) light pools */
+  /* white base with warm orange light pools */
   background:
-    radial-gradient(90% 70% at 18% 0%, rgba(150,30,16,.55) 0%, transparent 60%),
-    radial-gradient(90% 80% at 100% 100%, rgba(255,100,30,.30) 0%, transparent 55%),
-    linear-gradient(160deg, #1b0a07 0%, #0b0605 58%, #170a06 100%);
+    radial-gradient(90% 70% at 18% 0%, rgba(255,150,90,.20) 0%, transparent 60%),
+    radial-gradient(90% 80% at 100% 100%, rgba(255,110,40,.16) 0%, transparent 55%),
+    linear-gradient(160deg, #ffffff 0%, #f4efea 58%, #ffffff 100%);
 }
 .who-head{
   max-width:760px;
@@ -637,45 +637,45 @@ html{
   font-family:var(--mono);
   font-size:clamp(13px,1.2vw,16px);
   line-height:1.7;
-  color:rgba(255,255,255,.7);
+  color:#5e554d;
 }
 /* hairline grid: 1px gap + tinted backdrop shows between the glass cells; whole matrix is lifted */
 .who-grid{
   display:grid;
   grid-template-columns:repeat(3,1fr);
   gap:1px;
-  background:rgba(255,120,60,.20);
-  border:1px solid rgba(255,120,60,.22);
-  box-shadow:0 40px 90px rgba(0,0,0,.55);
+  background:rgba(255,120,60,.30);
+  border:1px solid rgba(255,120,60,.32);
+  box-shadow:0 34px 80px rgba(120,40,10,.18);
 }
 .who-card{
   position:relative;             /* containing block for the junction nodes + hover lift */
   display:flex;
   flex-direction:column;
   padding:clamp(26px,3vw,40px);
-  /* liquid glass: specular sheen over a maroon -> red -> orange tint */
+  /* white liquid glass: specular sheen over a faint warm tint */
   background:
-    linear-gradient(150deg, rgba(255,255,255,.14) 0%, rgba(255,255,255,0) 30%),
-    linear-gradient(160deg, rgba(150,26,16,.50) 0%, rgba(44,14,10,.42) 54%, rgba(var(--orange-rgb),.20) 100%);
-  backdrop-filter:blur(12px) saturate(160%);
-  -webkit-backdrop-filter:blur(12px) saturate(160%);
+    linear-gradient(150deg, rgba(255,255,255,.75) 0%, rgba(255,255,255,.30) 32%),
+    linear-gradient(160deg, rgba(255,120,60,.12) 0%, rgba(255,255,255,.55) 54%, rgba(var(--orange-rgb),.10) 100%);
+  backdrop-filter:blur(14px) saturate(150%);
+  -webkit-backdrop-filter:blur(14px) saturate(150%);
   box-shadow:
-    inset 0 1px 1px rgba(255,255,255,.22),        /* top reflective edge */
-    inset 0 -26px 44px rgba(110,18,8,.32),         /* base depth */
-    inset 0 0 60px rgba(255,110,50,.05);           /* inner glow */
+    inset 0 1px 1px rgba(255,255,255,.95),         /* bright top reflective edge */
+    inset 0 -24px 40px rgba(255,150,90,.10),        /* warm base */
+    inset 0 0 50px rgba(255,255,255,.35);           /* inner glow */
   transition:transform .28s ease, box-shadow .28s ease, background .28s ease;
 }
 .who-card:hover{
   transform:scale(1.06);         /* grow on hover */
   z-index:5;                     /* rise above neighbours + junction nodes */
   background:
-    linear-gradient(150deg, rgba(255,255,255,.22) 0%, rgba(255,255,255,0) 32%),
-    linear-gradient(160deg, rgba(184,34,18,.58) 0%, rgba(54,16,10,.46) 52%, rgba(var(--orange-rgb),.30) 100%);
+    linear-gradient(150deg, rgba(255,255,255,.90) 0%, rgba(255,255,255,.40) 32%),
+    linear-gradient(160deg, rgba(255,120,60,.20) 0%, rgba(255,255,255,.60) 52%, rgba(var(--orange-rgb),.16) 100%);
   box-shadow:
-    0 28px 62px rgba(0,0,0,.6),                     /* lifted drop shadow */
-    0 0 46px rgba(var(--orange-rgb),.28),           /* orange glow */
-    inset 0 1px 1px rgba(255,255,255,.34),
-    inset 0 -26px 44px rgba(110,18,8,.4);
+    0 28px 56px rgba(120,40,10,.22),                /* lifted drop shadow */
+    0 0 40px rgba(var(--orange-rgb),.22),           /* orange glow */
+    inset 0 1px 1px rgba(255,255,255,1),
+    inset 0 -24px 40px rgba(255,150,90,.16);
 }
 /* junction nodes at every grid-line crossing (corners of each card) */
 .who-card::before,
@@ -684,8 +684,8 @@ html{
   position:absolute;
   width:6px;
   height:6px;
-  background:var(--orange-lt);
-  box-shadow:0 0 9px rgba(255,130,50,.85);    /* lit junction point */
+  background:var(--orange);
+  box-shadow:0 0 9px rgba(255,90,20,.7);      /* lit junction point */
   z-index:3;
   pointer-events:none;
 }
@@ -710,7 +710,7 @@ html{
   font-family:var(--mono);
   font-size:13px;
   line-height:1.65;
-  color:rgba(255,255,255,.68);
+  color:#6a5f56;
   margin-bottom:22px;
   flex:1 1 auto;                 /* fill, so the link aligns at the bottom of every card */
 }
