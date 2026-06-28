@@ -370,17 +370,19 @@
   (function(){
     var bg = document.querySelector('.hero-bg');
     var logo = document.querySelector('.logo');
-    var ticking = false;
+    var ticking = false, lastLa = -1;
     function apply(){
       ticking = false;
       var p = window.scrollY / window.innerHeight;       // hero progress 0..1+
       p = p < 0 ? 0 : (p > 1 ? 1 : p);
-      if (bg)   bg.style.transform   = 'scale(' + (1 + p * 0.35) + ')';
-      if (logo) logo.style.transform = 'translateY(' + (16 - p * 55) + 'vh)';
-      // grid lines + junctions fade out smoothly while scrolling (not during loading)
+      if (bg)   bg.style.transform   = 'scale(' + (1 + p * 0.35) + ') translateZ(0)';
+      if (logo) logo.style.transform = 'translate3d(0,' + (16 - p * 55) + 'vh,0)';
+      // grid lines + junctions fade while scrolling (not during loading);
+      // only write the var when it actually changes -> far fewer repaints
       if (!document.body.classList.contains('loading')){
-        var la = 1 - p * 1.4;
-        document.documentElement.style.setProperty('--la', la < 0 ? 0 : la);
+        var la = 1 - p * 1.4; la = la < 0 ? 0 : (la > 1 ? 1 : la);
+        la = Math.round(la * 100) / 100;
+        if (la !== lastLa){ lastLa = la; document.documentElement.style.setProperty('--la', la); }
       }
     }
     window.addEventListener('scroll', function(){

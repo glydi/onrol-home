@@ -427,12 +427,12 @@ html{
   color:rgba(255,255,255,.62);
   max-width:48ch;
 }
-/* second half: 2 blocks, sized to content and centered (not full height) */
+/* second half: 2 blocks filling the bottom half */
 .build-blocks{
   flex:1;                        /* bottom half region */
   display:grid;
   grid-template-columns:repeat(2,1fr);
-  align-content:center;          /* center blocks in the half instead of stretching */
+  grid-template-rows:1fr;        /* blocks fill the half's height */
   gap:24px;
 }
 .build-block{
@@ -682,6 +682,7 @@ body::after{  right:6vw; }
   transform:translateY(16vh);                       /* sit lower on the page */
   animation:pulseBorder 4s ease-in-out infinite;
   z-index:2;                                         /* above the background layer */
+  will-change:transform;                             /* smoother parallax */
 }
 
 /* extend the top & bottom line PAIRS full-width across the screen (dotted) */
