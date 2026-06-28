@@ -490,6 +490,30 @@ html{
   color:#fff;
   margin-bottom:8px;
 }
+.block-link{
+  position:relative;
+  z-index:2;
+  align-self:flex-start;
+  margin-top:16px;
+  display:inline-flex;
+  align-items:center;
+  gap:8px;
+  padding:12px 24px;
+  font-family:var(--mono);
+  font-size:12px;
+  letter-spacing:1px;
+  text-transform:uppercase;
+  text-decoration:none;
+  color:#fff;
+  background:rgba(255,255,255,.12);
+  border:1px solid rgba(255,255,255,.45);
+  backdrop-filter:blur(8px);
+  -webkit-backdrop-filter:blur(8px);
+  transition:background .2s ease, border-color .2s ease, transform .2s ease;
+}
+.block-link span{ transition:transform .2s ease; }
+.block-link:hover{ background:#ff5a14; border-color:#ff5a14; transform:translateY(-2px); }
+.block-link:hover span{ transform:translateX(4px); }
 .build-block.has-img::after{     /* legibility scrim over the image */
   content:"";
   position:absolute;
