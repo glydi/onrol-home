@@ -349,7 +349,9 @@
   (function(){
     var pre = document.getElementById('preloader');
     if (!pre) return;
+    document.documentElement.style.overflow = 'hidden';   // lock scroll while loading
     function reveal(){
+      document.documentElement.style.overflow = '';        // unlock
       pre.classList.add('hidden');
       setTimeout(function(){
         var root = document.documentElement;
@@ -407,13 +409,9 @@
       ticking = false;
       var p = window.scrollY / window.innerHeight;       // hero progress 0..1+
       p = p < 0 ? 0 : (p > 1 ? 1 : p);
-      // only cheap, composited props per frame: transform + opacity
-      if (bg)   bg.style.transform = 'scale(' + (1 + p * 0.35) + ')';
-      if (logo){
-        logo.style.transform = 'translateY(' + (16 - p * 55) + 'vh)';
-        var o = 1 - p * 1.4;
-        logo.style.opacity = o < 0 ? '0' : '' + o;        // logo (grid+letters) fades out
-      }
+      // hero image zooms in, ONROL drifts up (stays visible) — composited transforms
+      if (bg)   bg.style.transform   = 'scale(' + (1 + p * 0.45) + ')';
+      if (logo) logo.style.transform = 'translateY(' + (16 - p * 55) + 'vh)';
     }
     window.addEventListener('scroll', function(){
       if (!ticking){ ticking = true; requestAnimationFrame(apply); }
