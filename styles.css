@@ -420,6 +420,9 @@ html{
   padding:clamp(20px,3vh,40px) clamp(30px,3.5vw,64px);   /* fills its cell, text breathing room */
   border:1px solid rgba(255,120,50,.22);                 /* boxed like the others */
 }
+/* merge top & bottom halves — no border seam at the midline */
+.build-video, .build-text{ border-bottom:0; }
+.build-block{ border-top:0; }
 .build-title{
   font-family:'Space Grotesk',sans-serif;
   font-size:clamp(26px,2.8vw,44px);
