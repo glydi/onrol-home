@@ -107,12 +107,25 @@ html{
 
 /* SECTION below — grey → orange gradient */
 .panel{
+  position:relative;
   min-height:100vh;
   background:linear-gradient(180deg, #fafbfc 0%, #c4c8ce 100%);
   display:flex;
   align-items:stretch;
   padding:clamp(72px,12vh,140px) 6vw;   /* vertical breathing room + align with margin lines */
 }
+/* visible dark margin lines for this light section (the global white ones disappear here) */
+.panel::before,
+.panel::after{
+  content:"";
+  position:absolute;
+  top:0;
+  bottom:0;
+  border-left:1px dotted rgba(0,0,0,.22);
+  pointer-events:none;
+}
+.panel::before{ left:6vw; }
+.panel::after{  right:6vw; }
 .panel-content{
   position:relative;
   width:50%;                     /* left half */
