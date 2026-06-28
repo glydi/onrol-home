@@ -572,6 +572,7 @@ html{
 .build-block.has-img{
   justify-content:flex-end;      /* label sits at the bottom over the image */
   padding:clamp(22px,3vh,38px);
+  cursor:pointer;                /* clickable -> "know more" */
 }
 .build-block.has-img > h3,
 .build-block.has-img > p{ position:relative; z-index:2; color:#fff; }   /* over image: stay white */
@@ -584,10 +585,6 @@ html{
   color:#fff;
   margin-bottom:8px;
 }
-/* swap "AI Generalist" -> "Know More" when the block is hovered */
-.block-eyebrow .eb-hover{ display:none; }
-.build-block.has-img:hover .block-eyebrow .eb-text{ display:none; }
-.build-block.has-img:hover .block-eyebrow .eb-hover{ display:inline; }
 .block-link{
   position:relative;
   z-index:2;
