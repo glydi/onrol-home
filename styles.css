@@ -381,15 +381,6 @@ html{
   height:100%;
   display:block;
 }
-.build-bg::after{                 /* keep content legible over the crystal + glows */
-  content:"";
-  position:absolute;
-  inset:0;
-  background:
-    radial-gradient(120% 90% at 50% -5%, rgba(255,105,35,.18) 0%, transparent 55%),   /* top glow */
-    radial-gradient(120% 75% at 50% 112%, rgba(255,95,25,.38) 0%, transparent 60%),    /* upward glow from bottom */
-    linear-gradient(180deg, rgba(18,11,6,.5) 0%, rgba(18,11,6,.3) 45%, rgba(18,11,6,.5) 100%);
-}
 /* cells sit above the crystal */
 .build-video,
 .build-text,
