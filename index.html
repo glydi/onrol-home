@@ -147,10 +147,20 @@
       </g>
     </svg>
   </div>
-  <div class="build-video">
-    <video controls playsinline poster="bag.jpeg">
-      <source src="onrol.mp4" type="video/mp4">
+  <div class="build-video is-muted">
+    <video id="aboutVid" playsinline muted loop preload="metadata" poster="bag.jpeg">
+      <source src="about_onrol.mp4" type="video/mp4">
     </video>
+    <div class="vid-controls">
+      <button class="vid-btn" id="vidPlay" type="button" aria-label="Play / pause">
+        <svg class="ic ic-play"  viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+        <svg class="ic ic-pause" viewBox="0 0 24 24" fill="currentColor"><path d="M6 5h4v14H6zM14 5h4v14h-4z"/></svg>
+      </button>
+      <button class="vid-btn" id="vidMute" type="button" aria-label="Mute / unmute">
+        <svg class="ic ic-muted" viewBox="0 0 24 24" fill="currentColor"><path d="M4 9v6h4l5 4V5L8 9H4z"/><path d="M16 9l5 6M21 9l-5 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+        <svg class="ic ic-sound" viewBox="0 0 24 24" fill="currentColor"><path d="M4 9v6h4l5 4V5L8 9H4z"/><path d="M16 8.5c1.7 1.9 1.7 5.1 0 7" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+      </button>
+    </div>
   </div>
   <div class="build-text">
     <p class="pipe-eyebrow">About ONROL</p>
@@ -460,6 +470,22 @@
       });
     }, { threshold:0.2 });
     io.observe(footer);
+  })();
+
+  /* ---- custom video play / mute controls ---- */
+  (function(){
+    var bv = document.querySelector('.build-video');
+    var vid = document.getElementById('aboutVid');
+    if (!bv || !vid) return;
+    var playBtn = document.getElementById('vidPlay');
+    var muteBtn = document.getElementById('vidMute');
+    playBtn.addEventListener('click', function(){ if (vid.paused) vid.play(); else vid.pause(); });
+    vid.addEventListener('play',  function(){ bv.classList.add('is-playing'); });
+    vid.addEventListener('pause', function(){ bv.classList.remove('is-playing'); });
+    muteBtn.addEventListener('click', function(){
+      vid.muted = !vid.muted;
+      bv.classList.toggle('is-muted', vid.muted);
+    });
   })();
 </script>
 
