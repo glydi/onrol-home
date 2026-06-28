@@ -162,6 +162,16 @@
   </div>
 </section>
 
+<section class="cta-section">
+  <p class="cta-eyebrow">Ready when you are</p>
+  <h2 class="cta-title">Stop watching. Start shipping.</h2>
+  <p class="cta-sub">Join the next ONROL cohort and build real AI products from day one &mdash; with mentorship, not just videos.</p>
+  <div class="cta-actions">
+    <a class="btn primary" href="#">Apply Now</a>
+    <a class="btn ghost" href="#">Book a Free Masterclass</a>
+  </div>
+</section>
+
 <footer class="footer">
   <div class="footer-grid">
     <div class="f-brand">
@@ -375,8 +385,8 @@
       ticking = false;
       var p = window.scrollY / window.innerHeight;       // hero progress 0..1+
       p = p < 0 ? 0 : (p > 1 ? 1 : p);
-      if (bg)   bg.style.transform   = 'scale(' + (1 + p * 0.35) + ') translateZ(0)';
-      if (logo) logo.style.transform = 'translate3d(0,' + (16 - p * 55) + 'vh,0)';
+      if (bg)   bg.style.transform   = 'scale(' + (1 + p * 0.35) + ')';
+      if (logo) logo.style.transform = 'translateY(' + (16 - p * 55) + 'vh)';
       // grid lines + junctions fade while scrolling (not during loading);
       // only write the var when it actually changes -> far fewer repaints
       if (!document.body.classList.contains('loading')){

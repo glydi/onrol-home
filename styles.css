@@ -427,12 +427,13 @@ html{
   color:rgba(255,255,255,.62);
   max-width:48ch;
 }
-/* second half: 2 blocks filling the bottom half */
+/* second half: 2 blocks at 50% height of the bottom half, centered */
 .build-blocks{
   flex:1;                        /* bottom half region */
   display:grid;
   grid-template-columns:repeat(2,1fr);
-  grid-template-rows:1fr;        /* blocks fill the half's height */
+  grid-template-rows:50%;        /* blocks are 50% of the half's height */
+  align-content:center;          /* centered in the half */
   gap:24px;
 }
 .build-block{
@@ -465,6 +466,62 @@ html{
   line-height:1.6;
   color:rgba(255,255,255,.6);
 }
+
+/* ---------- SECTION 4 — closing CTA ---------- */
+.cta-section{
+  min-height:74vh;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  text-align:center;
+  gap:16px;
+  padding:14vh 6vw;
+  background:linear-gradient(135deg, #ff7a1f 0%, #ff3d00 100%);
+  color:#fff;
+}
+.cta-eyebrow{
+  font-family:var(--mono);
+  font-size:12px;
+  letter-spacing:2px;
+  text-transform:uppercase;
+  color:rgba(255,255,255,.85);
+}
+.cta-title{
+  font-family:'Space Grotesk',sans-serif;
+  font-size:clamp(32px,5vw,72px);
+  font-weight:600;
+  line-height:1.04;
+  letter-spacing:-.01em;
+}
+.cta-sub{
+  font-family:var(--mono);
+  font-size:clamp(14px,1.4vw,18px);
+  line-height:1.6;
+  color:rgba(255,255,255,.9);
+  max-width:48ch;
+}
+.cta-actions{
+  margin-top:18px;
+  display:flex;
+  gap:16px;
+  flex-wrap:wrap;
+  justify-content:center;
+}
+.cta-section .btn{
+  display:inline-block;
+  padding:15px 32px;
+  font-family:var(--mono);
+  font-size:13px;
+  font-weight:500;
+  text-transform:uppercase;
+  letter-spacing:1px;
+  text-decoration:none;
+  transition:transform .2s ease, opacity .2s ease;
+}
+.cta-section .btn.primary{ background:#120c08; color:#fff; }
+.cta-section .btn.ghost{ background:transparent; color:#fff; border:1px solid rgba(255,255,255,.7); }
+.cta-section .btn:hover{ transform:translateY(-2px); opacity:.92; }
 
 /* ---------- FOOTER ---------- */
 .footer{
@@ -682,7 +739,6 @@ body::after{  right:6vw; }
   transform:translateY(16vh);                       /* sit lower on the page */
   animation:pulseBorder 4s ease-in-out infinite;
   z-index:2;                                         /* above the background layer */
-  will-change:transform;                             /* smoother parallax */
 }
 
 /* extend the top & bottom line PAIRS full-width across the screen (dotted) */
