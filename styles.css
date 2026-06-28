@@ -166,6 +166,13 @@ html{
   padding-right:6vw;             /* gap before the divider */
   color:#16181b;
 }
+/* decorative asterisk under the left-column text */
+.panel-aster{
+  display:block;
+  width:clamp(80px,9vw,140px);
+  height:auto;
+  margin-top:clamp(28px,4.5vh,60px);
+}
 /* divider line + glow that flows out from the line toward the edges */
 .panel-content::after{
   content:"";
