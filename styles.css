@@ -139,6 +139,7 @@ html{
 /* SECTION below — grey → orange gradient */
 .panel{
   position:relative;
+  overflow:hidden;                       /* clip the asterisk so it never shows in the hero */
   min-height:100vh;
   background:linear-gradient(180deg, #fafbfc 0%, #c4c8ce 100%);
   display:flex;
@@ -171,8 +172,8 @@ html{
 .panel-aster{
   position:absolute;
   top:0;
-  left:30%;                          /* moved in from the left toward the centre */
-  transform:translate(-50%,-55%);    /* bleeds off the top edge, above the headline */
+  left:25%;                          /* a bit further left */
+  transform:translate(-50%,-46%);    /* brought down a bit from the top */
   height:72vh;
   width:auto;
   max-width:none;
@@ -426,18 +427,31 @@ html{
   grid-template-rows:1fr 1fr;      /* all four cells exactly equal */
   padding:0 6vw;                   /* follow the side margins */
 }
-/* strong orange + red gradient ONLY in the side margins: red at the edges -> fading inward */
+/* orange + red waves rippling up & down both side margins (irregular blobs) */
 .build::before{
   content:"";
   position:absolute;
   inset:0;
-  background:linear-gradient(90deg,
-    rgba(200,35,12,.95) 0,
-    rgba(255,110,30,.70) 3vw,
-    rgba(255,110,30,0)   6vw,
-    rgba(255,110,30,0)   calc(100% - 6vw),
-    rgba(255,110,30,.70) calc(100% - 3vw),
-    rgba(200,35,12,.95)  100%);
+  background:
+    radial-gradient(7% 13% at 0% 8%,   rgba(200,35,12,.95), transparent 68%),
+    radial-gradient(6% 16% at 0% 26%,  rgba(255,95,20,.88),  transparent 70%),
+    radial-gradient(8% 12% at 0% 44%,  rgba(205,40,14,.92),  transparent 68%),
+    radial-gradient(6% 17% at 0% 63%,  rgba(255,100,25,.88), transparent 70%),
+    radial-gradient(7% 13% at 0% 82%,  rgba(200,35,12,.95),  transparent 68%),
+    radial-gradient(6% 14% at 0% 97%,  rgba(255,95,20,.85),  transparent 70%),
+    radial-gradient(7% 14% at 100% 15%, rgba(200,35,12,.95),  transparent 68%),
+    radial-gradient(6% 16% at 100% 34%, rgba(255,95,20,.88),  transparent 70%),
+    radial-gradient(8% 12% at 100% 53%, rgba(205,40,14,.92),  transparent 68%),
+    radial-gradient(6% 17% at 100% 72%, rgba(255,100,25,.88), transparent 70%),
+    radial-gradient(7% 13% at 100% 90%, rgba(200,35,12,.95),  transparent 68%),
+    /* continuous linear base so the waves blend into one band */
+    linear-gradient(90deg,
+      rgba(200,35,12,.85) 0,
+      rgba(255,100,25,.45) 3vw,
+      rgba(255,100,25,0)   6vw,
+      rgba(255,100,25,0)   calc(100% - 6vw),
+      rgba(255,100,25,.45) calc(100% - 3vw),
+      rgba(200,35,12,.85)  100%);
   z-index:0;
   pointer-events:none;
 }
