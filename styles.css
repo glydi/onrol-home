@@ -427,12 +427,12 @@ html{
   color:rgba(255,255,255,.62);
   max-width:48ch;
 }
-/* second half: 2 blocks filling the bottom 50% */
+/* second half: 2 blocks, sized to content and centered (not full height) */
 .build-blocks{
-  flex:1;                        /* bottom half */
+  flex:1;                        /* bottom half region */
   display:grid;
   grid-template-columns:repeat(2,1fr);
-  grid-template-rows:1fr;        /* blocks fill the half's height */
+  align-content:center;          /* center blocks in the half instead of stretching */
   gap:24px;
 }
 .build-block{
@@ -556,6 +556,7 @@ html{
   transition:background .2s;
 }
 .f-form button:hover{ background:#ff6a24; }
+.footer .dec{ color:#ff7a2e; }     /* scrambling chars during decode */
 .footer-bottom{
   margin-top:clamp(40px,6vh,72px);
   padding-top:24px;
