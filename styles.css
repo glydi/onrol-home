@@ -1071,10 +1071,6 @@ body::after{  right:6vw; }
 
 /* ---------- responsive ---------- */
 @media(max-width:900px){
-  .nav a{ padding:3px 24px; }
-}
-
-@media(max-width:760px){
   :root{ --band:22px; --tower:13px; }   /* scale the grid bands down on small screens */
 
   /* nav: compact pill with a hamburger that opens a dropdown menu */
