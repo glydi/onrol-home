@@ -584,6 +584,10 @@ html{
   color:#fff;
   margin-bottom:8px;
 }
+/* swap "AI Generalist" -> "Know More" when the block is hovered */
+.block-eyebrow .eb-hover{ display:none; }
+.build-block.has-img:hover .block-eyebrow .eb-text{ display:none; }
+.build-block.has-img:hover .block-eyebrow .eb-hover{ display:inline; }
 .block-link{
   position:relative;
   z-index:2;
