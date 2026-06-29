@@ -657,12 +657,6 @@ html{
   z-index:1;
   background:linear-gradient(180deg, rgba(8,5,3,.12) 0%, rgba(8,5,3,.35) 45%, rgba(8,5,3,.82) 100%);
 }
-.build-block.has-img:hover{
-  transform:translateY(-6px);
-  background:rgba(var(--orange-rgb),.08);
-  border-color:rgba(var(--orange-rgb),.7);
-  box-shadow:0 0 34px rgba(var(--orange-rgb),.22), inset 0 0 40px rgba(var(--orange-rgb),.1);
-}
 .build-block h3{
   font-family:'Space Grotesk',sans-serif;
   font-size:clamp(19px,1.6vw,25px);
