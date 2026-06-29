@@ -189,8 +189,8 @@ html{
 .panel-aster{
   position:absolute;
   top:0;
-  left:25%;                          /* a bit further left */
-  transform:translate(-50%,-30%);    /* sits up top */
+  left:0;                            /* at the left edge, not inset by the margin */
+  transform:translate(-50%,-30%);    /* sits up top, half off the left edge */
   height:72vh;
   width:auto;
   max-width:none;
@@ -444,7 +444,7 @@ html{
   background:#fff;                 /* white margins */
   display:grid;
   grid-template-columns:1fr 1fr;   /* 2x2 grid: video | text / block | block */
-  grid-template-rows:1fr 1fr;      /* all four cells fit in one 100vh section */
+  grid-template-rows:minmax(0,1fr) minmax(0,1fr);   /* rows stay 50vh, don't grow past one screen */
   padding:0 6vw;                   /* follow the side margins */
 }
 /* orange + red waves rippling up & down both side margins (irregular blobs) */
@@ -468,7 +468,7 @@ html{
 /* cells sit above the background */
 .build-video,
 .build-text,
-.build-block{ position:relative; z-index:1; }
+.build-block{ position:relative; z-index:1; min-height:0; overflow:hidden; }
 /* corner brackets (no full border) inside the video only */
 .build-video::before{
   content:"";
