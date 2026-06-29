@@ -188,12 +188,14 @@ html{
   top:0;
   bottom:0;
   right:0;
-  width:1px;
+  width:5px;
   background:linear-gradient(180deg,
     transparent 0%,
-    rgba(var(--orange-rgb),.6) 50%,
+    #BE1304 22%,
+    #F64F05 50%,
+    #BE1304 78%,
     transparent 100%);
-  box-shadow:0 0 55px 12px rgba(var(--orange-rgb),.16);   /* glow radiates outward */
+  box-shadow:0 0 55px 12px rgba(246,79,5,.22);   /* glow radiates outward */
   pointer-events:none;
 }
 .panel-right{
