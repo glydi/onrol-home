@@ -1175,6 +1175,7 @@ body::after{  right:6vw; }
 /* ---------- responsive ---------- */
 @media(max-width:900px){
   :root{ --band:22px; --tower:13px; }   /* scale the grid bands down on small screens */
+  html{ scroll-snap-type:none; }        /* free scrolling on mobile (no snap) */
 
   /* nav: hamburger pill pinned to the top-right corner */
   .nav{ top:14px; left:auto; right:14px; transform:none; padding:6px 10px; }
