@@ -90,6 +90,21 @@ body.loading .tower{ opacity:0; }     /* hide the empty boxes + tagline during l
 html{
   scrollbar-width:thin;                               /* Firefox */
   scrollbar-color:rgba(255,255,255,.5) transparent;
+  scroll-snap-type:y proximity;                       /* reels-like: snap each section into view */
+  scroll-behavior:smooth;
+}
+/* each section is a snap point; stop on each one as you scroll */
+.hero,
+.panel,
+.build,
+.who,
+.cta-section,
+.footer{
+  scroll-snap-align:start;
+  scroll-snap-stop:always;
+}
+@media (prefers-reduced-motion: reduce){
+  html{ scroll-snap-type:none; scroll-behavior:auto; }
 }
 ::-webkit-scrollbar{ width:12px; height:12px; }
 /* thin center line + 3 white junction points (top / center / bottom) */
