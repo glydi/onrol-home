@@ -256,15 +256,15 @@ html{
 .step-num{
   position:relative;
   flex:0 0 auto;
-  width:48px;
-  height:48px;
+  width:60px;
+  height:60px;
   border-radius:0;              /* sharp, no curves */
   display:flex;
   align-items:center;
   justify-content:center;
   overflow:hidden;
   font-family:var(--mono);
-  font-size:16px;
+  font-size:21px;
   color:#16181b;
   z-index:1;
   /* liquid glass */
@@ -291,13 +291,13 @@ html{
 .step-btn{
   margin-left:auto;             /* push to the right of the card */
   flex:0 0 auto;
-  width:46px;
-  height:46px;
+  width:56px;
+  height:56px;
   display:flex;
   align-items:center;
   justify-content:center;
   font-family:var(--mono);
-  font-size:22px;
+  font-size:30px;
   line-height:1;
   color:#16181b;
   background:rgba(255,255,255,.45);
@@ -370,15 +370,15 @@ html{
 
 .step-text h3{
   font-family:'Space Grotesk',sans-serif;
-  font-size:clamp(23px,2.2vw,34px);
+  font-size:clamp(28px,2.8vw,44px);
   font-weight:600;
   color:#16181b;
   line-height:1.1;
 }
 .step-text p{
-  margin-top:7px;
+  margin-top:8px;
   font-family:var(--mono);
-  font-size:15px;
+  font-size:clamp(16px,1.2vw,19px);
   color:#5a5e64;
 }
 .panel-content h1{
