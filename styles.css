@@ -487,10 +487,10 @@ html{
     linear-gradient(rgba(var(--orange-rgb),.85),rgba(var(--orange-rgb),.85));
   background-repeat:no-repeat;
   background-size:
-    20px 1.5px, 1.5px 20px,
-    20px 1.5px, 1.5px 20px,
-    20px 1.5px, 1.5px 20px,
-    20px 1.5px, 1.5px 20px;
+    36px 1.5px, 1.5px 36px,
+    36px 1.5px, 1.5px 36px,
+    36px 1.5px, 1.5px 36px,
+    36px 1.5px, 1.5px 36px;
   background-position:
     left top, left top,
     right top, right top,
