@@ -189,8 +189,8 @@ html{
 .panel-aster{
   position:absolute;
   top:0;
-  left:0;                            /* at the left edge, not inset by the margin */
-  transform:translate(-50%,-30%);    /* sits up top, half off the left edge */
+  left:15%;                          /* moved ~10% left from its earlier spot */
+  transform:translate(-50%,-30%);    /* sits up top */
   height:72vh;
   width:auto;
   max-width:none;
