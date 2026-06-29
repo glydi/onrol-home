@@ -590,6 +590,7 @@ html{
   width:100%;
   height:100%;
   object-fit:cover;
+  transform:scale(1.05);         /* zoom the cover image 5% */
   z-index:0;
 }
 .build-block.has-img{
@@ -674,6 +675,19 @@ html{
 /* bigger copy in the left text block */
 .build-block:not(.has-img) h3{ font-size:clamp(30px,3.6vw,56px); font-weight:700; -webkit-text-stroke:0.8px currentColor; line-height:1.06; letter-spacing:-.01em; margin-bottom:16px; }
 .build-block:not(.has-img) p{ font-size:clamp(15px,1.25vw,19px); max-width:42ch; }
+/* fractal haze (SVG turbulence) behind the BECOME AN block */
+.build-block:not(.has-img)::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  z-index:0;
+  pointer-events:none;
+  background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='320' height='320'%3E%3Cfilter id='f'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.014' numOctaves='4' seed='11' stitchTiles='stitch'/%3E%3CfeColorMatrix type='matrix' values='0 0 0 0 0.96 0 0 0 0 0.31 0 0 0 0 0.02 0 0 0 1.1 -0.35'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23f)'/%3E%3C/svg%3E") center / cover;
+  opacity:.5;
+  filter:blur(1px);
+}
+.build-block:not(.has-img) > h3,
+.build-block:not(.has-img) > p{ position:relative; z-index:1; }   /* text above the haze */
 
 /* ---------- SECTION — who it's for (12 personas) ---------- */
 .who{
@@ -1195,8 +1209,8 @@ body::after{  right:6vw; }
   .tower.down .tagline{ letter-spacing:.22em; text-indent:.22em; }
 
   /* second section stacks into one column */
-  .panel{ flex-direction:column; padding:16vh 7vw 9vh; }
-  .panel-content{ width:100%; padding-right:0; }
+  .panel{ flex-direction:column; padding:13vh 7vw 9vh; }
+  .panel-content{ width:100%; padding-right:0; padding-top:0; }   /* no doubled top margin on mobile */
   .panel-content::after{ display:none; }
   .panel-content h1{ font-size:clamp(26px,7vw,40px); }
   .panel-content p{ font-size:15px; max-width:none; }
@@ -1210,7 +1224,7 @@ body::after{  right:6vw; }
   /* section 3 stacks into one column */
   .build{ grid-template-columns:1fr; grid-template-rows:auto; gap:6vh; padding:14vh 7vw 10vh; }
   .build-video{ aspect-ratio:16 / 9; }
-  .build-text{ padding:0; border:none; }
+  .build-text{ padding:0; border:none; order:-1; }   /* About ONROL text before the video on mobile */
   .build-title{ font-size:clamp(24px,5.5vw,34px); }
   .build-block{ padding:30px 22px; }
   .build-block.has-img{ min-height:64vw; }     /* keep the cover image visible when stacked */
