@@ -1245,6 +1245,7 @@ body::after{  right:6vw; }
 
   /* section 3 stacks into one column */
   .build{ grid-template-columns:1fr; grid-template-rows:auto; height:auto; gap:0; padding:14vh 0 10vh; }   /* mobile stacks freely */
+  .build::before{ display:none; }   /* no edge gradient on mobile */
   .build-video{ aspect-ratio:16 / 9; }
   .build-text{ padding:26px 22px; border:none; order:-1; }   /* About ONROL text before the video on mobile */
   .build-title{ font-size:clamp(24px,5.5vw,34px); }
