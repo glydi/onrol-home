@@ -1208,7 +1208,8 @@ body::after{  right:6vw; }
   .node{ width:3px; height:3px; }       /* smaller junctions on mobile */
   body::before, body::after{ display:none; }            /* no margin lines on mobile */
   .panel::before, .panel::after{ display:none; }         /* no section-2 margin lines on mobile */
-  .tower.down .tagline{ letter-spacing:.22em; text-indent:.22em; }
+  .tower.up{ display:none; }                                       /* no top empty box on mobile */
+  .tower.down .tagline{ letter-spacing:.22em; text-indent:.22em; font-size:clamp(12px,3.2vw,16px); }   /* a bit bigger */
 
   /* second section stacks into one column */
   .panel{ flex-direction:column; padding:13vh 7vw 9vh; }
