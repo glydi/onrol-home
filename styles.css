@@ -1209,6 +1209,8 @@ body::after{  right:6vw; }
   body::before, body::after{ display:none; }            /* no margin lines on mobile */
   .panel::before, .panel::after{ display:none; }         /* no section-2 margin lines on mobile */
   .tower.up{ display:none; }                                       /* no top empty box on mobile */
+  /* align the tagline box to the mobile grid: from N's left line (18vw) to the 2nd O's right line (68vw) */
+  .tower{ left:18vw; width:50vw; grid-template-columns:50vw; }
   .tower.down .tagline{ letter-spacing:.22em; text-indent:.22em; font-size:clamp(12px,3.2vw,16px); }   /* a bit bigger */
 
   /* second section stacks into one column */
