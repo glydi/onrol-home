@@ -1258,6 +1258,7 @@ body::after{  right:6vw; }
   .build-title{ font-size:clamp(24px,5.5vw,34px); }
   .build-block{ padding:30px 22px; }
   .build-block:not(.has-img) h3{ font-size:clamp(36px,9vw,56px); }   /* bigger BECOME AN heading on mobile */
+  .build-block:not(.has-img) p{ font-size:clamp(15px,4vw,20px); max-width:none; }   /* bigger paragraph on mobile */
   .block-eyebrow{ font-size:clamp(42px,12vw,92px); }
   .build-block.has-img > h3{ font-size:clamp(18px,4.6vw,24px); }
 
