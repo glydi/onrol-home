@@ -461,9 +461,10 @@
     document.addEventListener('keydown', function(e){ if (e.key === 'Escape') closeModal(); });
   })();
 
-  /* ---- scroll: ONROL drifts up (background zoom disabled) ---- */
+  /* ---- scroll: ONROL drifts up + hero image zooms in ---- */
   (function(){
     var logo = document.querySelector('.logo');
+    var bg = document.querySelector('.hero-bg');
     if (!logo) return;
     var ticking = false;
     function apply(){
@@ -473,6 +474,7 @@
       // ONROL drifts up on scroll; centered on mobile, sits lower on desktop
       var base = window.innerWidth <= 760 ? 0 : 16;      // resting vertical offset (vh)
       logo.style.transform = 'translateY(' + (base - p * 55) + 'vh)';
+      if (bg) bg.style.transform = 'scale(' + (1 + p * 0.45) + ')';   // hero image zooms in
     }
     window.addEventListener('scroll', function(){
       if (!ticking){ ticking = true; requestAnimationFrame(apply); }

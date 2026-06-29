@@ -164,9 +164,9 @@ html{
   width:50%;                     /* left half */
   display:flex;
   flex-direction:column;
-  justify-content:center;
+  justify-content:flex-end;      /* drag the text way down */
   padding-right:6vw;             /* gap before the divider */
-  padding-top:10vh;              /* nudge the text a bit lower */
+  padding-bottom:14vh;
   color:#16181b;
 }
 /* 3D asterisk graphic: sits up top (clear of the centred text), brought in from the left */
@@ -203,7 +203,8 @@ html{
   padding-left:6vw;
   display:flex;
   flex-direction:column;
-  justify-content:center;
+  justify-content:flex-end;      /* drag the pipeline way down too */
+  padding-bottom:14vh;
 }
 /* pipeline heading */
 .pipe-eyebrow{
