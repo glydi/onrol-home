@@ -673,9 +673,10 @@ html{
   line-height:1.6;
   color:#41454b;
 }
-/* bigger copy in the left text block */
-.build-block:not(.has-img) h3{ font-size:clamp(30px,3.6vw,56px); font-weight:700; -webkit-text-stroke:0.8px currentColor; line-height:1.06; letter-spacing:-.01em; margin-bottom:16px; }
-.build-block:not(.has-img) p{ font-size:clamp(15px,1.25vw,19px); max-width:42ch; }
+/* left text block fills the cell: heading top, paragraph bottom */
+.build-block:not(.has-img){ justify-content:space-between; align-items:flex-start; }
+.build-block:not(.has-img) h3{ font-size:clamp(40px,5.4vw,92px); font-weight:700; -webkit-text-stroke:0.8px currentColor; line-height:1.04; letter-spacing:-.015em; margin-bottom:0; }
+.build-block:not(.has-img) p{ font-size:clamp(15px,1.3vw,20px); max-width:46ch; }
 /* fractal haze (SVG turbulence) behind the BECOME AN block */
 .build-block:not(.has-img)::before{
   content:"";
