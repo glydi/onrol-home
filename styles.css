@@ -1225,7 +1225,7 @@ body::after{  right:6vw; }
   .step-num{ width:36px; height:36px; font-size:13px; }
 
   /* section 3 stacks into one column */
-  .build{ grid-template-columns:1fr; grid-template-rows:auto; gap:6vh; padding:14vh 7vw 10vh; }
+  .build{ grid-template-columns:1fr; grid-template-rows:auto; gap:0; padding:14vh 7vw 10vh; }
   .build-video{ aspect-ratio:16 / 9; }
   .build-text{ padding:0; border:none; order:-1; }   /* About ONROL text before the video on mobile */
   .build-title{ font-size:clamp(24px,5.5vw,34px); }
