@@ -472,7 +472,7 @@
       var p = window.scrollY / window.innerHeight;       // hero progress 0..1+
       p = p < 0 ? 0 : (p > 1 ? 1 : p);
       // ONROL drifts up on scroll; centered on mobile, sits lower on desktop
-      var base = window.innerWidth <= 760 ? 0 : 16;      // resting vertical offset (vh)
+      var base = window.innerWidth <= 900 ? 0 : 16;      // resting vertical offset (vh) — centered on mobile
       logo.style.transform = 'translateY(' + (base - p * 55) + 'vh)';
       if (bg) bg.style.transform = 'scale(' + (1 + p * 0.45) + ')';   // hero image zooms in
     }
