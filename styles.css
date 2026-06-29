@@ -593,7 +593,7 @@ html{
   display:flex;
   flex-direction:column;
   justify-content:center;        /* center content in the tall block */
-  padding:clamp(32px,5vh,60px) clamp(30px,2.6vw,48px);
+  padding:clamp(22px,3.2vh,40px) clamp(28px,2.4vw,44px);
   background:rgba(var(--orange-rgb),.04);
   box-shadow:inset 0 0 40px rgba(var(--orange-rgb),.05);
   backdrop-filter:blur(8px);
@@ -691,8 +691,8 @@ html{
 }
 /* left text block fills the cell: heading top, paragraph bottom */
 .build-block:not(.has-img){ justify-content:space-between; align-items:flex-start; }
-.build-block:not(.has-img) h3{ font-size:clamp(40px,5.4vw,92px); font-weight:700; -webkit-text-stroke:0.8px currentColor; line-height:1.04; letter-spacing:-.015em; margin-bottom:0; }
-.build-block:not(.has-img) p{ font-size:clamp(15px,1.3vw,20px); max-width:46ch; }
+.build-block:not(.has-img) h3{ font-size:clamp(28px,3.6vw,54px); font-weight:700; -webkit-text-stroke:0.6px currentColor; line-height:1.05; letter-spacing:-.015em; margin-bottom:0; }
+.build-block:not(.has-img) p{ font-size:clamp(14px,1.1vw,17px); max-width:46ch; }
 /* fractal haze (SVG turbulence) behind the BECOME AN block */
 .build-block:not(.has-img)::before{
   content:"";
