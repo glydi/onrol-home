@@ -1255,7 +1255,8 @@ body::after{  right:6vw; }
   .build-block{ min-height:50vh; }
   .build-video{ aspect-ratio:auto; }
   .build-text{ padding:26px 22px; border:none; order:-1; justify-content:center; }   /* About ONROL text before the video on mobile */
-  .build-title{ font-size:clamp(24px,5.5vw,34px); }
+  .build-title{ font-size:clamp(30px,7vw,44px); }
+  .build-desc{ font-size:clamp(15px,4vw,19px); max-width:none; }
   .build-block{ padding:30px 22px; }
   .build-block:not(.has-img) h3{ font-size:clamp(36px,9vw,56px); }   /* bigger BECOME AN heading on mobile */
   .build-block:not(.has-img) p{ font-size:clamp(15px,4vw,20px); max-width:none; }   /* bigger paragraph on mobile */
