@@ -439,12 +439,12 @@ html{
 .build{
   position:relative;
   overflow:hidden;
-  min-height:100vh;
+  height:100vh;                    /* desktop: the whole 2x2 fits one screen */
   color:#16181b;
   background:#fff;                 /* white margins */
   display:grid;
   grid-template-columns:1fr 1fr;   /* 2x2 grid: video | text / block | block */
-  grid-template-rows:minmax(0,1fr) minmax(0,1fr);   /* rows stay 50vh, don't grow past one screen */
+  grid-template-rows:minmax(0,1fr) minmax(0,1fr);   /* each row = 50vh, won't grow */
   padding:0 6vw;                   /* follow the side margins */
 }
 /* orange + red waves rippling up & down both side margins (irregular blobs) */
@@ -1244,7 +1244,7 @@ body::after{  right:6vw; }
   .step-num{ width:36px; height:36px; font-size:13px; }
 
   /* section 3 stacks into one column */
-  .build{ grid-template-columns:1fr; grid-template-rows:auto; gap:0; padding:14vh 0 10vh; }   /* no side margins -> full-bleed blocks */
+  .build{ grid-template-columns:1fr; grid-template-rows:auto; height:auto; gap:0; padding:14vh 0 10vh; }   /* mobile stacks freely */
   .build-video{ aspect-ratio:16 / 9; }
   .build-text{ padding:26px 22px; border:none; order:-1; }   /* About ONROL text before the video on mobile */
   .build-title{ font-size:clamp(24px,5.5vw,34px); }
