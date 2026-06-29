@@ -672,7 +672,7 @@ html{
   color:#41454b;
 }
 /* bigger copy in the left text block */
-.build-block:not(.has-img) h3{ font-size:clamp(30px,3.6vw,56px); line-height:1.06; letter-spacing:-.01em; margin-bottom:16px; }
+.build-block:not(.has-img) h3{ font-size:clamp(30px,3.6vw,56px); font-weight:700; line-height:1.06; letter-spacing:-.01em; margin-bottom:16px; }
 .build-block:not(.has-img) p{ font-size:clamp(15px,1.25vw,19px); max-width:42ch; }
 
 /* ---------- SECTION — who it's for (12 personas) ---------- */
