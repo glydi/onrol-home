@@ -215,6 +215,8 @@ html{
   pointer-events:none;
 }
 .panel-right{
+  position:relative;
+  z-index:1;                     /* above the asterisk graphic */
   width:50%;                     /* right half */
   padding-left:6vw;
   display:flex;
@@ -1233,6 +1235,7 @@ body::after{  right:6vw; }
   /* second section stacks into one column */
   .panel{ flex-direction:column; padding:13vh 7vw 9vh; }
   .panel-content{ width:100%; padding-right:0; padding-top:0; }   /* no doubled top margin on mobile */
+  .panel-aster{ top:auto; bottom:0; left:0; transform:translate(-28%,28%); height:46vh; }   /* down-left corner on mobile */
   .panel-content::after{ display:none; }
   .panel-content h1{ font-size:clamp(26px,7vw,40px); }
   .panel-content p{ font-size:15px; max-width:none; }
