@@ -433,18 +433,16 @@ html{
   content:"";
   position:absolute;
   inset:0;
-  /* warm orange glow (like the hero) at both edges, fading out before the middle */
+  /* margin gradient: #D7140A (red) edges -> #F56A00 (orange) -> fade before the middle */
   background:linear-gradient(90deg,
-    rgba(170,38,8,.9)    0%,
-    rgba(255,90,20,.7)   10%,
-    rgba(255,150,45,.4)  22%,
-    rgba(255,185,90,.16) 32%,
+    rgba(215,20,10,.95)  0%,    /* #D7140A */
+    rgba(245,106,0,.72)  12%,   /* #F56A00 */
+    rgba(245,106,0,.28)  28%,
     transparent          40%,
     transparent          60%,
-    rgba(255,185,90,.16) 68%,
-    rgba(255,150,45,.4)  78%,
-    rgba(255,90,20,.7)   90%,
-    rgba(170,38,8,.9)    100%);
+    rgba(245,106,0,.28)  72%,
+    rgba(245,106,0,.72)  88%,
+    rgba(215,20,10,.95)  100%);
   z-index:0;
   pointer-events:none;
 }
