@@ -248,7 +248,7 @@ html{
   display:flex;
   align-items:center;
   gap:20px;
-  padding:clamp(64px, 11vh, 130px) 34px;      /* taller tiles */
+  padding:clamp(30px, 5vh, 60px) 32px;        /* tile height */
   border:1px solid rgba(0,0,0,.18);
   background:rgba(255,255,255,.5);
   backdrop-filter:blur(6px) saturate(140%);
@@ -271,15 +271,15 @@ html{
 .step-num{
   position:relative;
   flex:0 0 auto;
-  width:60px;
-  height:60px;
+  width:48px;
+  height:48px;
   border-radius:0;              /* sharp, no curves */
   display:flex;
   align-items:center;
   justify-content:center;
   overflow:hidden;
   font-family:var(--mono);
-  font-size:21px;
+  font-size:16px;
   color:#16181b;
   z-index:1;
   /* liquid glass */
@@ -306,13 +306,13 @@ html{
 .step-btn{
   margin-left:auto;             /* push to the right of the card */
   flex:0 0 auto;
-  width:56px;
-  height:56px;
+  width:46px;
+  height:46px;
   display:flex;
   align-items:center;
   justify-content:center;
   font-family:var(--mono);
-  font-size:30px;
+  font-size:24px;
   line-height:1;
   color:#16181b;
   background:rgba(255,255,255,.45);
@@ -385,15 +385,15 @@ html{
 
 .step-text h3{
   font-family:'Space Grotesk',sans-serif;
-  font-size:clamp(28px,2.8vw,44px);
+  font-size:clamp(22px,2.1vw,32px);
   font-weight:600;
   color:#16181b;
   line-height:1.1;
 }
 .step-text p{
-  margin-top:8px;
+  margin-top:7px;
   font-family:var(--mono);
-  font-size:clamp(16px,1.2vw,19px);
+  font-size:clamp(14px,1vw,16px);
   color:#5a5e64;
 }
 .panel-content h1{
