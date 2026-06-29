@@ -444,11 +444,9 @@ html{
   background:#fff;                 /* white margins */
   display:grid;
   grid-template-columns:1fr 1fr;   /* 2x2 grid: video | text / block | block */
-  grid-template-rows:100vh 100vh;  /* each row = one full snap view (two blocks) */
+  grid-template-rows:1fr 1fr;      /* all four cells fit in one 100vh section */
   padding:0 6vw;                   /* follow the side margins */
 }
-/* bottom row (the two build blocks) is its own snap view */
-.build-block{ scroll-snap-align:start; scroll-snap-stop:always; }
 /* orange + red waves rippling up & down both side margins (irregular blobs) */
 .build::before{
   content:"";
