@@ -170,12 +170,12 @@ html{
   padding-bottom:5vh;
   color:#16181b;
 }
-/* 3D asterisk graphic: sits up top (clear of the centred text), brought in from the left */
+/* 3D asterisk graphic: centred vertically so the text sits over it */
 .panel-aster{
   position:absolute;
-  top:0;
+  top:50%;
   left:25%;                          /* a bit further left */
-  transform:translate(-50%,-30%);    /* brought further down from the top */
+  transform:translate(-50%,-50%);    /* moved down to the centre, behind the text */
   height:72vh;
   width:auto;
   max-width:none;
