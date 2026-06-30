@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Why AI Matters Now · ONROL</title>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+<style>
+  .subpage{ max-width:860px; margin:0 auto; padding:160px clamp(24px,5vw,72px) 100px; color:#eaeaea; }
+  .subpage .eyebrow{ font-family:var(--mono); font-size:12px; letter-spacing:2px; text-transform:uppercase; color:var(--orange-lt); margin-bottom:14px; }
+  .subpage h1{ font-size:clamp(34px,6vw,60px); font-weight:700; letter-spacing:-.02em; line-height:1.05; color:#fff; margin-bottom:22px; }
+  .subpage h2{ font-size:clamp(20px,2.6vw,26px); font-weight:600; color:#fff; margin:38px 0 12px; }
+  .subpage p{ font-size:17px; line-height:1.7; color:#bdbdbd; margin-bottom:16px; }
+  .subpage .cta{ display:inline-flex; align-items:center; gap:10px; margin-top:18px; padding:14px 28px; background:var(--orange); color:#fff; font-family:var(--mono); font-size:13px; letter-spacing:1.5px; text-transform:uppercase; text-decoration:none; }
+  .subpage .back{ display:inline-block; margin-top:46px; font-family:var(--mono); font-size:12px; letter-spacing:1.5px; text-transform:uppercase; color:#888; text-decoration:none; }
+  .subpage .back:hover{ color:#fff; }
+/* light theme (default — no dark backgrounds unless requested) */
+  body{ background:#fff; }
+  .subpage{ color:#16181b; }
+  .subpage h1, .subpage h2, .subpage h3, .subpage h3.section, .subpage .prog h2, .card-grid .card h3{ color:#16181b; }
+  .subpage p, .subpage .lead, .subpage .note, .subpage ul li, .subpage ul.list li, .card-grid .card p, .prog p{ color:#5a5e64; }
+  .prog ul li{ color:#41454b; }
+  .subpage .muted, .subpage .updated{ color:#8a8f96; }
+  .subpage .back{ color:#8a8f96; }
+  .subpage .back:hover{ color:#16181b; }
+  .card-grid .card, .prog{ border-color:rgba(0,0,0,.14); }
+  .prog .go.outline{ border-color:rgba(0,0,0,.3); color:#16181b; }</style>
+</head>
+<body>
+
+<nav class="nav">
+  <button class="nav-toggle" id="navToggle" type="button" aria-label="Menu" aria-expanded="false" aria-controls="navLinks">
+    <span></span><span></span><span></span>
+  </button>
+  <div class="nav-links" id="navLinks">
+    <a href="index.html">Home</a>
+    <span class="sep" aria-hidden="true"></span>
+    <a href="programs.html">Programs</a>
+    <span class="sep" aria-hidden="true"></span>
+    <a href="about.html">About</a>
+    <span class="sep" aria-hidden="true"></span>
+    <a href="index.html#contact">Contact</a>
+  </div>
+</nav>
+
+<main class="subpage">
+  <p class="eyebrow">Perspective</p>
+  <h1>Why AI Matters Now</h1>
+  <p>AI has moved from a research curiosity to the most leveraged skill of the decade. The people who learn to build with it &mdash; not just talk about it &mdash; are pulling ahead fast.</p>
+
+  <h2>The gap is widening</h2>
+  <p>Every industry is being rebuilt around AI tooling. Those who can turn a prompt into a working product, automate real workflows, and ship are becoming far more valuable than those who only consume content about AI.</p>
+
+  <h2>You don't need to be an engineer</h2>
+  <p>The barrier to building has collapsed. With vibe coding and modern AI tools, a motivated beginner can ship products that used to require a full team &mdash; if they know how to execute.</p>
+
+  <h2>Timing is the advantage</h2>
+  <p>We're early. The habits, portfolio, and reputation you build now compound. Waiting another year means competing against people who started today.</p>
+
+  <a class="cta" href="ai-generalist.html">Start building with ONROL &rarr;</a>
+  <a class="back" href="index.html">&larr; Back to home</a>
+</main>
+
+<script>
+  (function(){
+    var nav = document.querySelector('.nav');
+    var toggle = document.getElementById('navToggle');
+    if (!nav || !toggle) return;
+    toggle.addEventListener('click', function(){
+      var open = nav.classList.toggle('open');
+      toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+    });
+    nav.querySelectorAll('.nav-links a').forEach(function(a){
+      a.addEventListener('click', function(){
+        nav.classList.remove('open');
+        toggle.setAttribute('aria-expanded', 'false');
+      });
+    });
+  })();
+</script>
+</body>
+</html>

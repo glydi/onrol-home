@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Best AI Institute in Hyderabad · ONROL</title>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+<style>
+  .subpage{ max-width:860px; margin:0 auto; padding:160px clamp(24px,5vw,72px) 100px; color:#eaeaea; }
+  .subpage .eyebrow{ font-family:var(--mono); font-size:12px; letter-spacing:2px; text-transform:uppercase; color:var(--orange-lt); margin-bottom:14px; }
+  .subpage h1{ font-size:clamp(34px,6vw,60px); font-weight:700; letter-spacing:-.02em; line-height:1.05; color:#fff; margin-bottom:22px; }
+  .subpage h2{ font-size:clamp(20px,2.6vw,26px); font-weight:600; color:#fff; margin:38px 0 12px; }
+  .subpage p{ font-size:17px; line-height:1.7; color:#bdbdbd; margin-bottom:16px; }
+  .subpage ul.list{ margin:0 0 16px 20px; }
+  .subpage ul.list li{ color:#bdbdbd; line-height:1.7; margin-bottom:8px; }
+  .subpage .cta{ display:inline-flex; align-items:center; gap:10px; margin-top:18px; padding:14px 28px; background:var(--orange); color:#fff; font-family:var(--mono); font-size:13px; letter-spacing:1.5px; text-transform:uppercase; text-decoration:none; }
+  .subpage .back{ display:inline-block; margin-top:46px; font-family:var(--mono); font-size:12px; letter-spacing:1.5px; text-transform:uppercase; color:#888; text-decoration:none; }
+  .subpage .back:hover{ color:#fff; }
+/* light theme (default — no dark backgrounds unless requested) */
+  body{ background:#fff; }
+  .subpage{ color:#16181b; }
+  .subpage h1, .subpage h2, .subpage h3, .subpage h3.section, .subpage .prog h2, .card-grid .card h3{ color:#16181b; }
+  .subpage p, .subpage .lead, .subpage .note, .subpage ul li, .subpage ul.list li, .card-grid .card p, .prog p{ color:#5a5e64; }
+  .prog ul li{ color:#41454b; }
+  .subpage .muted, .subpage .updated{ color:#8a8f96; }
+  .subpage .back{ color:#8a8f96; }
+  .subpage .back:hover{ color:#16181b; }
+  .card-grid .card, .prog{ border-color:rgba(0,0,0,.14); }
+  .prog .go.outline{ border-color:rgba(0,0,0,.3); color:#16181b; }</style>
+</head>
+<body>
+
+<nav class="nav">
+  <button class="nav-toggle" id="navToggle" type="button" aria-label="Menu" aria-expanded="false" aria-controls="navLinks">
+    <span></span><span></span><span></span>
+  </button>
+  <div class="nav-links" id="navLinks">
+    <a href="index.html">Home</a>
+    <span class="sep" aria-hidden="true"></span>
+    <a href="programs.html">Programs</a>
+    <span class="sep" aria-hidden="true"></span>
+    <a href="about.html">About</a>
+    <span class="sep" aria-hidden="true"></span>
+    <a href="index.html#contact">Contact</a>
+  </div>
+</nav>
+
+<main class="subpage">
+  <p class="eyebrow">Hyderabad</p>
+  <h1>Best AI Institute in Hyderabad</h1>
+  <p>What makes an AI institute genuinely worth your time isn't the number of slides &mdash; it's whether you walk out able to build. ONROL is engineered around exactly that.</p>
+
+  <h2>What sets ONROL apart</h2>
+  <ul class="list">
+    <li><strong>Execution over theory</strong> &mdash; you graduate with deployed, working AI projects</li>
+    <li><strong>Real portfolio</strong> &mdash; 5 AI systems and 7+ projects that prove your skills</li>
+    <li><strong>Monetization pathways</strong> &mdash; built to lead to jobs, clients, or freelance income</li>
+    <li><strong>Beginner-friendly</strong> &mdash; no prior coding needed, powered by vibe coding</li>
+    <li><strong>Mentor-led</strong> &mdash; guidance from people who ship, not just lecture</li>
+  </ul>
+
+  <h2>Premium AI education, Hyderabad-rooted</h2>
+  <p>ONROL is a premium AI education ecosystem based in Hyderabad, focused on outcomes for learners across India. If you're comparing AI institutes, compare what graduates can actually build.</p>
+
+  <a class="cta" href="ai-generalist.html">See the AI Generalist program &rarr;</a>
+  <a class="back" href="index.html">&larr; Back to home</a>
+</main>
+
+<script>
+  (function(){
+    var nav = document.querySelector('.nav');
+    var toggle = document.getElementById('navToggle');
+    if (!nav || !toggle) return;
+    toggle.addEventListener('click', function(){
+      var open = nav.classList.toggle('open');
+      toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+    });
+    nav.querySelectorAll('.nav-links a').forEach(function(a){
+      a.addEventListener('click', function(){
+        nav.classList.remove('open');
+        toggle.setAttribute('aria-expanded', 'false');
+      });
+    });
+  })();
+</script>
+</body>
+</html>
