@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Contact · ONROL</title>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+<style>
+.wrap, .subpage{ font-family:'Space Grotesk', system-ui, 'Segoe UI', Roboto, Arial, sans-serif; }  body{ background:#fff; }
+  .subpage{ background:#fff; }
+  .subpage{ max-width:880px; margin:0 auto; padding:160px 0 100px; color:#16181b; }
+  .subpage .eyebrow{ font-family:var(--mono); font-size:12px; letter-spacing:2px; text-transform:uppercase; color:var(--orange-lt); margin-bottom:14px; }
+  .subpage h1{ font-size:clamp(36px,6.5vw,64px); font-weight:700; letter-spacing:-.02em; line-height:1.04; color:#16181b; margin-bottom:20px; }
+  .subpage h1 span{ color:var(--orange); }
+  .subpage .lead{ font-size:19px; line-height:1.7; color:#41454b; max-width:680px; margin-bottom:16px; }
+  .contact-grid{ display:grid; grid-template-columns:1fr 1fr; gap:42px; margin-top:44px; align-items:start; }
+  .contact-info h2{ font-size:20px; font-weight:700; color:#16181b; margin-bottom:14px; }
+  .contact-info .row{ margin-bottom:22px; }
+  .contact-info .label{ font-family:var(--mono); font-size:11px; letter-spacing:1.5px; text-transform:uppercase; color:#8a8f96; margin-bottom:6px; }
+  .contact-info a, .contact-info p{ font-size:17px; color:#16181b; text-decoration:none; }
+  .contact-info a:hover{ color:var(--orange); }
+  form .field{ margin-bottom:16px; }
+  form label{ display:block; font-family:var(--mono); font-size:11px; letter-spacing:1px; text-transform:uppercase; color:#5a5e64; margin-bottom:7px; }
+  form input, form textarea{ width:100%; padding:14px 16px; border:1px solid rgba(0,0,0,.22); background:#fff; font-family:var(--sans,'Space Grotesk',sans-serif); font-size:15px; color:#16181b; }
+  form input:focus, form textarea:focus{ outline:none; border-color:var(--orange); }
+  form textarea{ min-height:120px; resize:vertical; }
+  form button{ width:100%; min-height:50px; margin-top:6px; border:1px solid var(--orange); background:var(--orange); color:#fff; font-family:var(--mono); font-size:13px; font-weight:500; letter-spacing:1px; text-transform:uppercase; cursor:pointer; transition:opacity .2s, transform .2s; }
+  form button:hover{ transform:translateY(-2px); opacity:.92; }
+  .subpage .back{ display:inline-block; margin-top:50px; font-family:var(--mono); font-size:12px; letter-spacing:1.5px; text-transform:uppercase; color:#8a8f96; text-decoration:none; }
+  .subpage .back:hover{ color:#16181b; }
+  .toast{ position:fixed; left:50%; bottom:28px; transform:translateX(-50%) translateY(140%); background:#16181b; color:#fff; padding:14px 22px; font-family:var(--mono); font-size:13px; letter-spacing:.5px; z-index:100; transition:.3s ease; }
+  .toast.show{ transform:translateX(-50%) translateY(0); }
+  @media (max-width:680px){ .contact-grid{ grid-template-columns:1fr; gap:32px; } }
+</style>
+</head>
+<body>
+
+<nav class="nav">
+  <button class="nav-toggle" id="navToggle" type="button" aria-label="Menu" aria-expanded="false" aria-controls="navLinks">
+    <span></span><span></span><span></span>
+  </button>
+  <div class="nav-links" id="navLinks">
+    <a href="index.html">Home</a>
+    <span class="sep" aria-hidden="true"></span>
+    <a href="programs.html">Programs</a>
+    <span class="sep" aria-hidden="true"></span>
+    <a href="about.html">About</a>
+    <span class="sep" aria-hidden="true"></span>
+    <a href="contact.html">Contact</a>
+  </div>
+</nav>
+
+<main class="subpage">
+  <p class="eyebrow">Contact</p>
+  <h1>Let's <span>talk.</span></h1>
+  <p class="lead">Questions about a program, enrollment, or anything else? Reach out and the ONROL team will get back to you.</p>
+
+  <div class="contact-grid">
+    <div class="contact-info">
+      <h2>Get in touch</h2>
+      <div class="row">
+        <p class="label">Email</p>
+        <a href="mailto:info@onrol.in">info@onrol.in</a>
+      </div>
+      <div class="row">
+        <p class="label">Phone</p>
+        <a href="tel:+919609312345">+91 96093 12345</a>
+      </div>
+      <div class="row">
+        <p class="label">Location</p>
+        <p>Hyderabad, India</p>
+      </div>
+      <div class="row">
+        <p class="label">Programs</p>
+        <a href="programs.html">See all programs &rarr;</a>
+      </div>
+    </div>
+
+    <form id="contactForm">
+      <div class="field">
+        <label for="name">Full name</label>
+        <input type="text" id="name" name="name" autocomplete="name" required>
+      </div>
+      <div class="field">
+        <label for="email">Email</label>
+        <input type="email" id="email" name="email" autocomplete="email" required>
+      </div>
+      <div class="field">
+        <label for="phone">Phone (optional)</label>
+        <input type="tel" id="phone" name="phone" autocomplete="tel">
+      </div>
+      <div class="field">
+        <label for="message">Message</label>
+        <textarea id="message" name="message" required></textarea>
+      </div>
+      <button type="submit">Send via WhatsApp</button>
+    </form>
+  </div>
+
+  <a class="back" href="index.html">&larr; Back to home</a>
+</main>
+
+<div class="toast" id="toast">Opening WhatsApp with your message...</div>
+
+<script>
+  (function(){
+    var nav = document.querySelector('.nav');
+    var toggle = document.getElementById('navToggle');
+    if (!nav || !toggle) return;
+    toggle.addEventListener('click', function(){
+      var open = nav.classList.toggle('open');
+      toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+    });
+    nav.querySelectorAll('.nav-links a').forEach(function(a){
+      a.addEventListener('click', function(){
+        nav.classList.remove('open');
+        toggle.setAttribute('aria-expanded', 'false');
+      });
+    });
+  })();
+
+  (function(){
+    var form = document.getElementById('contactForm');
+    var toast = document.getElementById('toast');
+    if (!form) return;
+    form.addEventListener('submit', function(e){
+      e.preventDefault();
+      var name = document.getElementById('name').value.trim();
+      var email = document.getElementById('email').value.trim();
+      var phone = document.getElementById('phone').value.trim();
+      var message = document.getElementById('message').value.trim();
+      if (!name || !email || !message) return;
+      var text = 'Hi ONROL,%0A%0A' + encodeURIComponent(message)
+        + '%0A%0AName: ' + encodeURIComponent(name)
+        + '%0AEmail: ' + encodeURIComponent(email)
+        + (phone ? '%0APhone: ' + encodeURIComponent(phone) : '');
+      var url = 'https://wa.me/918121306701?text=' + text;
+      toast.classList.add('show');
+      setTimeout(function(){
+        window.open(url, '_blank', 'noopener,noreferrer');
+        toast.classList.remove('show');
+      }, 600);
+    });
+  })();
+</script>
+</body>
+</html>
