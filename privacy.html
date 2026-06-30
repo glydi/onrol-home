@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Privacy Policy · ONROL</title>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+<style>
+  .subpage{ max-width:780px; margin:0 auto; padding:160px clamp(24px,5vw,72px) 100px; color:#eaeaea; }
+  .subpage .eyebrow{ font-family:var(--mono); font-size:12px; letter-spacing:2px; text-transform:uppercase; color:var(--orange-lt); margin-bottom:14px; }
+  .subpage h1{ font-size:clamp(34px,6vw,56px); font-weight:700; letter-spacing:-.02em; line-height:1.05; color:#fff; margin-bottom:10px; }
+  .subpage h2{ font-size:clamp(18px,2.4vw,22px); font-weight:600; color:#fff; margin:34px 0 8px; }
+  .subpage p{ font-size:16px; line-height:1.7; color:#bdbdbd; margin-bottom:14px; }
+  .subpage ul{ margin:0 0 14px 20px; }
+  .subpage ul li{ color:#bdbdbd; line-height:1.7; margin-bottom:6px; }
+  .subpage a.inline{ color:var(--orange-lt); }
+  .subpage .updated{ font-family:var(--mono); font-size:12px; letter-spacing:1px; color:#777; margin-bottom:28px; }
+  .subpage .back{ display:inline-block; margin-top:46px; font-family:var(--mono); font-size:12px; letter-spacing:1.5px; text-transform:uppercase; color:#888; text-decoration:none; }
+  .subpage .back:hover{ color:#fff; }
+/* light theme (default — no dark backgrounds unless requested) */
+  body{ background:#000; }
+  .subpage{ background:#fff; }
+  .subpage{ color:#16181b; }
+  .subpage h1, .subpage h2, .subpage h3, .subpage h3.section, .subpage .prog h2, .card-grid .card h3{ color:#16181b; }
+  .subpage p, .subpage .lead, .subpage .note, .subpage ul li, .subpage ul.list li, .card-grid .card p, .prog p{ color:#5a5e64; }
+  .prog ul li{ color:#41454b; }
+  .subpage .muted, .subpage .updated{ color:#8a8f96; }
+  .subpage .back{ color:#8a8f96; }
+  .subpage .back:hover{ color:#16181b; }
+  .card-grid .card, .prog{ border-color:rgba(0,0,0,.14); }
+  .prog .go.outline{ border-color:rgba(0,0,0,.3); color:#16181b; }</style>
+</head>
+<body>
+
+<nav class="nav">
+  <button class="nav-toggle" id="navToggle" type="button" aria-label="Menu" aria-expanded="false" aria-controls="navLinks">
+    <span></span><span></span><span></span>
+  </button>
+  <div class="nav-links" id="navLinks">
+    <a href="index.html">Home</a>
+    <span class="sep" aria-hidden="true"></span>
+    <a href="programs.html">Programs</a>
+    <span class="sep" aria-hidden="true"></span>
+    <a href="about.html">About</a>
+    <span class="sep" aria-hidden="true"></span>
+    <a href="index.html#contact">Contact</a>
+  </div>
+</nav>
+
+<main class="subpage">
+  <p class="eyebrow">Legal</p>
+  <h1>Privacy Policy</h1>
+  <p class="updated">Last updated: 30 June 2026</p>
+
+  <p>This Privacy Policy explains how ONROL (&ldquo;we&rdquo;, &ldquo;us&rdquo;) collects, uses, and protects your information when you use our website and programs.</p>
+
+  <h2>Information we collect</h2>
+  <ul>
+    <li>Contact details you provide (name, email, phone) when you enquire or enroll.</li>
+    <li>Usage data such as pages visited, collected to improve the site.</li>
+    <li>Any information you share with us directly via forms or messaging.</li>
+  </ul>
+
+  <h2>How we use your information</h2>
+  <ul>
+    <li>To respond to your enquiries and provide our programs and services.</li>
+    <li>To send you program updates, resources, and offers you've opted into.</li>
+    <li>To improve our website, content, and learner experience.</li>
+  </ul>
+
+  <h2>Sharing your information</h2>
+  <p>We do not sell your personal information. We may share it with trusted service providers who help us operate (for example, email or payment processing), under appropriate confidentiality obligations.</p>
+
+  <h2>Your choices</h2>
+  <p>You can unsubscribe from marketing communications at any time, and request access to or deletion of your personal data by contacting us.</p>
+
+  <h2>Contact</h2>
+  <p>For any privacy questions, email <a class="inline" href="mailto:info@onrol.in">info@onrol.in</a>.</p>
+
+  <a class="back" href="index.html">&larr; Back to home</a>
+</main>
+
+<script>
+  (function(){
+    var nav = document.querySelector('.nav');
+    var toggle = document.getElementById('navToggle');
+    if (!nav || !toggle) return;
+    toggle.addEventListener('click', function(){
+      var open = nav.classList.toggle('open');
+      toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+    });
+    nav.querySelectorAll('.nav-links a').forEach(function(a){
+      a.addEventListener('click', function(){
+        nav.classList.remove('open');
+        toggle.setAttribute('aria-expanded', 'false');
+      });
+    });
+  })();
+</script>
+</body>
+</html>

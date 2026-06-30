@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI Glossary · ONROL</title>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+<style>
+  .subpage{ max-width:860px; margin:0 auto; padding:160px clamp(24px,5vw,72px) 100px; color:#eaeaea; }
+  .subpage .eyebrow{ font-family:var(--mono); font-size:12px; letter-spacing:2px; text-transform:uppercase; color:var(--orange-lt); margin-bottom:14px; }
+  .subpage h1{ font-size:clamp(34px,6vw,60px); font-weight:700; letter-spacing:-.02em; line-height:1.05; color:#fff; margin-bottom:22px; }
+  .subpage h2{ font-size:clamp(18px,2.4vw,22px); font-weight:600; color:#fff; margin:34px 0 8px; }
+  .subpage p{ font-size:17px; line-height:1.7; color:#bdbdbd; margin-bottom:16px; }
+  .subpage .back{ display:inline-block; margin-top:46px; font-family:var(--mono); font-size:12px; letter-spacing:1.5px; text-transform:uppercase; color:#888; text-decoration:none; }
+  .subpage .back:hover{ color:#fff; }
+/* light theme (default — no dark backgrounds unless requested) */
+  body{ background:#000; }
+  .subpage{ background:#fff; }
+  .subpage{ color:#16181b; }
+  .subpage h1, .subpage h2, .subpage h3, .subpage h3.section, .subpage .prog h2, .card-grid .card h3{ color:#16181b; }
+  .subpage p, .subpage .lead, .subpage .note, .subpage ul li, .subpage ul.list li, .card-grid .card p, .prog p{ color:#5a5e64; }
+  .prog ul li{ color:#41454b; }
+  .subpage .muted, .subpage .updated{ color:#8a8f96; }
+  .subpage .back{ color:#8a8f96; }
+  .subpage .back:hover{ color:#16181b; }
+  .card-grid .card, .prog{ border-color:rgba(0,0,0,.14); }
+  .prog .go.outline{ border-color:rgba(0,0,0,.3); color:#16181b; }</style>
+</head>
+<body>
+
+<nav class="nav">
+  <button class="nav-toggle" id="navToggle" type="button" aria-label="Menu" aria-expanded="false" aria-controls="navLinks">
+    <span></span><span></span><span></span>
+  </button>
+  <div class="nav-links" id="navLinks">
+    <a href="index.html">Home</a>
+    <span class="sep" aria-hidden="true"></span>
+    <a href="programs.html">Programs</a>
+    <span class="sep" aria-hidden="true"></span>
+    <a href="about.html">About</a>
+    <span class="sep" aria-hidden="true"></span>
+    <a href="index.html#contact">Contact</a>
+  </div>
+</nav>
+
+<main class="subpage">
+  <p class="eyebrow">Reference</p>
+  <h1>AI Glossary</h1>
+  <p>Plain-English definitions of the AI terms you'll meet on your journey &mdash; no jargon, no gatekeeping.</p>
+
+  <h2>LLM (Large Language Model)</h2>
+  <p>An AI model trained on huge amounts of text that can understand and generate human-like language. It's the engine behind tools like chat assistants.</p>
+
+  <h2>Prompt</h2>
+  <p>The instruction or question you give an AI model. Better prompts produce better outputs &mdash; learning to prompt well is a core generalist skill.</p>
+
+  <h2>Token</h2>
+  <p>The small chunks of text (roughly word-pieces) that models read and write. Usage and pricing are usually measured in tokens.</p>
+
+  <h2>RAG (Retrieval-Augmented Generation)</h2>
+  <p>A technique that lets a model pull in your own documents or data before answering, so responses are grounded in real, up-to-date information.</p>
+
+  <h2>Agent</h2>
+  <p>An AI system that can take actions &mdash; calling tools, browsing, or running steps on its own &mdash; to complete a goal rather than just replying once.</p>
+
+  <h2>Vibe coding</h2>
+  <p>Building working software by describing what you want in plain language and letting AI write the code, then steering it &mdash; no traditional coding background required.</p>
+
+  <a class="back" href="index.html">&larr; Back to home</a>
+</main>
+
+<script>
+  (function(){
+    var nav = document.querySelector('.nav');
+    var toggle = document.getElementById('navToggle');
+    if (!nav || !toggle) return;
+    toggle.addEventListener('click', function(){
+      var open = nav.classList.toggle('open');
+      toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+    });
+    nav.querySelectorAll('.nav-links a').forEach(function(a){
+      a.addEventListener('click', function(){
+        nav.classList.remove('open');
+        toggle.setAttribute('aria-expanded', 'false');
+      });
+    });
+  })();
+</script>
+</body>
+</html>

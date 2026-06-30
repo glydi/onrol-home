@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Programs · ONROL</title>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+<style>
+  .subpage{ max-width:960px; margin:0 auto; padding:160px clamp(24px,5vw,72px) 100px; color:#eaeaea; }
+  .subpage .eyebrow{ font-family:var(--mono); font-size:12px; letter-spacing:2px; text-transform:uppercase; color:var(--orange-lt); margin-bottom:14px; }
+  .subpage h1{ font-size:clamp(34px,6vw,60px); font-weight:700; letter-spacing:-.02em; line-height:1.05; color:#fff; margin-bottom:18px; }
+  .subpage .lead{ font-size:18px; line-height:1.7; color:#bdbdbd; max-width:640px; margin-bottom:14px; }
+  .prog-grid{ display:grid; grid-template-columns:repeat(auto-fit,minmax(280px,1fr)); gap:18px; margin-top:40px; }
+  .prog{ border:1px solid rgba(255,255,255,.14); padding:30px; display:flex; flex-direction:column; }
+  .prog.feature{ border-color:rgba(var(--orange-rgb),.55); background:rgba(var(--orange-rgb),.06); }
+  .prog .tag{ font-family:var(--mono); font-size:11px; letter-spacing:1.5px; text-transform:uppercase; color:var(--orange-lt); margin-bottom:14px; }
+  .prog h2{ font-size:24px; font-weight:700; color:#fff; line-height:1.1; margin-bottom:10px; }
+  .prog p{ font-size:15px; line-height:1.65; color:#bdbdbd; margin-bottom:16px; }
+  .prog ul{ list-style:none; margin:0 0 22px; padding:0; }
+  .prog ul li{ font-size:14px; color:#cfcfcf; line-height:1.6; padding-left:20px; position:relative; margin-bottom:7px; }
+  .prog ul li::before{ content:"\2192"; position:absolute; left:0; color:var(--orange-lt); }
+  .prog .go{ margin-top:auto; display:inline-flex; align-items:center; gap:8px; align-self:flex-start; padding:12px 24px; font-family:var(--mono); font-size:12px; letter-spacing:1.5px; text-transform:uppercase; text-decoration:none; }
+  .prog .go.solid{ background:var(--orange); color:#fff; }
+  .prog .go.outline{ border:1px solid rgba(255,255,255,.3); color:#fff; }
+  .subpage h3.section{ font-size:clamp(22px,3vw,30px); font-weight:700; color:#fff; margin:60px 0 10px; }
+  .subpage .note{ font-size:16px; line-height:1.7; color:#bdbdbd; max-width:680px; }
+  .subpage .note a{ color:var(--orange-lt); }
+  .subpage .back{ display:inline-block; margin-top:50px; font-family:var(--mono); font-size:12px; letter-spacing:1.5px; text-transform:uppercase; color:#888; text-decoration:none; }
+  .subpage .back:hover{ color:#fff; }
+/* light theme (default — no dark backgrounds unless requested) */
+  body{ background:#000; }
+  .subpage{ background:#fff; }
+  .subpage{ color:#16181b; }
+  .subpage h1, .subpage h2, .subpage h3, .subpage h3.section, .subpage .prog h2, .card-grid .card h3{ color:#16181b; }
+  .subpage p, .subpage .lead, .subpage .note, .subpage ul li, .subpage ul.list li, .card-grid .card p, .prog p{ color:#5a5e64; }
+  .prog ul li{ color:#41454b; }
+  .subpage .muted, .subpage .updated{ color:#8a8f96; }
+  .subpage .back{ color:#8a8f96; }
+  .subpage .back:hover{ color:#16181b; }
+  .card-grid .card, .prog{ border-color:rgba(0,0,0,.14); }
+  .prog .go.outline{ border-color:rgba(0,0,0,.3); color:#16181b; }</style>
+</head>
+<body>
+
+<nav class="nav">
+  <button class="nav-toggle" id="navToggle" type="button" aria-label="Menu" aria-expanded="false" aria-controls="navLinks">
+    <span></span><span></span><span></span>
+  </button>
+  <div class="nav-links" id="navLinks">
+    <a href="index.html">Home</a>
+    <span class="sep" aria-hidden="true"></span>
+    <a href="programs.html">Programs</a>
+    <span class="sep" aria-hidden="true"></span>
+    <a href="about.html">About</a>
+    <span class="sep" aria-hidden="true"></span>
+    <a href="index.html#contact">Contact</a>
+  </div>
+</nav>
+
+<main class="subpage">
+  <p class="eyebrow">Programs</p>
+  <h1>Programs built for execution.</h1>
+  <p class="lead">Every ONROL program is designed around one outcome: you walk out able to build, ship, and monetize real AI projects &mdash; not just collect certificates.</p>
+
+  <div class="prog-grid">
+    <div class="prog feature">
+      <p class="tag">Flagship &middot; 3 Months</p>
+      <h2>AI Generalist</h2>
+      <p>Go from curious beginner to AI Generalist. The complete path from learning to earning.</p>
+      <ul>
+        <li>Build 5 AI systems and 7+ real projects</li>
+        <li>Vibe coding &mdash; no prior coding required</li>
+        <li>A portfolio that gets you hired or clients</li>
+        <li>Mentor-led, outcome-focused</li>
+      </ul>
+      <a class="go solid" href="ai-generalist.html">Explore program &rarr;</a>
+    </div>
+
+    <div class="prog">
+      <p class="tag">Advanced</p>
+      <h2>AI Architect</h2>
+      <p>Go beyond using AI &mdash; learn to design and ship production-grade AI systems that scale.</p>
+      <ul>
+        <li>Architect agents, RAG, and AI pipelines</li>
+        <li>Production patterns, evals, and reliability</li>
+        <li>Deploy robust, real-world AI products</li>
+      </ul>
+      <a class="go outline" href="ai-architect.html">Explore program &rarr;</a>
+    </div>
+
+    <div class="prog">
+      <p class="tag">Specialist</p>
+      <h2>Cybersecurity</h2>
+      <p>Build defensive security skills for the AI era &mdash; protect systems, data, and AI itself.</p>
+      <ul>
+        <li>Core security fundamentals, hands-on</li>
+        <li>Securing AI apps, agents, and data</li>
+        <li>Practical labs and a job-ready portfolio</li>
+      </ul>
+      <a class="go outline" href="cybersecurity.html">Explore program &rarr;</a>
+    </div>
+  </div>
+
+  <h3 class="section">Twelve starting points</h3>
+  <p class="note">Whoever you are &mdash; student, professional, founder, or creator &mdash; there's a starting point for you. Pick yours and graduate with deployed AI projects built for your world. <a href="index.html#programs">See all twelve &rarr;</a></p>
+
+  <a class="back" href="index.html">&larr; Back to home</a>
+</main>
+
+<script>
+  (function(){
+    var nav = document.querySelector('.nav');
+    var toggle = document.getElementById('navToggle');
+    if (!nav || !toggle) return;
+    toggle.addEventListener('click', function(){
+      var open = nav.classList.toggle('open');
+      toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+    });
+    nav.querySelectorAll('.nav-links a').forEach(function(a){
+      a.addEventListener('click', function(){
+        nav.classList.remove('open');
+        toggle.setAttribute('aria-expanded', 'false');
+      });
+    });
+  })();
+</script>
+</body>
+</html>
