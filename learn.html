@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>My Learning · ONROL</title>
+  <meta name="robots" content="noindex,nofollow" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --orange-rgb:255,90,20; --orange:rgb(var(--orange-rgb)); --orange-lt:#ff8a4a;
+      --ink:#16181b; --muted:#5a5e64; --line:rgba(0,0,0,.14); --soft:#fff7f2; --green:#2e7d32;
+      --mono:'JetBrains Mono', ui-monospace, 'SF Mono', SFMono-Regular, Menlo, Consolas, monospace;
+      --sans:'Space Grotesk', system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+    }
+    *{ box-sizing:border-box; margin:0; padding:0; }
+    body{ font-family:var(--sans); color:var(--ink); background:#f5f5f4; line-height:1.5; }
+    a{ color:inherit; text-decoration:none; }
+
+    .nav{ position:fixed; top:18px; left:50%; transform:translateX(-50%); z-index:50; display:flex; align-items:center; padding:4px 16px;
+      background:rgba(10,10,12,.55); border:1px solid rgba(255,255,255,.2); box-shadow:0 6px 24px rgba(0,0,0,.28);
+      backdrop-filter:blur(20px) saturate(140%); -webkit-backdrop-filter:blur(20px) saturate(140%); }
+    .nav a{ color:#fff; font-family:var(--mono); font-size:12px; text-transform:uppercase; letter-spacing:1.5px; padding:6px 16px; transition:opacity .2s; white-space:nowrap; }
+    .nav a:hover{ opacity:.6; }
+    .nav .tagpill{ color:var(--orange-lt); }
+
+    .shell{ max-width:1120px; margin:0 auto; padding:104px 24px 60px; }
+    .eyebrow{ font-family:var(--mono); font-size:12px; letter-spacing:2px; text-transform:uppercase; color:var(--orange); margin-bottom:8px; }
+    h1{ font-size:clamp(28px,4vw,40px); font-weight:700; letter-spacing:-.02em; }
+    .lede{ font-family:var(--mono); font-size:13px; color:var(--muted); margin-top:8px; }
+
+    .bar{ height:8px; background:var(--line); overflow:hidden; }
+    .bar > i{ display:block; height:100%; background:var(--orange); transition:width .3s ease; }
+
+    /* resume hero */
+    .resume{ background:#0c0c0c; color:#fff; border:1px solid rgba(var(--orange-rgb),.35); padding:clamp(22px,3vw,32px); margin:24px 0 12px; position:relative; overflow:hidden; }
+    .resume::after{ content:""; position:absolute; inset:auto -60px -80px auto; width:320px; height:320px; background:radial-gradient(circle, rgba(var(--orange-rgb),.28), transparent 66%); }
+    .resume .lab{ font-family:var(--mono); font-size:11px; letter-spacing:2px; text-transform:uppercase; color:var(--orange-lt); }
+    .resume h2{ font-size:clamp(22px,3vw,30px); font-weight:700; letter-spacing:-.01em; margin:8px 0 4px; position:relative; z-index:1; }
+    .resume .nextline{ font-family:var(--mono); font-size:13px; color:rgba(255,255,255,.75); position:relative; z-index:1; }
+    .resume .bar{ background:rgba(255,255,255,.16); margin:18px 0; max-width:520px; position:relative; z-index:1; }
+    .resume .row{ display:flex; align-items:center; gap:16px; flex-wrap:wrap; position:relative; z-index:1; }
+
+    .btn{ display:inline-flex; align-items:center; justify-content:center; gap:8px; min-height:44px; padding:0 24px; border:1px solid var(--ink); background:var(--ink); color:#fff;
+      font-family:var(--mono); font-size:12px; letter-spacing:1px; text-transform:uppercase; cursor:pointer; transition:transform .15s, opacity .15s; }
+    .btn:hover{ transform:translateY(-1px); opacity:.92; }
+    .btn.orange{ background:var(--orange); border-color:var(--orange); }
+    .btn.ghost{ background:transparent; color:var(--ink); border-color:var(--line); }
+    .btn.on-dark{ background:transparent; color:#fff; border-color:rgba(255,255,255,.4); }
+    .btn.small{ min-height:36px; padding:0 16px; font-size:11px; }
+
+    .sec-title{ font-family:var(--mono); font-size:12px; letter-spacing:1.5px; text-transform:uppercase; color:var(--muted); margin:34px 0 14px; }
+    .course-grid{ display:grid; grid-template-columns:repeat(auto-fill,minmax(280px,1fr)); gap:16px; }
+    .cc{ background:#fff; border:1px solid var(--line); padding:22px; display:flex; flex-direction:column; cursor:pointer; transition:box-shadow .2s, transform .2s; }
+    .cc:hover{ box-shadow:0 12px 28px rgba(0,0,0,.08); transform:translateY(-2px); }
+    .cc .cat{ font-family:var(--mono); font-size:11px; letter-spacing:1px; text-transform:uppercase; color:var(--orange); }
+    .cc h3{ font-size:20px; font-weight:700; letter-spacing:-.01em; margin:8px 0 6px; }
+    .cc p{ font-size:14px; color:var(--muted); line-height:1.55; margin-bottom:14px; }
+    .cc .meta{ font-family:var(--mono); font-size:11px; color:var(--muted); text-transform:uppercase; letter-spacing:.5px; margin-bottom:12px; }
+    .cc .pctline{ display:flex; justify-content:space-between; font-family:var(--mono); font-size:11px; color:var(--muted); margin-bottom:6px; }
+    .cc .go{ margin-top:14px; font-family:var(--mono); font-size:12px; letter-spacing:1px; text-transform:uppercase; color:var(--ink); }
+    .cc .go b{ color:var(--orange); }
+
+    .empty{ background:#fff; border:1px solid var(--line); padding:40px 24px; text-align:center; }
+    .empty p{ font-family:var(--mono); font-size:13px; color:var(--muted); line-height:1.7; }
+
+    /* player */
+    .player{ display:grid; grid-template-columns:320px 1fr; gap:18px; align-items:start; margin-top:18px; }
+    .back{ font-family:var(--mono); font-size:12px; letter-spacing:1px; text-transform:uppercase; color:var(--muted); cursor:pointer; display:inline-block; margin-bottom:16px; }
+    .back:hover{ color:var(--ink); }
+    .outline{ background:#fff; border:1px solid var(--line); position:sticky; top:96px; max-height:calc(100vh - 120px); overflow:auto; }
+    .outline .oc-head{ padding:16px; border-bottom:1px solid var(--line); }
+    .outline .oc-head h3{ font-size:16px; font-weight:700; }
+    .outline .oc-head .pctline{ display:flex; justify-content:space-between; font-family:var(--mono); font-size:11px; color:var(--muted); margin:10px 0 6px; }
+    .o-mod{ font-family:var(--mono); font-size:11px; letter-spacing:1px; text-transform:uppercase; color:var(--orange); padding:14px 16px 4px; }
+    .o-day{ font-family:var(--mono); font-size:11px; color:var(--orange-lt); padding:8px 16px 4px; }
+    .o-les{ display:flex; align-items:center; gap:10px; padding:9px 16px; cursor:pointer; border-left:2px solid transparent; font-size:14px; }
+    .o-les:hover{ background:var(--soft); }
+    .o-les.active{ background:var(--soft); border-left-color:var(--orange); font-weight:600; }
+    .o-les .ck{ width:16px; height:16px; border:1px solid var(--line); border-radius:50%; flex:0 0 auto; display:inline-flex; align-items:center; justify-content:center; font-size:10px; color:#fff; }
+    .o-les.done .ck{ background:var(--green); border-color:var(--green); }
+
+    .stage{ background:#fff; border:1px solid var(--line); padding:clamp(20px,3vw,34px); }
+    .stage .crumbs{ font-family:var(--mono); font-size:11px; color:var(--muted); text-transform:uppercase; letter-spacing:.5px; margin-bottom:10px; }
+    .stage .type{ display:inline-block; font-family:var(--mono); font-size:11px; letter-spacing:1px; text-transform:uppercase; color:var(--orange); border:1px solid rgba(var(--orange-rgb),.4); padding:4px 10px; margin-bottom:14px; }
+    .stage h2{ font-size:clamp(22px,3vw,32px); font-weight:700; letter-spacing:-.01em; margin-bottom:12px; }
+    .stage .detail{ font-family:var(--mono); font-size:14px; color:var(--muted); margin-bottom:20px; }
+    .stage .detail a{ color:var(--orange); }
+    .canvas{ background:#0c0c0c; color:rgba(255,255,255,.55); border:1px dashed rgba(255,255,255,.18); min-height:220px; display:flex; align-items:center; justify-content:center; font-family:var(--mono); font-size:13px; text-align:center; padding:24px; margin-bottom:22px; }
+    .stage-foot{ display:flex; align-items:center; justify-content:space-between; gap:12px; flex-wrap:wrap; padding-top:18px; border-top:1px solid var(--line); }
+
+    .done-badge{ font-family:var(--mono); font-size:12px; color:var(--green); }
+    .toast{ position:fixed; left:50%; bottom:24px; transform:translateX(-50%) translateY(120px); background:var(--ink); color:#fff; padding:12px 18px; font-family:var(--mono); font-size:13px; z-index:100; transition:transform .3s ease; }
+    .toast.show{ transform:translateX(-50%) translateY(0); }
+
+    @media (max-width:820px){ .player{ grid-template-columns:1fr; } .outline{ position:static; max-height:none; } }
+  </style>
+</head>
+<body>
+  <nav class="nav">
+    <a href="index.html">Home</a>
+    <a href="programs.html">Programs</a>
+    <a class="tagpill" href="learn.html">My Learning</a>
+  </nav>
+
+  <div class="shell" id="shell"></div>
+  <div class="toast" id="toast"></div>
+
+  <script>
+  (function(){
+    "use strict";
+    var CKEY = "onrol_courses_v1";     // written by course-builder.html
+    var PKEY = "onrol_progress_v1";
+    var shell = document.getElementById("shell");
+    var toastEl = document.getElementById("toast");
+
+    var courses = migrate(loadCourses());
+    var progress = loadProgress();
+    var viewCourseId = null, viewLessonId = null;
+
+    function loadCourses(){ try { return JSON.parse(localStorage.getItem(CKEY)) || []; } catch(e){ return []; } }
+    function loadProgress(){ try { return JSON.parse(localStorage.getItem(PKEY)) || {}; } catch(e){ return {}; } }
+    function saveProgress(){ localStorage.setItem(PKEY, JSON.stringify(progress)); }
+    function esc(s){ return String(s==null?"":s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;"); }
+    var toastTimer;
+    function toast(m){ toastEl.textContent=m; toastEl.classList.add("show"); clearTimeout(toastTimer); toastTimer=setTimeout(function(){ toastEl.classList.remove("show"); },2000); }
+
+    // tolerate old course shape (module.lessons) without days
+    function migrate(list){
+      (list||[]).forEach(function(c){ (c.modules||[]).forEach(function(m){
+        if (!m.days){ m.days = m.lessons && m.lessons.length ? [{ id:"d0", title:"Day 1", lessons:m.lessons }] : []; }
+      }); });
+      return list;
+    }
+
+    function findCourse(id){ for (var i=0;i<courses.length;i++) if (courses[i].id===id) return courses[i]; return null; }
+    function lessonsOf(c){
+      var arr=[];
+      (c.modules||[]).forEach(function(m){ (m.days||[]).forEach(function(d){ (d.lessons||[]).forEach(function(l){
+        arr.push({ id:l.id, title:l.title, type:l.type, detail:l.detail, module:m.title, day:d.title });
+      }); }); });
+      return arr;
+    }
+    function cp(cid){ if (!progress[cid]) progress[cid] = { done:{}, last:null, ts:0 }; return progress[cid]; }
+    function isDone(cid, lid){ return !!(progress[cid] && progress[cid].done[lid]); }
+    function pct(c){ var ls=lessonsOf(c); if (!ls.length) return 0; var d=0; ls.forEach(function(l){ if (isDone(c.id,l.id)) d++; }); return Math.round(d/ls.length*100); }
+    function nextIncomplete(c){ var ls=lessonsOf(c); for (var i=0;i<ls.length;i++) if (!isDone(c.id, ls[i].id)) return ls[i].id; return ls.length ? ls[ls.length-1].id : null; }
+    function resumeLessonId(c){ var p=progress[c.id]; if (p && p.last && lessonsOf(c).some(function(l){return l.id===p.last;})) return p.last; return nextIncomplete(c); }
+
+    function mostRecentCourse(){
+      var best=null, bestTs=-1;
+      courses.forEach(function(c){ var p=progress[c.id]; if (p && p.ts>bestTs && pct(c)<100){ bestTs=p.ts; best=c; } });
+      if (best) return best;
+      // fall back to any in-progress, else null
+      for (var i=0;i<courses.length;i++){ if (progress[courses[i].id] && pct(courses[i])<100) return courses[i]; }
+      return null;
+    }
+
+    /* ---------- HOME ---------- */
+    function renderHome(){
+      var resume = mostRecentCourse();
+      var resumeHtml = "";
+      if (resume){
+        var lid = resumeLessonId(resume);
+        var ls = lessonsOf(resume);
+        var next = null; for (var i=0;i<ls.length;i++) if (ls[i].id===lid) next=ls[i];
+        resumeHtml =
+          '<div class="resume">'
+          + '<div class="lab">Resume learning</div>'
+          + '<h2>'+esc(resume.title)+'</h2>'
+          + '<div class="nextline">Up next &mdash; '+esc(next?next.title:"Start")+' &middot; '+esc(next?(next.module+" / "+next.day):"")+'</div>'
+          + '<div class="bar"><i style="width:'+pct(resume)+'%"></i></div>'
+          + '<div class="row"><button class="btn orange" data-action="resume" data-id="'+resume.id+'">Resume learning &rarr;</button>'
+          +   '<span class="nextline">'+pct(resume)+'% complete</span></div>'
+          + '</div>';
+      }
+
+      var grid;
+      if (!courses.length){
+        grid = '<div class="empty"><p>No courses found in this browser yet.<br>Create one in the <a href="course-builder.html" style="color:var(--orange)">Course Builder</a> &mdash; it will show up here to learn and resume.</p></div>';
+      } else {
+        grid = '<div class="course-grid">' + courses.map(function(c){
+          var p = pct(c); var started = progress[c.id] && p>0;
+          return '<div class="cc" data-action="open" data-id="'+c.id+'">'
+            + '<span class="cat">'+esc(c.category||"Course")+(c.duration?" &middot; "+esc(c.duration):"")+'</span>'
+            + '<h3>'+esc(c.title)+'</h3>'
+            + (c.description?'<p>'+esc(c.description)+'</p>':'')
+            + '<div class="meta">'+c.modules.length+' modules &middot; '+lessonsOf(c).length+' lessons</div>'
+            + '<div class="pctline"><span>'+p+'% complete</span></div>'
+            + '<div class="bar"><i style="width:'+p+'%"></i></div>'
+            + '<div class="go">'+(p>=100?'Review &rarr;':(started?'<b>Continue</b> &rarr;':'Start &rarr;'))+'</div>'
+            + '</div>';
+        }).join("") + '</div>';
+      }
+
+      shell.innerHTML =
+        '<p class="eyebrow">ONROL</p><h1>My Learning</h1>'
+        + '<p class="lede">Work through your courses module by module, day by day &mdash; and pick up right where you left off.</p>'
+        + resumeHtml
+        + '<div class="sec-title">All courses</div>'
+        + grid;
+    }
+
+    /* ---------- PLAYER ---------- */
+    function openCourse(cid, lid){
+      var c = findCourse(cid); if (!c) return;
+      viewCourseId = cid;
+      viewLessonId = lid || resumeLessonId(c);
+      var p = cp(cid); p.last = viewLessonId; p.ts = Date.now();
+      saveProgress();
+      renderPlayer();
+    }
+
+    function renderPlayer(){
+      var c = findCourse(viewCourseId); if (!c){ renderHome(); return; }
+      var ls = lessonsOf(c);
+      var cur = null; for (var i=0;i<ls.length;i++) if (ls[i].id===viewLessonId) cur=ls[i];
+      if (!cur){ cur = ls[0]; viewLessonId = cur ? cur.id : null; }
+
+      // outline
+      var oHtml = "";
+      (c.modules||[]).forEach(function(m, mi){
+        oHtml += '<div class="o-mod">Module '+(mi+1)+' &middot; '+esc(m.title)+'</div>';
+        (m.days||[]).forEach(function(d, di){
+          oHtml += '<div class="o-day">'+esc(d.title)+'</div>';
+          (d.lessons||[]).forEach(function(l){
+            var done = isDone(c.id, l.id);
+            oHtml += '<div class="o-les'+(l.id===viewLessonId?" active":"")+(done?" done":"")+'" data-action="goto" data-id="'+l.id+'">'
+              + '<span class="ck">'+(done?"&#10003;":"")+'</span><span>'+esc(l.title)+'</span></div>';
+          });
+        });
+      });
+
+      var stage;
+      if (!cur){
+        stage = '<div class="stage"><h2>This course has no content yet.</h2><p class="detail">Add days and content in the Course Builder.</p></div>';
+      } else {
+        var detail = cur.detail || "";
+        var detailHtml = /^https?:\/\//i.test(detail) ? '<a href="'+esc(detail)+'" target="_blank" rel="noreferrer">Open resource &rarr;</a>' : esc(detail);
+        var done = isDone(c.id, cur.id);
+        stage =
+          '<div class="stage">'
+          + '<div class="crumbs">'+esc(cur.module)+' &middot; '+esc(cur.day)+'</div>'
+          + '<span class="type">'+esc(cur.type||"Lesson")+'</span>'
+          + '<h2>'+esc(cur.title)+'</h2>'
+          + (detail?'<div class="detail">'+detailHtml+'</div>':'')
+          + '<div class="canvas">Lesson content / video plays here.<br>(Attach a link in the Course Builder to embed a real resource.)</div>'
+          + '<div class="stage-foot">'
+          +   '<button class="btn ghost small" data-action="prev">&larr; Previous</button>'
+          +   (done ? '<span class="done-badge">&#10003; Completed</span>' : '')
+          +   '<button class="btn orange small" data-action="complete">'+(done?'Next &rarr;':'Mark complete &amp; continue &rarr;')+'</button>'
+          + '</div>'
+          + '</div>';
+      }
+
+      shell.innerHTML =
+        '<span class="back" data-action="home">&larr; All courses</span>'
+        + '<p class="eyebrow">'+esc(c.category||"Course")+(c.duration?" &middot; "+esc(c.duration):"")+'</p>'
+        + '<h1>'+esc(c.title)+'</h1>'
+        + '<div class="player">'
+        +   '<aside class="outline"><div class="oc-head"><h3>'+esc(c.title)+'</h3>'
+        +     '<div class="pctline"><span>'+pct(c)+'% complete</span><span>'+ls.filter(function(l){return isDone(c.id,l.id);}).length+' / '+ls.length+'</span></div>'
+        +     '<div class="bar"><i style="width:'+pct(c)+'%"></i></div></div>'
+        +     oHtml + '</aside>'
+        +   '<section>'+stage+'</section>'
+        + '</div>';
+    }
+
+    function gotoLesson(lid){ var p=cp(viewCourseId); p.last=lid; p.ts=Date.now(); viewLessonId=lid; saveProgress(); renderPlayer(); }
+    function step(dir){
+      var c=findCourse(viewCourseId); var ls=lessonsOf(c); var i=-1;
+      for (var k=0;k<ls.length;k++) if (ls[k].id===viewLessonId) i=k;
+      var j=i+dir; if (j<0 || j>=ls.length) return; gotoLesson(ls[j].id);
+    }
+    function complete(){
+      var c=findCourse(viewCourseId); var p=cp(c.id); p.done[viewLessonId]=true;
+      var ls=lessonsOf(c); var i=-1; for (var k=0;k<ls.length;k++) if (ls[k].id===viewLessonId) i=k;
+      p.ts=Date.now();
+      if (i>=0 && i<ls.length-1){ viewLessonId=ls[i+1].id; p.last=viewLessonId; saveProgress(); renderPlayer(); }
+      else { saveProgress(); if (pct(c)>=100){ toast("Course complete! 🎉"); } renderPlayer(); }
+    }
+
+    /* ---------- events ---------- */
+    document.addEventListener("click", function(e){
+      var el = e.target.closest("[data-action]"); if (!el) return;
+      var a = el.dataset.action, id = el.dataset.id;
+      if (a==="open") openCourse(id, null);
+      else if (a==="resume") openCourse(id, null);
+      else if (a==="goto") gotoLesson(id);
+      else if (a==="prev") step(-1);
+      else if (a==="complete") complete();
+      else if (a==="home"){ viewCourseId=null; renderHome(); }
+    });
+
+    renderHome();
+  })();
+  </script>
+</body>
+</html>

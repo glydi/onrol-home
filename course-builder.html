@@ -1,0 +1,433 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Course Builder · ONROL Admin</title>
+  <meta name="robots" content="noindex,nofollow" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --orange-rgb:255,90,20;
+      --orange:rgb(var(--orange-rgb));
+      --orange-lt:#ff8a4a;
+      --ink:#16181b;
+      --muted:#5a5e64;
+      --line:rgba(0,0,0,.14);
+      --soft:#fff7f2;
+      --mono:'JetBrains Mono', ui-monospace, 'SF Mono', SFMono-Regular, Menlo, Consolas, monospace;
+      --sans:'Space Grotesk', system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+    }
+    *{ box-sizing:border-box; margin:0; padding:0; }
+    body{ font-family:var(--sans); color:var(--ink); background:#f5f5f4; line-height:1.5; }
+    a{ color:inherit; text-decoration:none; }
+
+    /* nav */
+    .nav{ position:fixed; top:18px; left:50%; transform:translateX(-50%); z-index:50; display:flex; align-items:center; gap:2px; padding:4px 20px;
+      background:rgba(10,10,12,.55); border:1px solid rgba(255,255,255,.2); box-shadow:0 6px 24px rgba(0,0,0,.28);
+      backdrop-filter:blur(20px) saturate(140%); -webkit-backdrop-filter:blur(20px) saturate(140%); }
+    .nav a{ color:#fff; font-family:var(--mono); font-size:12px; text-transform:uppercase; letter-spacing:1.5px; padding:6px 20px; transition:opacity .2s; white-space:nowrap; }
+    .nav a:hover{ opacity:.6; }
+    .nav .tagpill{ color:var(--orange-lt); }
+
+    .shell{ max-width:1240px; margin:0 auto; padding:110px 24px 60px; }
+    .head{ display:flex; align-items:flex-end; justify-content:space-between; gap:20px; flex-wrap:wrap; margin-bottom:24px; }
+    .eyebrow{ font-family:var(--mono); font-size:12px; letter-spacing:2px; text-transform:uppercase; color:var(--orange); margin-bottom:8px; }
+    h1{ font-size:clamp(28px,4vw,40px); font-weight:700; letter-spacing:-.02em; line-height:1.05; }
+    .head p{ font-family:var(--mono); font-size:13px; color:var(--muted); margin-top:8px; max-width:560px; line-height:1.6; }
+    .saved{ font-family:var(--mono); font-size:12px; letter-spacing:1px; text-transform:uppercase; color:#2e7d32; opacity:0; transition:opacity .25s; }
+    .saved.show{ opacity:1; }
+
+    .grid{ display:grid; grid-template-columns:300px 1fr; gap:18px; align-items:start; }
+
+    /* buttons + inputs */
+    .btn{ display:inline-flex; align-items:center; justify-content:center; gap:8px; min-height:40px; padding:0 18px; border:1px solid var(--ink); background:var(--ink); color:#fff;
+      font-family:var(--mono); font-size:12px; letter-spacing:1px; text-transform:uppercase; cursor:pointer; transition:transform .15s ease, opacity .15s ease, background .15s; }
+    .btn:hover{ transform:translateY(-1px); opacity:.92; }
+    .btn.orange{ background:var(--orange); border-color:var(--orange); }
+    .btn.ghost{ background:transparent; color:var(--ink); border-color:var(--line); }
+    .btn.ghost:hover{ background:#fff; }
+    .btn.danger{ background:transparent; color:#c1361b; border-color:rgba(193,54,27,.4); }
+    .btn.danger:hover{ background:rgba(193,54,27,.07); }
+    .btn.small{ min-height:34px; padding:0 14px; font-size:11px; }
+    .btn.full{ width:100%; }
+    .icon-btn{ border:1px solid var(--line); background:#fff; color:var(--muted); width:30px; height:30px; display:inline-flex; align-items:center; justify-content:center; cursor:pointer; font-size:13px; transition:background .15s, color .15s, border-color .15s; }
+    .icon-btn:hover{ color:var(--orange); border-color:rgba(var(--orange-rgb),.5); }
+    label{ display:block; font-family:var(--mono); font-size:11px; letter-spacing:1px; text-transform:uppercase; color:var(--muted); margin-bottom:6px; }
+    input, select, textarea{ width:100%; min-height:42px; border:1px solid var(--line); background:#fff; padding:8px 12px; font-family:var(--sans); font-size:15px; color:var(--ink); outline:none; border-radius:0; transition:border-color .15s, box-shadow .15s; }
+    textarea{ min-height:84px; resize:vertical; line-height:1.6; }
+    input:focus, select:focus, textarea:focus{ border-color:var(--orange); box-shadow:0 0 0 3px rgba(var(--orange-rgb),.12); }
+
+    /* sidebar */
+    .panel{ background:#fff; border:1px solid var(--line); }
+    .side{ position:sticky; top:96px; }
+    .side .side-top{ padding:14px; border-bottom:1px solid var(--line); }
+    .course-list{ display:flex; flex-direction:column; }
+    .course-item{ text-align:left; background:#fff; border:0; border-bottom:1px solid var(--line); padding:14px; cursor:pointer; display:block; transition:background .15s; }
+    .course-item:hover{ background:var(--soft); }
+    .course-item.active{ background:var(--soft); box-shadow:inset 3px 0 0 var(--orange); }
+    .ci-title{ display:block; font-weight:600; font-size:15px; letter-spacing:-.01em; }
+    .ci-meta{ display:block; font-family:var(--mono); font-size:11px; color:var(--muted); margin-top:5px; text-transform:uppercase; letter-spacing:.5px; }
+    .side .side-foot{ padding:12px; display:grid; gap:8px; border-top:1px solid var(--line); }
+    .empty-side{ padding:22px 14px; font-family:var(--mono); font-size:12px; color:var(--muted); line-height:1.6; }
+
+    /* editor */
+    .editor{ padding:clamp(18px,2.4vw,28px); }
+    .course-meta{ display:grid; gap:14px; padding-bottom:22px; border-bottom:1px solid var(--line); margin-bottom:22px; }
+    .grid3{ display:grid; grid-template-columns:1fr 1fr 1fr; gap:12px; }
+    .modules-head{ display:flex; align-items:center; justify-content:space-between; gap:14px; margin-bottom:14px; }
+    .modules-head h3{ font-size:20px; font-weight:700; letter-spacing:-.01em; }
+    .modules-head .count{ font-family:var(--mono); font-size:12px; color:var(--orange); margin-left:6px; }
+
+    .modules{ display:grid; gap:16px; }
+    .module{ border:1px solid var(--line); border-left:3px solid var(--orange); background:#fff; }
+    .module-top{ display:flex; align-items:center; gap:10px; padding:12px 14px; background:var(--soft); border-bottom:1px solid var(--line); }
+    .mnum{ font-family:var(--mono); font-size:11px; letter-spacing:1px; text-transform:uppercase; color:var(--orange); white-space:nowrap; }
+    .module-top input.module-title{ flex:1; font-weight:600; min-height:38px; }
+    .row-actions{ display:flex; gap:6px; }
+    .lessons{ display:grid; gap:8px; padding:14px; }
+    .lesson{ display:grid; grid-template-columns:26px 1.5fr 150px 1.2fr auto; gap:8px; align-items:center; }
+    .lnum{ font-family:var(--mono); font-size:12px; color:var(--muted); text-align:center; }
+    .lesson input, .lesson select{ min-height:38px; font-size:14px; }
+    .add-lesson-wrap{ padding:0 14px 14px; }
+    .no-lessons{ font-family:var(--mono); font-size:12px; color:var(--muted); padding:0 0 12px; }
+    .days{ display:grid; gap:12px; padding:14px 14px 0; }
+    .day{ border:1px solid var(--line); border-left:2px solid var(--orange-lt); }
+    .day-top{ display:flex; align-items:center; gap:10px; padding:9px 12px; border-bottom:1px solid var(--line); background:#fff; }
+    .dnum{ font-family:var(--mono); font-size:11px; letter-spacing:1px; text-transform:uppercase; color:var(--orange-lt); white-space:nowrap; }
+    .day-top input.day-title{ flex:1; min-height:34px; font-weight:600; font-size:14px; }
+    .add-day-wrap{ padding:12px 14px 14px; }
+    .editor-foot{ display:flex; gap:10px; justify-content:space-between; margin-top:26px; padding-top:20px; border-top:1px solid var(--line); flex-wrap:wrap; }
+
+    .empty-editor{ padding:60px 24px; text-align:center; }
+    .empty-editor h2{ font-size:24px; font-weight:700; margin-bottom:10px; }
+    .empty-editor p{ font-family:var(--mono); font-size:13px; color:var(--muted); margin-bottom:22px; }
+
+    .toast{ position:fixed; left:50%; bottom:24px; transform:translateX(-50%) translateY(120px); background:var(--ink); color:#fff; padding:12px 18px;
+      font-family:var(--mono); font-size:13px; z-index:100; transition:transform .3s ease; }
+    .toast.show{ transform:translateX(-50%) translateY(0); }
+
+    @media (max-width:860px){
+      .grid{ grid-template-columns:1fr; }
+      .side{ position:static; }
+      .grid3{ grid-template-columns:1fr; }
+      .lesson{ grid-template-columns:1fr; }
+      .lnum{ text-align:left; }
+    }
+      /* auth gate */
+    .auth-gate{ position:fixed; inset:0; z-index:1000; background:rgba(12,12,12,.82); backdrop-filter:blur(6px); -webkit-backdrop-filter:blur(6px); display:flex; align-items:center; justify-content:center; padding:20px; }
+    .auth-card{ width:min(400px,100%); background:#fff; border:1px solid var(--line); padding:clamp(24px,4vw,34px); }
+    .auth-eyebrow{ font-family:var(--mono); font-size:12px; letter-spacing:2px; text-transform:uppercase; color:var(--orange); margin-bottom:8px; }
+    .auth-card h2{ font-size:26px; font-weight:700; letter-spacing:-.01em; margin-bottom:6px; }
+    .auth-sub{ font-family:var(--mono); font-size:12px; color:var(--muted); margin-bottom:18px; }
+    .auth-card label{ margin-top:12px; }
+    .auth-card input{ margin-top:2px; }
+    .auth-err{ color:#c1361b; font-family:var(--mono); font-size:12px; min-height:16px; margin-top:8px; }
+    .auth-note{ font-family:var(--mono); font-size:11px; color:var(--muted); margin-top:14px; line-height:1.5; }
+    .nav a.logout{ color:var(--orange-lt); }
+</style>
+</head>
+<body>
+  <div id="authGate" class="auth-gate">
+    <form id="authForm" class="auth-card">
+      <p class="auth-eyebrow">ONROL Admin</p>
+      <h2>Sign in</h2>
+      <p class="auth-sub">Access the course builder and submissions tools.</p>
+      <label>Email</label>
+      <input id="authEmail" type="text" placeholder="test@onrol.test" autocomplete="username" required>
+      <label>Password</label>
+      <input id="authPass" type="password" placeholder="password" autocomplete="current-password" required>
+      <div id="authErr" class="auth-err"></div>
+      <button class="btn orange" type="submit" style="width:100%;margin-top:6px;">Sign in</button>
+      <p class="auth-note">No device limit &mdash; sign in from any device with your ONROL credentials.</p>
+    </form>
+  </div>
+  <nav class="nav">
+    <a href="index.html">Home</a>
+    <a href="programs.html">Programs</a>
+    <a class="tagpill" href="course-builder.html">Course Builder</a>
+    <a href="#" id="logout" class="logout">Log out</a>
+  </nav>
+
+  <div class="shell">
+    <div class="head">
+      <div>
+        <p class="eyebrow">ONROL Admin</p>
+        <h1>Course Builder</h1>
+        <p>Create a course, add modules, then add content under each module. Everything saves in your browser — export to JSON any time.</p>
+      </div>
+      <span class="saved" id="saved">Saved ✓</span>
+    </div>
+
+    <div class="grid">
+      <aside class="panel side">
+        <div class="side-top">
+          <button class="btn orange small full" data-action="new-course">+ New course</button>
+        </div>
+        <div class="course-list" id="courseList"></div>
+        <div class="side-foot">
+          <button class="btn ghost small full" data-action="export">Export all (JSON)</button>
+          <label class="btn ghost small full" style="cursor:pointer;">Import JSON
+            <input type="file" id="importFile" accept="application/json,.json" hidden>
+          </label>
+        </div>
+      </aside>
+
+      <main class="panel editor" id="editor"></main>
+    </div>
+  </div>
+
+  <div class="toast" id="toast"></div>
+
+  <script>
+  (function(){
+    "use strict";
+    var KEY = "onrol_courses_v1";
+    var CATEGORIES = ["AI", "Cyber Security", "Other"];
+    var LEVELS = ["Beginner", "Intermediate", "Advanced"];
+    var LESSON_TYPES = ["Video", "Reading", "Live Session", "Lab", "Quiz", "Project", "Assignment"];
+
+    var courseListEl = document.getElementById("courseList");
+    var editorEl = document.getElementById("editor");
+    var savedEl = document.getElementById("saved");
+    var toastEl = document.getElementById("toast");
+
+    var courses = migrate(load());
+    var currentId = courses.length ? courses[0].id : null;
+
+    function load(){ try { return JSON.parse(localStorage.getItem(KEY)) || []; } catch(e){ return []; } }
+    function persist(){ localStorage.setItem(KEY, JSON.stringify(courses)); flashSaved(); }
+    function uid(){ return "c" + Date.now().toString(36) + Math.random().toString(36).slice(2, 7); }
+    function current(){ for (var i=0;i<courses.length;i++) if (courses[i].id===currentId) return courses[i]; return null; }
+    function esc(s){ return String(s==null?"":s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;"); }
+    function opts(list, val){ return list.map(function(o){ return "<option"+(o===val?" selected":"")+">"+esc(o)+"</option>"; }).join(""); }
+
+    // migrate old shape (module.lessons) to nested (module.days[].lessons)
+    function migrate(list){
+      (list||[]).forEach(function(c){
+        (c.modules||[]).forEach(function(m){
+          if (!m.days){
+            m.days = [];
+            if (m.lessons && m.lessons.length){ m.days.push({ id:uid(), title:"Day 1", lessons:m.lessons }); }
+            delete m.lessons;
+          }
+        });
+      });
+      return list;
+    }
+
+    function dayCount(c){ return c.modules.reduce(function(n,m){ return n + (m.days?m.days.length:0); }, 0); }
+    function lessonCount(c){ return c.modules.reduce(function(n,m){ return n + (m.days||[]).reduce(function(k,d){ return k + d.lessons.length; }, 0); }, 0); }
+    function findModule(c, mid){ for (var i=0;i<c.modules.length;i++) if (c.modules[i].id===mid) return c.modules[i]; return null; }
+    function findDay(c, mid, did){ var m=findModule(c,mid); if(!m) return null; for (var i=0;i<m.days.length;i++) if (m.days[i].id===did) return m.days[i]; return null; }
+    function findLesson(c, mid, did, lid){ var d=findDay(c,mid,did); if(!d) return null; for (var i=0;i<d.lessons.length;i++) if (d.lessons[i].id===lid) return d.lessons[i]; return null; }
+    function idx(arr, id){ for (var i=0;i<arr.length;i++) if (arr[i].id===id) return i; return -1; }
+
+    var savedTimer;
+    function flashSaved(){ savedEl.classList.add("show"); clearTimeout(savedTimer); savedTimer=setTimeout(function(){ savedEl.classList.remove("show"); }, 1200); }
+    var toastTimer;
+    function toast(msg){ toastEl.textContent=msg; toastEl.classList.add("show"); clearTimeout(toastTimer); toastTimer=setTimeout(function(){ toastEl.classList.remove("show"); }, 2200); }
+
+    function newCourse(){ var c={ id:uid(), title:"Untitled course", category:"AI", level:"Beginner", duration:"", description:"", modules:[] }; courses.push(c); currentId=c.id; persist(); renderAll(); }
+    function deleteCourse(){ if(!current()) return; if(!confirm("Delete this course? This cannot be undone.")) return; courses.splice(idx(courses,currentId),1); currentId=courses.length?courses[0].id:null; persist(); renderAll(); }
+    function addModule(){ var c=current(); if(!c) return; c.modules.push({ id:uid(), title:"New module", days:[] }); persist(); renderEditor(); }
+    function delModule(mid){ var c=current(); c.modules.splice(idx(c.modules,mid),1); persist(); renderEditor(); }
+    function addDay(mid){ var m=findModule(current(),mid); if(!m) return; m.days.push({ id:uid(), title:"Day "+(m.days.length+1), lessons:[] }); persist(); renderEditor(); }
+    function delDay(mid, did){ var m=findModule(current(),mid); m.days.splice(idx(m.days,did),1); persist(); renderEditor(); }
+    function addLesson(mid, did){ var d=findDay(current(),mid,did); if(!d) return; d.lessons.push({ id:uid(), title:"New content", type:"Video", detail:"" }); persist(); renderEditor(); }
+    function delLesson(mid, did, lid){ var d=findDay(current(),mid,did); d.lessons.splice(idx(d.lessons,lid),1); persist(); renderEditor(); }
+    function move(arr, id, dir){ var i=idx(arr,id), j=i+dir; if (j<0 || j>=arr.length) return; var t=arr[i]; arr[i]=arr[j]; arr[j]=t; }
+
+    function exportAll(){
+      var blob = new Blob([JSON.stringify(courses, null, 2)], { type:"application/json" });
+      var url = URL.createObjectURL(blob); var a = document.createElement("a");
+      a.href=url; a.download="onrol-courses.json"; a.click(); URL.revokeObjectURL(url);
+      toast("Exported " + courses.length + " course(s)");
+    }
+    function importFile(file){
+      var reader = new FileReader();
+      reader.onload = function(){
+        try { var data = JSON.parse(reader.result); if (!Array.isArray(data)) throw new Error("bad");
+          courses = migrate(data); currentId = courses.length ? courses[0].id : null; persist(); renderAll(); toast("Imported " + courses.length + " course(s)");
+        } catch(e){ toast("Import failed - invalid JSON"); }
+      };
+      reader.readAsText(file);
+    }
+    function copyCourse(){ var c=current(); if(!c) return; navigator.clipboard.writeText(JSON.stringify(c, null, 2)).then(function(){ toast("Course JSON copied to clipboard"); }, function(){ toast("Copy failed"); }); }
+
+    function renderSidebar(){
+      if (!courses.length){ courseListEl.innerHTML = '<div class="empty-side">No courses yet. Click <b>+ New course</b> to start.</div>'; return; }
+      courseListEl.innerHTML = courses.map(function(c){
+        return '<button class="course-item'+(c.id===currentId?" active":"")+'" data-action="select" data-id="'+c.id+'">'
+          + '<span class="ci-title">'+esc(c.title || "Untitled course")+'</span>'
+          + '<span class="ci-meta">'+esc(c.category)+' &middot; '+c.modules.length+' modules &middot; '+dayCount(c)+' days &middot; '+lessonCount(c)+' lessons</span>'
+          + '</button>';
+      }).join("");
+    }
+
+    function renderEditor(){
+      var c = current();
+      if (!c){
+        editorEl.innerHTML = '<div class="empty-editor"><h2>No course selected</h2><p>Create a course to start adding modules, days, and content.</p>'
+          + '<button class="btn orange" data-action="new-course">+ Create your first course</button></div>';
+        return;
+      }
+      var modulesHtml = c.modules.map(function(m, mi){
+        var daysHtml = (m.days||[]).map(function(d, di){
+          var lessons = d.lessons.length ? d.lessons.map(function(l, li){
+            return '<div class="lesson">'
+              + '<span class="lnum">'+(li+1)+'</span>'
+              + '<input data-k="lesson-title" data-mid="'+m.id+'" data-did="'+d.id+'" data-lid="'+l.id+'" value="'+esc(l.title)+'" placeholder="Content title">'
+              + '<select data-k="lesson-type" data-mid="'+m.id+'" data-did="'+d.id+'" data-lid="'+l.id+'">'+opts(LESSON_TYPES, l.type)+'</select>'
+              + '<input data-k="lesson-detail" data-mid="'+m.id+'" data-did="'+d.id+'" data-lid="'+l.id+'" value="'+esc(l.detail)+'" placeholder="duration / link / notes">'
+              + '<div class="row-actions">'
+              +   '<button class="icon-btn" title="Move up" data-action="lesson-up" data-mid="'+m.id+'" data-did="'+d.id+'" data-lid="'+l.id+'">&uarr;</button>'
+              +   '<button class="icon-btn" title="Move down" data-action="lesson-down" data-mid="'+m.id+'" data-did="'+d.id+'" data-lid="'+l.id+'">&darr;</button>'
+              +   '<button class="icon-btn" title="Delete" data-action="del-lesson" data-mid="'+m.id+'" data-did="'+d.id+'" data-lid="'+l.id+'">&times;</button>'
+              + '</div></div>';
+          }).join("") : '<div class="no-lessons">No content yet &mdash; add lessons, videos, labs, or quizzes.</div>';
+
+          return '<div class="day">'
+            + '<div class="day-top">'
+            +   '<span class="dnum">Day '+(di+1)+'</span>'
+            +   '<input class="day-title" data-k="day-title" data-mid="'+m.id+'" data-did="'+d.id+'" value="'+esc(d.title)+'" placeholder="Day title">'
+            +   '<div class="row-actions">'
+            +     '<button class="icon-btn" title="Move up" data-action="day-up" data-mid="'+m.id+'" data-did="'+d.id+'">&uarr;</button>'
+            +     '<button class="icon-btn" title="Move down" data-action="day-down" data-mid="'+m.id+'" data-did="'+d.id+'">&darr;</button>'
+            +     '<button class="icon-btn" title="Delete day" data-action="del-day" data-mid="'+m.id+'" data-did="'+d.id+'">&times;</button>'
+            +   '</div>'
+            + '</div>'
+            + '<div class="lessons">'+lessons+'</div>'
+            + '<div class="add-lesson-wrap"><button class="btn ghost small" data-action="add-lesson" data-mid="'+m.id+'" data-did="'+d.id+'">+ Add content</button></div>'
+            + '</div>';
+        }).join("") || '<div class="no-lessons" style="padding:0 14px 12px">No days yet &mdash; add a day to start.</div>';
+
+        return '<div class="module">'
+          + '<div class="module-top">'
+          +   '<span class="mnum">Module '+(mi+1)+'</span>'
+          +   '<input class="module-title" data-k="module-title" data-mid="'+m.id+'" value="'+esc(m.title)+'" placeholder="Module title">'
+          +   '<div class="row-actions">'
+          +     '<button class="icon-btn" title="Move up" data-action="module-up" data-mid="'+m.id+'">&uarr;</button>'
+          +     '<button class="icon-btn" title="Move down" data-action="module-down" data-mid="'+m.id+'">&darr;</button>'
+          +     '<button class="icon-btn" title="Delete module" data-action="del-module" data-mid="'+m.id+'">&times;</button>'
+          +   '</div>'
+          + '</div>'
+          + '<div class="days">'+daysHtml+'</div>'
+          + '<div class="add-day-wrap"><button class="btn small" data-action="add-day" data-mid="'+m.id+'">+ Add day</button></div>'
+          + '</div>';
+      }).join("");
+
+      editorEl.innerHTML =
+        '<div class="course-meta">'
+        + '<div><label>Course title</label><input data-k="course-title" value="'+esc(c.title)+'" placeholder="e.g. AI Generalist"></div>'
+        + '<div class="grid3">'
+        +   '<div><label>Category</label><select data-k="course-category">'+opts(CATEGORIES, c.category)+'</select></div>'
+        +   '<div><label>Level</label><select data-k="course-level">'+opts(LEVELS, c.level)+'</select></div>'
+        +   '<div><label>Duration</label><input data-k="course-duration" value="'+esc(c.duration)+'" placeholder="e.g. 3 months"></div>'
+        + '</div>'
+        + '<div><label>Description</label><textarea data-k="course-desc" placeholder="Short course summary">'+esc(c.description)+'</textarea></div>'
+        + '</div>'
+        + '<div class="modules-head"><h3>Modules <span class="count">'+c.modules.length+'</span></h3>'
+        +   '<button class="btn small" data-action="add-module">+ Add module</button></div>'
+        + '<div class="modules">'+(modulesHtml || "")+'</div>'
+        + '<div class="editor-foot">'
+        +   '<button class="btn ghost small" data-action="copy-json">Copy this course as JSON</button>'
+        +   '<button class="btn danger small" data-action="del-course">Delete course</button>'
+        + '</div>';
+    }
+
+    function renderAll(){ renderSidebar(); renderEditor(); }
+
+    document.addEventListener("click", function(e){
+      var btn = e.target.closest("[data-action]"); if (!btn) return;
+      var a = btn.dataset.action, mid = btn.dataset.mid, did = btn.dataset.did, lid = btn.dataset.lid, id = btn.dataset.id, c = current();
+      if (a==="new-course") newCourse();
+      else if (a==="select"){ currentId=id; renderAll(); }
+      else if (a==="del-course") deleteCourse();
+      else if (a==="add-module") addModule();
+      else if (a==="del-module") delModule(mid);
+      else if (a==="add-day") addDay(mid);
+      else if (a==="del-day") delDay(mid, did);
+      else if (a==="add-lesson") addLesson(mid, did);
+      else if (a==="del-lesson") delLesson(mid, did, lid);
+      else if (a==="module-up"){ move(c.modules, mid, -1); persist(); renderEditor(); }
+      else if (a==="module-down"){ move(c.modules, mid, 1); persist(); renderEditor(); }
+      else if (a==="day-up"){ move(findModule(c, mid).days, did, -1); persist(); renderEditor(); }
+      else if (a==="day-down"){ move(findModule(c, mid).days, did, 1); persist(); renderEditor(); }
+      else if (a==="lesson-up"){ move(findDay(c, mid, did).lessons, lid, -1); persist(); renderEditor(); }
+      else if (a==="lesson-down"){ move(findDay(c, mid, did).lessons, lid, 1); persist(); renderEditor(); }
+      else if (a==="export") exportAll();
+      else if (a==="copy-json") copyCourse();
+    });
+
+    document.addEventListener("input", function(e){
+      var t = e.target, k = t.dataset.k; if (!k) return;
+      var c = current(); if (!c) return;
+      if (k==="course-title"){ c.title=t.value; renderSidebar(); }
+      else if (k==="course-category"){ c.category=t.value; renderSidebar(); }
+      else if (k==="course-level") c.level=t.value;
+      else if (k==="course-duration") c.duration=t.value;
+      else if (k==="course-desc") c.description=t.value;
+      else if (k==="module-title"){ var m=findModule(c, t.dataset.mid); if (m) m.title=t.value; renderSidebar(); }
+      else if (k==="day-title"){ var d=findDay(c, t.dataset.mid, t.dataset.did); if (d) d.title=t.value; }
+      else if (k==="lesson-title"){ var l=findLesson(c, t.dataset.mid, t.dataset.did, t.dataset.lid); if (l) l.title=t.value; }
+      else if (k==="lesson-type"){ var l2=findLesson(c, t.dataset.mid, t.dataset.did, t.dataset.lid); if (l2) l2.type=t.value; }
+      else if (k==="lesson-detail"){ var l3=findLesson(c, t.dataset.mid, t.dataset.did, t.dataset.lid); if (l3) l3.detail=t.value; }
+      persist();
+    });
+
+    document.getElementById("importFile").addEventListener("change", function(e){
+      if (e.target.files && e.target.files[0]) importFile(e.target.files[0]);
+      e.target.value = "";
+    });
+
+    if (!courses.length){
+      courses.push({ id:uid(), title:"AI Generalist", category:"AI", level:"Beginner", duration:"3 months", description:"Sample course - edit or delete.",
+        modules:[ { id:uid(), title:"AI Foundations", days:[
+          { id:uid(), title:"Day 1", lessons:[
+            { id:uid(), title:"Intro to AI and LLMs", type:"Video", detail:"20 min" },
+            { id:uid(), title:"Prompt engineering", type:"Lab", detail:"Hands-on" } ] },
+          { id:uid(), title:"Day 2", lessons:[
+            { id:uid(), title:"AI tools workflow", type:"Reading", detail:"15 min" } ] } ] } ] });
+      currentId = courses[0].id;
+      localStorage.setItem(KEY, JSON.stringify(courses));
+    }
+    renderAll();
+  })();
+  </script>
+  <script>
+  (function(){
+    var GATE = document.getElementById("authGate");
+    var KEY = "onrol_admin_auth";
+    function authed(){ try { return localStorage.getItem(KEY) === "1"; } catch(e){ return false; } }
+    if (authed() && GATE) GATE.style.display = "none";
+    // Accounts with unlimited access — all tools, any device, no expiry.
+    function checkCreds(email, pass){
+      if (email === "owner@onrol.in" && pass === "onrol@2025") return true;      // owner (unlimited)
+      if (/^test.*@onrol\.test$/.test(email) && pass === "onrol@ai") return true; // test
+      return false;
+    }
+    var form = document.getElementById("authForm");
+    if (form) form.addEventListener("submit", function(e){
+      e.preventDefault();
+      var email = (document.getElementById("authEmail").value || "").trim().toLowerCase();
+      var pass = document.getElementById("authPass").value || "";
+      if (checkCreds(email, pass)){
+        try { localStorage.setItem(KEY, "1"); } catch(e){}
+        if (GATE) GATE.style.display = "none";
+      } else {
+        document.getElementById("authErr").textContent = "Invalid credentials. Use test*@onrol.test / onrol@ai";
+      }
+    });
+    var out = document.getElementById("logout");
+    if (out) out.addEventListener("click", function(e){
+      e.preventDefault();
+      try { localStorage.removeItem(KEY); } catch(e){}
+      location.reload();
+    });
+  })();
+  </script>
+</body>
+</html>

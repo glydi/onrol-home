@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Submissions &amp; XP · ONROL</title>
+  <meta name="robots" content="noindex,nofollow" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --orange-rgb:255,90,20; --orange:rgb(var(--orange-rgb)); --orange-lt:#ff8a4a;
+      --ink:#16181b; --muted:#5a5e64; --line:rgba(0,0,0,.14); --soft:#fff7f2;
+      --green:#2e7d32; --red:#c1361b;
+      --mono:'JetBrains Mono', ui-monospace, 'SF Mono', SFMono-Regular, Menlo, Consolas, monospace;
+      --sans:'Space Grotesk', system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+    }
+    *{ box-sizing:border-box; margin:0; padding:0; }
+    body{ font-family:var(--sans); color:var(--ink); background:#f5f5f4; line-height:1.5; }
+    a{ color:inherit; text-decoration:none; }
+
+    .nav{ position:fixed; top:18px; left:50%; transform:translateX(-50%); z-index:50; display:flex; align-items:center; padding:4px 18px;
+      background:rgba(10,10,12,.55); border:1px solid rgba(255,255,255,.2); box-shadow:0 6px 24px rgba(0,0,0,.28);
+      backdrop-filter:blur(20px) saturate(140%); -webkit-backdrop-filter:blur(20px) saturate(140%); }
+    .nav a{ color:#fff; font-family:var(--mono); font-size:12px; text-transform:uppercase; letter-spacing:1.5px; padding:6px 16px; transition:opacity .2s; white-space:nowrap; }
+    .nav a:hover{ opacity:.6; }
+    .nav .tagpill{ color:var(--orange-lt); }
+
+    .shell{ max-width:1120px; margin:0 auto; padding:110px 24px 60px; }
+    .head{ margin-bottom:20px; }
+    .eyebrow{ font-family:var(--mono); font-size:12px; letter-spacing:2px; text-transform:uppercase; color:var(--orange); margin-bottom:8px; }
+    h1{ font-size:clamp(28px,4vw,40px); font-weight:700; letter-spacing:-.02em; }
+    .head p{ font-family:var(--mono); font-size:13px; color:var(--muted); margin-top:8px; max-width:640px; line-height:1.6; }
+
+    .roles{ display:inline-flex; border:1px solid var(--line); background:#fff; margin:18px 0 22px; }
+    .roles button{ font-family:var(--mono); font-size:12px; letter-spacing:1px; text-transform:uppercase; padding:11px 22px; background:#fff; border:0; cursor:pointer; color:var(--muted); }
+    .roles button.active{ background:var(--ink); color:#fff; }
+
+    .stats{ display:grid; grid-template-columns:repeat(4,1fr); gap:1px; background:var(--line); border:1px solid var(--line); margin-bottom:22px; }
+    .stats .s{ background:#fff; padding:16px 18px; }
+    .stats .s strong{ display:block; font-size:26px; letter-spacing:-.02em; color:var(--orange); line-height:1; }
+    .stats .s span{ display:block; margin-top:8px; font-family:var(--mono); font-size:11px; text-transform:uppercase; letter-spacing:1px; color:var(--muted); }
+
+    .panel{ background:#fff; border:1px solid var(--line); padding:clamp(18px,2.4vw,26px); }
+    .cols{ display:grid; grid-template-columns:1fr 1fr; gap:18px; align-items:start; }
+    h2.sec{ font-size:19px; font-weight:700; letter-spacing:-.01em; margin-bottom:14px; }
+    h2.sec .c{ font-family:var(--mono); font-size:12px; color:var(--orange); margin-left:6px; }
+
+    label{ display:block; font-family:var(--mono); font-size:11px; letter-spacing:1px; text-transform:uppercase; color:var(--muted); margin:0 0 6px; }
+    .field{ margin-bottom:14px; }
+    input, select, textarea{ width:100%; min-height:42px; border:1px solid var(--line); background:#fff; padding:8px 12px; font-family:var(--sans); font-size:15px; color:var(--ink); outline:none; border-radius:0; }
+    textarea{ min-height:74px; resize:vertical; line-height:1.6; }
+    input:focus, select:focus, textarea:focus{ border-color:var(--orange); box-shadow:0 0 0 3px rgba(var(--orange-rgb),.12); }
+    .grid2{ display:grid; grid-template-columns:1fr 1fr; gap:12px; }
+
+    .btn{ display:inline-flex; align-items:center; justify-content:center; gap:8px; min-height:42px; padding:0 20px; border:1px solid var(--ink); background:var(--ink); color:#fff;
+      font-family:var(--mono); font-size:12px; letter-spacing:1px; text-transform:uppercase; cursor:pointer; transition:transform .15s, opacity .15s; }
+    .btn:hover{ transform:translateY(-1px); opacity:.92; }
+    .btn.orange{ background:var(--orange); border-color:var(--orange); }
+    .btn.ghost{ background:transparent; color:var(--ink); border-color:var(--line); }
+    .btn.green{ background:var(--green); border-color:var(--green); }
+    .btn.red{ background:transparent; color:var(--red); border-color:rgba(193,54,27,.4); }
+    .btn.small{ min-height:34px; padding:0 14px; font-size:11px; }
+    .filepick{ display:flex; gap:8px; flex-wrap:wrap; }
+    .filepick label.pick{ display:inline-flex; align-items:center; min-height:40px; padding:0 16px; border:1px dashed rgba(var(--orange-rgb),.5); color:var(--orange); font-family:var(--mono); font-size:12px; text-transform:uppercase; letter-spacing:1px; cursor:pointer; background:var(--soft); }
+    .chips{ display:flex; flex-wrap:wrap; gap:6px; margin-top:10px; }
+    .chip{ display:inline-flex; align-items:center; gap:8px; font-family:var(--mono); font-size:12px; background:#fff; border:1px solid var(--line); padding:6px 10px; color:var(--ink); }
+    .chip b{ color:var(--muted); font-weight:400; }
+    .chip .x{ cursor:pointer; color:var(--muted); }
+    .chip .x:hover{ color:var(--red); }
+
+    .sub{ border:1px solid var(--line); border-left:3px solid var(--muted); padding:16px 18px; margin-bottom:12px; background:#fff; }
+    .sub.pending{ border-left-color:var(--orange); }
+    .sub.approved{ border-left-color:var(--green); }
+    .sub.rejected{ border-left-color:var(--red); }
+    .sub-top{ display:flex; justify-content:space-between; align-items:baseline; gap:12px; flex-wrap:wrap; }
+    .sub-top h3{ font-size:17px; font-weight:700; letter-spacing:-.01em; }
+    .sub-who{ font-family:var(--mono); font-size:12px; color:var(--muted); }
+    .status{ font-family:var(--mono); font-size:11px; letter-spacing:1px; text-transform:uppercase; padding:4px 9px; border:1px solid var(--line); }
+    .status.pending{ color:var(--orange); border-color:rgba(var(--orange-rgb),.4); }
+    .status.approved{ color:var(--green); border-color:rgba(46,125,50,.4); }
+    .status.rejected{ color:var(--red); border-color:rgba(193,54,27,.4); }
+    .sub .meta{ font-family:var(--mono); font-size:12px; color:var(--muted); margin-top:8px; }
+    .sub .note{ font-size:14px; color:#41454b; margin-top:8px; }
+    .sub .files{ display:flex; flex-wrap:wrap; gap:6px; margin-top:10px; }
+    .sub .files .f{ font-family:var(--mono); font-size:11px; background:var(--soft); border:1px solid var(--line); padding:5px 9px; color:var(--ink); }
+    .review{ display:flex; align-items:center; gap:8px; margin-top:14px; flex-wrap:wrap; padding-top:12px; border-top:1px solid var(--line); }
+    .review .xp{ width:100px; min-height:38px; }
+    .review label.inl{ margin:0; }
+    .xp-badge{ font-family:var(--mono); font-size:12px; color:var(--green); font-weight:500; }
+
+    .board .row{ display:flex; align-items:center; gap:12px; padding:12px 0; border-bottom:1px solid var(--line); }
+    .board .rank{ font-family:var(--mono); font-size:13px; color:var(--orange); width:34px; }
+    .board .nm{ flex:1; font-weight:600; }
+    .board .lv{ font-family:var(--mono); font-size:11px; text-transform:uppercase; letter-spacing:1px; color:var(--muted); }
+    .board .xp{ font-family:var(--mono); font-weight:500; color:var(--ink); }
+    .bar{ height:6px; background:var(--line); margin-top:5px; }
+    .bar > i{ display:block; height:100%; background:var(--orange); }
+
+    .empty{ font-family:var(--mono); font-size:13px; color:var(--muted); padding:22px 0; }
+    .note-info{ font-family:var(--mono); font-size:12px; color:var(--muted); line-height:1.6; margin-top:16px; border-top:1px dashed var(--line); padding-top:14px; }
+    .toast{ position:fixed; left:50%; bottom:24px; transform:translateX(-50%) translateY(120px); background:var(--ink); color:#fff; padding:12px 18px; font-family:var(--mono); font-size:13px; z-index:100; transition:transform .3s ease; }
+    .toast.show{ transform:translateX(-50%) translateY(0); }
+
+    @media (max-width:820px){ .cols{ grid-template-columns:1fr; } .stats{ grid-template-columns:1fr 1fr; } .grid2{ grid-template-columns:1fr; } }
+      /* auth gate */
+    .auth-gate{ position:fixed; inset:0; z-index:1000; background:rgba(12,12,12,.82); backdrop-filter:blur(6px); -webkit-backdrop-filter:blur(6px); display:flex; align-items:center; justify-content:center; padding:20px; }
+    .auth-card{ width:min(400px,100%); background:#fff; border:1px solid var(--line); padding:clamp(24px,4vw,34px); }
+    .auth-eyebrow{ font-family:var(--mono); font-size:12px; letter-spacing:2px; text-transform:uppercase; color:var(--orange); margin-bottom:8px; }
+    .auth-card h2{ font-size:26px; font-weight:700; letter-spacing:-.01em; margin-bottom:6px; }
+    .auth-sub{ font-family:var(--mono); font-size:12px; color:var(--muted); margin-bottom:18px; }
+    .auth-card label{ margin-top:12px; }
+    .auth-card input{ margin-top:2px; }
+    .auth-err{ color:#c1361b; font-family:var(--mono); font-size:12px; min-height:16px; margin-top:8px; }
+    .auth-note{ font-family:var(--mono); font-size:11px; color:var(--muted); margin-top:14px; line-height:1.5; }
+    .nav a.logout{ color:var(--orange-lt); }
+</style>
+</head>
+<body>
+  <div id="authGate" class="auth-gate">
+    <form id="authForm" class="auth-card">
+      <p class="auth-eyebrow">ONROL Admin</p>
+      <h2>Sign in</h2>
+      <p class="auth-sub">Access the course builder and submissions tools.</p>
+      <label>Email</label>
+      <input id="authEmail" type="text" placeholder="test@onrol.test" autocomplete="username" required>
+      <label>Password</label>
+      <input id="authPass" type="password" placeholder="password" autocomplete="current-password" required>
+      <div id="authErr" class="auth-err"></div>
+      <button class="btn orange" type="submit" style="width:100%;margin-top:6px;">Sign in</button>
+      <p class="auth-note">No device limit &mdash; sign in from any device with your ONROL credentials.</p>
+    </form>
+  </div>
+  <nav class="nav">
+    <a href="index.html">Home</a>
+    <a href="course-builder.html">Course Builder</a>
+    <a class="tagpill" href="submissions.html">Submissions</a>
+    <a href="#" id="logout" class="logout">Log out</a>
+  </nav>
+
+  <div class="shell">
+    <div class="head">
+      <p class="eyebrow">ONROL Admin</p>
+      <h1>Submissions &amp; XP</h1>
+      <p>Students submit project files or folders. An instructor verifies each one — mark it <b>Right</b> to approve and award XP, or send it back with feedback.</p>
+    </div>
+
+    <div class="roles">
+      <button id="roleStudent" class="active" data-role="student">Student</button>
+      <button id="roleInstructor" data-role="instructor">Instructor</button>
+    </div>
+
+    <div class="stats" id="stats"></div>
+    <div id="view"></div>
+  </div>
+
+  <div class="toast" id="toast"></div>
+
+  <script>
+  (function(){
+    "use strict";
+    var KEY = "onrol_submissions_v1";
+    var view = document.getElementById("view");
+    var statsEl = document.getElementById("stats");
+    var toastEl = document.getElementById("toast");
+    var role = "student";
+    var tempFiles = [];
+
+    var subs = load();
+
+    function load(){ try { return JSON.parse(localStorage.getItem(KEY)) || []; } catch(e){ return []; } }
+    function persist(){ localStorage.setItem(KEY, JSON.stringify(subs)); }
+    function uid(){ return "s" + Date.now().toString(36) + Math.random().toString(36).slice(2,7); }
+    function esc(s){ return String(s==null?"":s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;"); }
+    function kb(n){ return n<1024 ? n+" B" : n<1048576 ? (n/1024).toFixed(0)+" KB" : (n/1048576).toFixed(1)+" MB"; }
+    function nowStr(){ var d=new Date(); return d.toLocaleDateString()+" "+d.toLocaleTimeString([], {hour:"2-digit", minute:"2-digit"}); }
+    function levelFor(xp){ return Math.floor(xp/500)+1; }
+    var toastTimer;
+    function toast(m){ toastEl.textContent=m; toastEl.classList.add("show"); clearTimeout(toastTimer); toastTimer=setTimeout(function(){ toastEl.classList.remove("show"); }, 2400); }
+
+    function xpByStudent(){
+      var map = {};
+      subs.forEach(function(s){ if (s.status==="approved"){ map[s.student]=(map[s.student]||0)+(s.xp||0); } });
+      return map;
+    }
+
+    function renderStats(){
+      var pending = subs.filter(function(s){ return s.status==="pending"; }).length;
+      var approved = subs.filter(function(s){ return s.status==="approved"; }).length;
+      var totalXp = subs.reduce(function(n,s){ return n + (s.status==="approved" ? (s.xp||0) : 0); }, 0);
+      statsEl.innerHTML =
+        '<div class="s"><strong>'+subs.length+'</strong><span>Submissions</span></div>'
+      + '<div class="s"><strong>'+pending+'</strong><span>Pending review</span></div>'
+      + '<div class="s"><strong>'+approved+'</strong><span>Approved</span></div>'
+      + '<div class="s"><strong>'+totalXp+'</strong><span>XP awarded</span></div>';
+    }
+
+    /* ---------- STUDENT ---------- */
+    function renderStudent(){
+      var chips = tempFiles.map(function(f, i){
+        return '<span class="chip">'+esc(f.path||f.name)+' <b>'+kb(f.size)+'</b> <span class="x" data-action="rm-file" data-i="'+i+'">✕</span></span>';
+      }).join("");
+
+      var mine = subs.slice().reverse().map(subCard).join("") || '<div class="empty">No submissions yet.</div>';
+
+      view.innerHTML =
+        '<div class="cols">'
+        + '<div class="panel">'
+        +   '<h2 class="sec">Submit a project</h2>'
+        +   '<div class="grid2">'
+        +     '<div class="field"><label>Your name</label><input id="f-student" placeholder="e.g. Priya S"></div>'
+        +     '<div class="field"><label>Course / Module</label><input id="f-course" placeholder="e.g. AI Generalist · Module 3"></div>'
+        +   '</div>'
+        +   '<div class="field"><label>Project title</label><input id="f-project" placeholder="e.g. WhatsApp lead-qualification bot"></div>'
+        +   '<div class="field"><label>Repo / Live link (optional)</label><input id="f-link" placeholder="https://..."></div>'
+        +   '<div class="field"><label>Notes for the reviewer (optional)</label><textarea id="f-note" placeholder="What you built, how to run it..."></textarea></div>'
+        +   '<div class="field"><label>Files or folder</label>'
+        +     '<div class="filepick">'
+        +       '<label class="pick">+ Add files<input type="file" id="pickFiles" multiple hidden></label>'
+        +       '<label class="pick">+ Add folder<input type="file" id="pickFolder" webkitdirectory multiple hidden></label>'
+        +     '</div>'
+        +     '<div class="chips">'+chips+'</div>'
+        +   '</div>'
+        +   '<button class="btn orange" data-action="submit">Submit for review</button>'
+        +   '<p class="note-info">Prototype note: submissions save in this browser. File <b>names, sizes and folder paths</b> are recorded so the instructor can see what was sent — the file contents are not uploaded (that needs a backend).</p>'
+        + '</div>'
+        + '<div class="panel"><h2 class="sec">My submissions <span class="c">'+subs.length+'</span></h2>'+mine+'</div>'
+        + '</div>';
+    }
+
+    function subCard(s){
+      var files = (s.files||[]).map(function(f){ return '<span class="f">'+esc(f.path||f.name)+' · '+kb(f.size)+'</span>'; }).join("");
+      var xpLine = s.status==="approved" ? '<span class="xp-badge">+'+s.xp+' XP</span>' : "";
+      var fb = s.feedback ? '<div class="note"><b>Feedback:</b> '+esc(s.feedback)+'</div>' : "";
+      var link = s.link ? ' · <a href="'+esc(s.link)+'" target="_blank" rel="noreferrer" style="color:var(--orange)">link</a>' : "";
+      return '<div class="sub '+s.status+'">'
+        + '<div class="sub-top"><div><h3>'+esc(s.project||"Untitled")+'</h3>'
+        +   '<div class="sub-who">'+esc(s.student||"—")+' · '+esc(s.course||"—")+'</div></div>'
+        +   '<span class="status '+s.status+'">'+s.status+' '+xpLine+'</span></div>'
+        + '<div class="meta">'+esc(s.createdAt||"")+link+'</div>'
+        + (s.note ? '<div class="note">'+esc(s.note)+'</div>' : "")
+        + (files ? '<div class="files">'+files+'</div>' : "")
+        + fb
+        + '</div>';
+    }
+
+    /* ---------- INSTRUCTOR ---------- */
+    function renderInstructor(){
+      var pending = subs.filter(function(s){ return s.status==="pending"; });
+      var reviewed = subs.filter(function(s){ return s.status!=="pending"; });
+
+      var pendingHtml = pending.length ? pending.slice().reverse().map(reviewCard).join("") : '<div class="empty">Nothing waiting for review. 🎉</div>';
+      var reviewedHtml = reviewed.length ? reviewed.slice().reverse().map(subCard).join("") : '<div class="empty">No reviewed submissions yet.</div>';
+
+      var xpMap = xpByStudent();
+      var board = Object.keys(xpMap).map(function(n){ return { name:n, xp:xpMap[n] }; }).sort(function(a,b){ return b.xp-a.xp; });
+      var maxXp = board.length ? board[0].xp : 0;
+      var boardHtml = board.length ? board.map(function(b, i){
+        var pct = maxXp ? Math.round(b.xp/maxXp*100) : 0;
+        return '<div class="row"><span class="rank">#'+(i+1)+'</span>'
+          + '<div class="nm">'+esc(b.name)+'<div class="bar"><i style="width:'+pct+'%"></i></div></div>'
+          + '<span class="lv">Lv '+levelFor(b.xp)+'</span><span class="xp">'+b.xp+' XP</span></div>';
+      }).join("") : '<div class="empty">No XP awarded yet.</div>';
+
+      view.innerHTML =
+        '<div class="cols">'
+        + '<div class="panel"><h2 class="sec">Review queue <span class="c">'+pending.length+'</span></h2>'+pendingHtml+'</div>'
+        + '<div class="panel"><h2 class="sec">XP leaderboard</h2><div class="board">'+boardHtml+'</div></div>'
+        + '</div>'
+        + '<div class="panel" style="margin-top:18px;"><h2 class="sec">Reviewed <span class="c">'+reviewed.length+'</span></h2>'+reviewedHtml+'</div>';
+    }
+
+    function reviewCard(s){
+      var files = (s.files||[]).map(function(f){ return '<span class="f">'+esc(f.path||f.name)+' · '+kb(f.size)+'</span>'; }).join("");
+      var link = s.link ? ' · <a href="'+esc(s.link)+'" target="_blank" rel="noreferrer" style="color:var(--orange)">open link</a>' : "";
+      return '<div class="sub pending">'
+        + '<div class="sub-top"><div><h3>'+esc(s.project||"Untitled")+'</h3>'
+        +   '<div class="sub-who">'+esc(s.student||"—")+' · '+esc(s.course||"—")+'</div></div>'
+        +   '<span class="status pending">pending</span></div>'
+        + '<div class="meta">'+esc(s.createdAt||"")+link+'</div>'
+        + (s.note ? '<div class="note">'+esc(s.note)+'</div>' : "")
+        + (files ? '<div class="files">'+files+'</div>' : '<div class="meta">No files attached.</div>')
+        + '<div class="review">'
+        +   '<label class="inl">XP</label><input class="xp" type="number" min="0" step="10" value="100" data-xp="'+s.id+'">'
+        +   '<button class="btn green small" data-action="approve" data-id="'+s.id+'">✓ Right — Approve</button>'
+        +   '<button class="btn red small" data-action="reject" data-id="'+s.id+'">Send back</button>'
+        + '</div>'
+        + '</div>';
+    }
+
+    /* ---------- render root ---------- */
+    function render(){
+      renderStats();
+      if (role==="student") renderStudent(); else renderInstructor();
+    }
+
+    /* ---------- events ---------- */
+    document.getElementById("roleStudent").addEventListener("click", function(){ setRole("student"); });
+    document.getElementById("roleInstructor").addEventListener("click", function(){ setRole("instructor"); });
+    function setRole(r){
+      role = r;
+      document.getElementById("roleStudent").classList.toggle("active", r==="student");
+      document.getElementById("roleInstructor").classList.toggle("active", r==="instructor");
+      render();
+    }
+
+    document.addEventListener("change", function(e){
+      var t = e.target;
+      if (t.id==="pickFiles" || t.id==="pickFolder"){
+        Array.prototype.forEach.call(t.files, function(f){
+          tempFiles.push({ name:f.name, size:f.size, path:f.webkitRelativePath || f.name });
+        });
+        t.value = "";
+        renderStudent();
+      }
+    });
+
+    document.addEventListener("click", function(e){
+      var btn = e.target.closest("[data-action]"); if (!btn) return;
+      var a = btn.dataset.action;
+      if (a==="rm-file"){ tempFiles.splice(parseInt(btn.dataset.i,10), 1); renderStudent(); return; }
+      if (a==="submit"){ doSubmit(); return; }
+      if (a==="approve"){ doReview(btn.dataset.id, true); return; }
+      if (a==="reject"){ doReview(btn.dataset.id, false); return; }
+    });
+
+    function val(id){ var el=document.getElementById(id); return el ? el.value.trim() : ""; }
+    function doSubmit(){
+      var student = val("f-student"), project = val("f-project");
+      if (!student){ toast("Enter your name"); return; }
+      if (!project){ toast("Enter a project title"); return; }
+      subs.push({
+        id:uid(), student:student, course:val("f-course"), project:project,
+        link:val("f-link"), note:val("f-note"), files:tempFiles.slice(),
+        status:"pending", xp:0, feedback:"", createdAt:nowStr(), reviewedAt:""
+      });
+      tempFiles = [];
+      persist();
+      toast("Submitted for review ✓");
+      render();
+    }
+
+    function doReview(id, approve){
+      var s = null;
+      for (var i=0;i<subs.length;i++){ if (subs[i].id===id){ s=subs[i]; break; } }
+      if (!s) return;
+      if (approve){
+        var input = document.querySelector('[data-xp="'+id+'"]');
+        var xp = input ? parseInt(input.value,10) : 100;
+        if (isNaN(xp) || xp<0) xp = 0;
+        s.status="approved"; s.xp=xp; s.feedback=""; s.reviewedAt=nowStr();
+        persist(); render(); toast("Approved · +"+xp+" XP to "+s.student);
+      } else {
+        var fb = prompt("Feedback for the student (what to fix):", "");
+        if (fb===null) return;
+        s.status="rejected"; s.xp=0; s.feedback=fb; s.reviewedAt=nowStr();
+        persist(); render(); toast("Sent back with feedback");
+      }
+    }
+
+    render();
+  })();
+  </script>
+  <script>
+  (function(){
+    var GATE = document.getElementById("authGate");
+    var KEY = "onrol_admin_auth";
+    function authed(){ try { return localStorage.getItem(KEY) === "1"; } catch(e){ return false; } }
+    if (authed() && GATE) GATE.style.display = "none";
+    // Accounts with unlimited access — all tools, any device, no expiry.
+    function checkCreds(email, pass){
+      if (email === "owner@onrol.in" && pass === "onrol@2025") return true;      // owner (unlimited)
+      if (/^test.*@onrol\.test$/.test(email) && pass === "onrol@ai") return true; // test
+      return false;
+    }
+    var form = document.getElementById("authForm");
+    if (form) form.addEventListener("submit", function(e){
+      e.preventDefault();
+      var email = (document.getElementById("authEmail").value || "").trim().toLowerCase();
+      var pass = document.getElementById("authPass").value || "";
+      if (checkCreds(email, pass)){
+        try { localStorage.setItem(KEY, "1"); } catch(e){}
+        if (GATE) GATE.style.display = "none";
+      } else {
+        document.getElementById("authErr").textContent = "Invalid credentials. Use test*@onrol.test / onrol@ai";
+      }
+    });
+    var out = document.getElementById("logout");
+    if (out) out.addEventListener("click", function(e){
+      e.preventDefault();
+      try { localStorage.removeItem(KEY); } catch(e){}
+      location.reload();
+    });
+  })();
+  </script>
+</body>
+</html>
