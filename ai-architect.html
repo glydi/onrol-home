@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>AI Architect Program — Build &amp; Lead AI Systems | ONROL</title>
-  <meta name="description" content="Become an AI Architect in 3 months. Design, build, and ship production-grade AI systems — multi-agent systems, RAG engines, evals, guardrails, and deployment — plus a real engineering portfolio." />
+  <meta name="description" content="Become an AI Architect in 6 months. Design, build, deploy, and scale complete AI systems — apps, AI agents, automations, RAG, analytics, and production-ready solutions. 20+ projects, mentor-led, 100% online." />
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -273,10 +273,10 @@
 
     /* FORM CARD — orange block over the white hero */
     .form-card {
-      background: var(--orange);
+      background: linear-gradient(165deg, #ff824a 0%, #f96225 100%);
       color: #fff;
-      border: 1px solid var(--orange);
-      box-shadow: 0 30px 64px rgba(var(--orange-rgb), 0.32);
+      border: 1px solid #f96225;
+      box-shadow: 0 24px 54px rgba(var(--orange-rgb), 0.20);
       padding: 30px;
       position: sticky;
       top: 100px;
@@ -396,7 +396,7 @@
     /* WHAT YOU BUILD — full grid with junction nodes */
     .build-grid {
       display: grid;
-      grid-template-columns: repeat(5, 1fr);
+      grid-template-columns: repeat(4, 1fr);
       gap: 1px;
       background: var(--line);
       border: 1px solid var(--line);
@@ -721,6 +721,72 @@
       font-weight: 500;
     }
 
+    /* CERTIFICATE */
+    .cert-card {
+      display: flex;
+      justify-content: center;
+    }
+
+    .cert-frame {
+      width: min(760px, 100%);
+      background: #fff;
+      border: 1px solid var(--line);
+      box-shadow: 0 24px 60px rgba(0, 0, 0, 0.08);
+      padding: clamp(32px, 5vw, 56px) clamp(24px, 4vw, 48px);
+      text-align: center;
+      position: relative;
+    }
+
+    .cert-frame::before {
+      content: "";
+      position: absolute;
+      inset: 14px;
+      border: 1px solid rgba(var(--orange-rgb), 0.4);
+      pointer-events: none;
+    }
+
+    .cert-brand {
+      font-family: var(--sans);
+      font-weight: 700;
+      letter-spacing: 0.32em;
+      font-size: 22px;
+      color: var(--ink);
+    }
+
+    .cert-kicker {
+      font-family: var(--mono);
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      font-size: 12px;
+      color: var(--orange);
+      margin-top: 10px;
+    }
+
+    .cert-line {
+      font-family: var(--mono);
+      font-size: 13px;
+      color: var(--muted);
+      margin-top: 24px;
+    }
+
+    .cert-name {
+      font-family: var(--sans);
+      font-size: clamp(26px, 4vw, 38px);
+      font-weight: 600;
+      letter-spacing: -0.01em;
+      color: var(--ink);
+      margin-top: 8px;
+    }
+
+    .cert-program {
+      font-family: var(--sans);
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      font-size: clamp(20px, 2.6vw, 28px);
+      color: var(--orange);
+      margin-top: 12px;
+    }
+
     /* PRICING — dark */
     .pricing {
       background: var(--bg);
@@ -1013,15 +1079,15 @@
         <img class="hero-aster" src="ast.png" alt="" aria-hidden="true" />
         <div class="container hero-grid">
           <div>
-            <div class="eyebrow">Advanced track · 100% online · India</div>
-            <h1>Become an <span class="gradient-text">AI Architect</span> in 3 months</h1>
-            <p class="hero-copy">Go beyond using AI. Design, build, and ship production-grade AI systems — agents, RAG, evals, and deployment — that stay reliable under real users and real load.</p>
+            <div class="eyebrow">Live cohort · Mentor-led · 100% online · India</div>
+            <h1>Become an <span class="gradient-text">AI Architect</span> in 6 months</h1>
+            <p class="hero-copy">Go beyond AI tools. Design, build, deploy, and scale complete AI-powered business systems — apps, agents, automations, RAG, and production-ready solutions.</p>
 
             <div class="hero-stats" aria-label="Program highlights">
-              <div class="stat"><strong>5</strong><span>Production systems</span></div>
-              <div class="stat"><strong>8+</strong><span>Projects</span></div>
-              <div class="stat"><strong>60+</strong><span>Live hours</span></div>
-              <div class="stat"><strong>3</strong><span>Months</span></div>
+              <div class="stat"><strong>6+6</strong><span>Months</span></div>
+              <div class="stat"><strong>20</strong><span>Modules</span></div>
+              <div class="stat"><strong>250+</strong><span>Hours</span></div>
+              <div class="stat"><strong>20+</strong><span>Projects</span></div>
             </div>
 
             <div class="hero-actions">
@@ -1032,7 +1098,7 @@
 
           <aside class="form-card" id="register">
             <h2>Register for the AI Architect Program</h2>
-            <p>Reserve your seat — our team confirms your registration with fees, schedule, prerequisites, and the cohort guide on WhatsApp within 24 hours.</p>
+            <p>Reserve your seat — our team confirms your registration with fees, schedule, and the full cohort guide on WhatsApp within 24 hours.</p>
             <form id="leadForm">
               <div class="field">
                 <label for="fullName">Full Name</label>
@@ -1050,11 +1116,11 @@
                 <label for="role">I am a</label>
                 <select id="role" name="role" required>
                   <option value="">Select one</option>
-                  <option>Developer</option>
-                  <option>Technical Founder</option>
                   <option>Working Professional</option>
-                  <option>AI Generalist</option>
-                  <option>Student</option>
+                  <option>Freelancer / Consultant</option>
+                  <option>Startup Founder</option>
+                  <option>Developer</option>
+                  <option>AI Generalist Graduate</option>
                 </select>
               </div>
               <button class="button orange" type="submit" style="width:100%;">Register Now</button>
@@ -1068,9 +1134,9 @@
         <div class="container section-head">
           <div>
             <div class="tag">Why ONROL</div>
-            <h2 class="section-title">Most AI courses stop where engineering begins</h2>
+            <h2 class="section-title">No other AI program is built like this</h2>
           </div>
-          <p class="section-desc">This is not prompting tips. This is not a demo notebook. This is system design. You will architect, evaluate, and deploy real AI systems that hold up in production.</p>
+          <p class="section-desc">This is not theory. This is not tools. This is execution. You will build real systems, real projects, and a real income pathway.</p>
         </div>
       </section>
 
@@ -1079,51 +1145,75 @@
           <div class="section-head">
             <div>
               <div class="tag">What You Will Build</div>
-              <h2 class="section-title">5 production systems you design and ship</h2>
+              <h2 class="section-title">Production-ready AI systems, end to end</h2>
             </div>
-            <p class="section-desc">Each system is portfolio-ready and built to production standards — evaluated, observable, and deployable.</p>
+            <p class="section-desc">Across the program you will build these production-ready AI systems — the kind businesses pay to deploy.</p>
           </div>
 
           <div class="build-grid">
             <article class="build-card">
               <div>
-                <div class="num">SYSTEM 01</div>
-                <h3>Multi-Agent System</h3>
-                <p>Agents that plan, call tools, and collaborate to finish multi-step work.</p>
+                <div class="num">BUILD 01</div>
+                <h3>AI Applications</h3>
+                <p>Real-world web applications and AI-powered products.</p>
               </div>
-              <div class="tools">LangGraph · CrewAI · n8n</div>
+              <div class="tools">React · Next.js · APIs</div>
             </article>
             <article class="build-card">
               <div>
-                <div class="num">SYSTEM 02</div>
-                <h3>RAG Knowledge Engine</h3>
-                <p>Grounded answers over your own documents with vector search and re-ranking.</p>
+                <div class="num">BUILD 02</div>
+                <h3>AI Agents</h3>
+                <p>Single-agent and multi-agent autonomous systems.</p>
               </div>
-              <div class="tools">LlamaIndex · pgvector · Pinecone</div>
+              <div class="tools">Claude · MCP · Multi-agent</div>
             </article>
             <article class="build-card">
               <div>
-                <div class="num">SYSTEM 03</div>
-                <h3>Production AI API</h3>
-                <p>Scalable, authenticated AI services with streaming, caching, and rate limits.</p>
+                <div class="num">BUILD 03</div>
+                <h3>Automation Systems</h3>
+                <p>Business workflows that eliminate repetitive work.</p>
               </div>
-              <div class="tools">FastAPI · Supabase · Vercel</div>
+              <div class="tools">n8n · Zapier · Webhooks</div>
             </article>
             <article class="build-card">
               <div>
-                <div class="num">SYSTEM 04</div>
-                <h3>Eval & Guardrail Harness</h3>
-                <p>Automated tests, tracing, and safety checks that keep AI reliable.</p>
+                <div class="num">BUILD 04</div>
+                <h3>RAG &amp; Knowledge Systems</h3>
+                <p>Knowledge-driven assistants and enterprise chatbots.</p>
               </div>
-              <div class="tools">Langfuse · Ragas · Guardrails</div>
+              <div class="tools">Vector DB · Embeddings · RAG</div>
             </article>
             <article class="build-card">
               <div>
-                <div class="num">SYSTEM 05</div>
-                <h3>Deployed AI Product</h3>
-                <p>A full-stack AI product, monitored and cost-optimised for real traffic.</p>
+                <div class="num">BUILD 05</div>
+                <h3>Analytics Dashboards</h3>
+                <p>Data visualization and business intelligence systems.</p>
               </div>
-              <div class="tools">Docker · Cloud · Monitoring</div>
+              <div class="tools">Power BI · SQL · Python</div>
+            </article>
+            <article class="build-card">
+              <div>
+                <div class="num">BUILD 06</div>
+                <h3>Marketing Engines</h3>
+                <p>Lead generation, SEO, and content automation systems.</p>
+              </div>
+              <div class="tools">SEO · Ads · Content AI</div>
+            </article>
+            <article class="build-card">
+              <div>
+                <div class="num">BUILD 07</div>
+                <h3>Personal Brand Assets</h3>
+                <p>Portfolio sites, LinkedIn systems, and professional presence.</p>
+              </div>
+              <div class="tools">Portfolio · LinkedIn · Branding</div>
+            </article>
+            <article class="build-card">
+              <div>
+                <div class="num">BUILD 08</div>
+                <h3>Production-Ready Solutions</h3>
+                <p>End-to-end systems ready for deployment and client delivery.</p>
+              </div>
+              <div class="tools">Deploy · Cloud · Scaling</div>
             </article>
           </div>
         </div>
@@ -1134,93 +1224,94 @@
           <div class="section-head">
             <div>
               <div class="tag">Curriculum</div>
-              <h2 class="section-title">Your 3-month AI Architect journey</h2>
+              <h2 class="section-title">Your 6-month AI Architect journey</h2>
             </div>
-            <p class="section-desc">A structured path with 60+ live hours of system design, hands-on builds, code reviews, and a production capstone.</p>
+            <p class="section-desc">Six phases of live training, plus six months of guided execution — from web and data foundations to production AI architecture, deployment, and career growth.</p>
           </div>
 
           <div class="journey">
             <article class="module">
-              <div class="module-index">Module 1 · Days 1–5</div>
+              <div class="module-index">Phase 1 · Month 1</div>
               <div>
-                <h3>LLM Foundations for Builders</h3>
+                <h3>Foundations</h3>
                 <ul>
-                  <li>Model selection, context windows, and tokenisation trade-offs</li>
-                  <li>Structured output, function calling, and tool schemas</li>
-                  <li>Prompt architecture, system design, and cost/latency budgeting</li>
-                  <li>Building across Claude, OpenAI, and open models</li>
+                  <li>Web Dev — HTML, CSS, JS, React</li>
+                  <li>Python &amp; Data Systems</li>
+                  <li>SQL, Power BI, and Analytics</li>
+                  <li>UI Fundamentals</li>
                 </ul>
               </div>
-              <div class="module-meta"><div><strong>5</strong><span>Days</span></div><div><strong>10</strong><span>Hours</span></div></div>
+              <div class="module-meta"><div><strong>M1</strong><span>Month</span></div><div><strong>40</strong><span>Hours</span></div></div>
             </article>
 
             <article class="module">
-              <div class="module-index">Module 2 · Days 6–10</div>
+              <div class="module-index">Phase 2 · Month 2</div>
               <div>
-                <h3>Agent Architecture & Orchestration</h3>
+                <h3>AI Core</h3>
                 <ul>
-                  <li>Agent loops, planning, and reliable tool-use</li>
-                  <li>Memory, state, and long-running tasks</li>
-                  <li>Multi-agent systems and orchestration patterns</li>
-                  <li>Building with LangGraph, CrewAI, and n8n</li>
+                  <li>LLMs &amp; Prompt Engineering</li>
+                  <li>RAG &amp; Knowledge Systems</li>
+                  <li>Diffusion / Media AI</li>
+                  <li>AI Productivity Systems</li>
                 </ul>
               </div>
-              <div class="module-meta"><div><strong>5</strong><span>Days</span></div><div><strong>10</strong><span>Hours</span></div></div>
+              <div class="module-meta"><div><strong>M2</strong><span>Month</span></div><div><strong>40</strong><span>Hours</span></div></div>
             </article>
 
             <article class="module">
-              <div class="module-index">Module 3 · Days 11–15</div>
+              <div class="module-index">Phase 3 · Month 3</div>
               <div>
-                <h3>Retrieval & RAG Systems</h3>
+                <h3>Automation &amp; Agents</h3>
                 <ul>
-                  <li>Chunking, embeddings, and vector databases</li>
-                  <li>Hybrid search, re-ranking, and grounding</li>
-                  <li>RAG over private and structured data</li>
-                  <li>Citations and evals to cut hallucination</li>
+                  <li>n8n &amp; Workflow Engineering</li>
+                  <li>APIs &amp; Webhooks</li>
+                  <li>AI Agents &amp; Multi-Agent</li>
+                  <li>Agentic Workflows + MCP</li>
                 </ul>
               </div>
-              <div class="module-meta"><div><strong>5</strong><span>Days</span></div><div><strong>10</strong><span>Hours</span></div></div>
+              <div class="module-meta"><div><strong>M3</strong><span>Month</span></div><div><strong>45</strong><span>Hours</span></div></div>
             </article>
 
             <article class="module">
-              <div class="module-index">Module 4 · Days 16–19</div>
+              <div class="module-index">Phase 4 · Month 4</div>
               <div>
-                <h3>Reliability, Evals & Guardrails</h3>
+                <h3>Build Products</h3>
                 <ul>
-                  <li>Designing evals and regression test suites</li>
-                  <li>Observability, tracing, and monitoring</li>
-                  <li>Guardrails, safety, and prompt-injection defense</li>
-                  <li>Measuring and improving accuracy in production</li>
+                  <li>Vibe Coding</li>
+                  <li>App &amp; Web Development</li>
+                  <li>Claude / OpenAI Ecosystem</li>
+                  <li>Backend &amp; Database Design</li>
                 </ul>
               </div>
-              <div class="module-meta"><div><strong>4</strong><span>Days</span></div><div><strong>8</strong><span>Hours</span></div></div>
+              <div class="module-meta"><div><strong>M4</strong><span>Month</span></div><div><strong>45</strong><span>Hours</span></div></div>
             </article>
 
             <article class="module">
-              <div class="module-index">Module 5 · Days 20–23</div>
+              <div class="module-index">Phase 5 · Month 5</div>
               <div>
-                <h3>Production Engineering & Deployment</h3>
+                <h3>Architecture &amp; Deploy</h3>
                 <ul>
-                  <li>APIs, streaming, queues, and caching</li>
-                  <li>Scaling, latency, and cost optimisation</li>
-                  <li>Auth, rate limiting, and secrets management</li>
-                  <li>Deploying and monitoring AI products</li>
+                  <li>System &amp; AI Architecture</li>
+                  <li>Deployment &amp; Hosting</li>
+                  <li>Scaling &amp; Security</li>
+                  <li>AI Ops &amp; Governance</li>
                 </ul>
               </div>
-              <div class="module-meta"><div><strong>4</strong><span>Days</span></div><div><strong>8</strong><span>Hours</span></div></div>
+              <div class="module-meta"><div><strong>M5</strong><span>Month</span></div><div><strong>45</strong><span>Hours</span></div></div>
             </article>
 
             <article class="module">
-              <div class="module-index">Module 6 · Days 24–27</div>
+              <div class="module-index">Phase 6 · Month 6 (+6 guided)</div>
               <div>
-                <h3>Capstone — Ship a Production System</h3>
+                <h3>Growth &amp; Career</h3>
                 <ul>
-                  <li>Design and architect a complete AI system</li>
-                  <li>Build, evaluate, and deploy end-to-end</li>
-                  <li>Architecture review, portfolio, and next steps</li>
+                  <li>Digital Marketing &amp; Ads</li>
+                  <li>Social &amp; Creative Production</li>
+                  <li>Personal Branding</li>
+                  <li>Capstone + Portfolio</li>
                 </ul>
               </div>
-              <div class="module-meta"><div><strong>4</strong><span>Days</span></div><div><strong>12</strong><span>Hours</span></div></div>
+              <div class="module-meta"><div><strong>6+6</strong><span>Months</span></div><div><strong>40</strong><span>Hours</span></div></div>
             </article>
           </div>
         </div>
@@ -1231,17 +1322,17 @@
           <div class="section-head">
             <div>
               <div class="tag">Who Is This For?</div>
-              <h2 class="section-title">Built for people ready to engineer AI</h2>
+              <h2 class="section-title">Built for people ready to architect AI</h2>
             </div>
-            <p class="section-desc">Outcome-focused and hands-on. Some coding or prior AI/automation experience helps — we teach system design and AI engineering, not low-level algorithms.</p>
+            <p class="section-desc">Foundations are beginner-friendly; by the end you are advanced. Whether or not you code today, you will leave able to design and ship complete AI systems.</p>
           </div>
 
           <div class="audience-grid">
-            <div class="audience-card"><h3>Builders</h3><p>You've shipped with AI and want to architect serious systems.</p></div>
-            <div class="audience-card"><h3>Developers</h3><p>Add agents, RAG, and AI engineering to your stack.</p></div>
-            <div class="audience-card"><h3>Technical Founders</h3><p>Lead AI products end to end with confidence.</p></div>
-            <div class="audience-card"><h3>Automation Pros</h3><p>Level up from no-code workflows to real systems.</p></div>
-            <div class="audience-card"><h3>AI Generalists</h3><p>Go deeper after the Generalist track.</p></div>
+            <div class="audience-card"><h3>Working Professionals</h3><p>Integrate AI into your role and future-proof your career.</p></div>
+            <div class="audience-card"><h3>Freelancers &amp; Consultants</h3><p>Deliver AI solutions and automation to clients.</p></div>
+            <div class="audience-card"><h3>Startup Founders</h3><p>Build AI-first products, services, and businesses.</p></div>
+            <div class="audience-card"><h3>Developers &amp; Technical Learners</h3><p>Combine software development with modern AI systems.</p></div>
+            <div class="audience-card"><h3>AI Generalist Graduates</h3><p>Move from AI execution to AI architecture.</p></div>
           </div>
         </div>
       </section>
@@ -1250,34 +1341,57 @@
         <div class="container">
           <div class="section-head">
             <div>
-              <div class="tag">By Month 3</div>
-              <h2 class="section-title">You’ll ship systems, not just certificates</h2>
+              <div class="tag">By Month 6</div>
+              <h2 class="section-title">By the end, you'll have proof — not theory</h2>
             </div>
-            <p class="section-desc">The program is built around production outcomes you can show to employers, founders, and engineering teams.</p>
+            <p class="section-desc">Everything you build ladders up to a portfolio, a credential, and positioning that opens roles, consulting, and freelance income.</p>
           </div>
 
           <div class="outcomes-wrap">
             <div class="outcome-list">
-              <div class="outcome-item"><strong>Production-Grade Systems</strong><p>AI systems that hold up under real users and load.</p></div>
-              <div class="outcome-item"><strong>8+ Real-World Projects</strong><p>Across agents, RAG, evals, APIs, and deployment.</p></div>
-              <div class="outcome-item"><strong>5 AI Systems</strong><p>Functional systems you can run, explain, and scale.</p></div>
-              <div class="outcome-item"><strong>Eval & Guardrail Harness</strong><p>Reliability tooling that employers ask for.</p></div>
-              <div class="outcome-item"><strong>Architectural Judgment</strong><p>Right trade-offs for cost, latency, and reliability.</p></div>
-              <div class="outcome-item"><strong>Deployment Skills</strong><p>Ship, monitor, and optimise AI in production.</p></div>
-              <div class="outcome-item"><strong>Engineering Portfolio</strong><p>Proof of serious AI system design.</p></div>
-              <div class="outcome-item"><strong>AI Engineer Pathway</strong><p>Roadmap to AI Engineer and AI Architect roles.</p></div>
+              <div class="outcome-item"><strong>Design AI-Powered Systems</strong><p>End-to-end business systems.</p></div>
+              <div class="outcome-item"><strong>Build Apps &amp; Automations</strong><p>Websites, apps, and workflows.</p></div>
+              <div class="outcome-item"><strong>AI Agents &amp; RAG Systems</strong><p>Knowledge-driven AI assistants.</p></div>
+              <div class="outcome-item"><strong>Production Deployments</strong><p>Ship solutions to real users.</p></div>
+              <div class="outcome-item"><strong>Growth Systems</strong><p>Personal and business growth engines.</p></div>
+              <div class="outcome-item"><strong>Client-Ready Projects</strong><p>Deliver real AI work.</p></div>
+              <div class="outcome-item"><strong>High-Value Positioning</strong><p>Roles, consulting, and freelancing.</p></div>
+              <div class="outcome-item"><strong>AI Orchestrator Certification</strong><p>The ONROL credential.</p></div>
             </div>
 
             <div class="portfolio-card">
               <div>
-                <h3>AI Systems Portfolio</h3>
-                <p>Production-grade AI systems that solve real problems — designed, evaluated, and deployed through guided execution and reviewed on real outcomes.</p>
+                <h3>AI Portfolio</h3>
+                <p>AI solutions that solve real problems — built through guided execution and positioned for career and income growth.</p>
               </div>
               <div class="portfolio-stats">
-                <div><strong>8+</strong><span>Projects</span></div>
-                <div><strong>5</strong><span>Systems</span></div>
-                <div><strong>Live</strong><span>Deployments</span></div>
+                <div><strong>20+</strong><span>Projects</span></div>
+                <div><strong>AI</strong><span>Agents</span></div>
+                <div><strong>Live</strong><span>Production</span></div>
               </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="certificate">
+        <div class="container">
+          <div class="section-head">
+            <div>
+              <div class="tag">Certification</div>
+              <h2 class="section-title">Graduate as an AI Orchestrator</h2>
+            </div>
+            <p class="section-desc">Finish the program and capstone to earn the ONROL AI Architect credential — proof you can design, build, and ship real AI systems.</p>
+          </div>
+
+          <div class="cert-card">
+            <div class="cert-frame">
+              <div class="cert-brand">ONROL</div>
+              <div class="cert-kicker">Certificate of Completion</div>
+              <div class="cert-line">This is to certify that</div>
+              <div class="cert-name">Your Name</div>
+              <div class="cert-line">has successfully completed the</div>
+              <div class="cert-program">AI Architect Program</div>
             </div>
           </div>
         </div>
@@ -1288,28 +1402,34 @@
           <div class="section-head">
             <div>
               <div class="tag">Difference</div>
-              <h2 class="section-title">Tutorials vs ONROL Architect</h2>
+              <h2 class="section-title">Traditional courses vs ONROL</h2>
             </div>
-            <p class="section-desc">Most courses stop at a working demo. ONROL pushes you to design, evaluate, deploy, and operate real AI systems.</p>
+            <p class="section-desc">Most courses hand you tutorials. ONROL hands you complete, deployed AI systems — and the architecture skills to lead.</p>
           </div>
 
           <div class="comparison">
             <div class="compare-col">
-              <h3>Tutorials & Demo Courses</h3>
+              <h3>Traditional Courses</h3>
               <ul>
-                <li><span>×</span> Tutorials that stop at a demo notebook</li>
-                <li><span>×</span> Prompting tips with no system design</li>
-                <li><span>×</span> No evals, no reliability, no deployment</li>
-                <li><span>×</span> You finish with snippets, not systems</li>
+                <li><span>×</span> Tool tutorials only</li>
+                <li><span>×</span> Theory heavy</li>
+                <li><span>×</span> No real portfolio</li>
+                <li><span>×</span> Single skill</li>
+                <li><span>×</span> No deployment</li>
+                <li><span>×</span> No mentorship</li>
+                <li><span>×</span> Generic content</li>
               </ul>
             </div>
             <div class="compare-col">
               <h3>ONROL AI Architect</h3>
               <ul>
-                <li><span>✓</span> Production systems designed from day one</li>
-                <li><span>✓</span> Agents, RAG, evals, and deployment in one journey</li>
-                <li><span>✓</span> Reliability, guardrails, and cost engineering included</li>
-                <li><span>✓</span> You finish with deployed AI systems and proof</li>
+                <li><span>✓</span> Build complete AI systems</li>
+                <li><span>✓</span> 100% hands-on execution</li>
+                <li><span>✓</span> 20+ projects &amp; capstone</li>
+                <li><span>✓</span> Full-stack AI architecture</li>
+                <li><span>✓</span> Production-ready deployment</li>
+                <li><span>✓</span> Industry practitioner mentors</li>
+                <li><span>✓</span> Real business systems</li>
               </ul>
             </div>
           </div>
@@ -1319,26 +1439,26 @@
       <section class="pricing" id="cohort">
         <div class="container pricing-grid">
           <div>
-            <div class="tag">Next Cohort</div>
-            <h2>Your AI engineering career starts now</h2>
-            <p>3 months to go from AI user to AI architect. Join the next cohort and design, evaluate, and deploy production-grade AI systems through practical, project-based execution.</p>
+            <div class="tag">The Program</div>
+            <h2>Architect your AI future</h2>
+            <p>Six months of live training plus six months of guided execution to design, build, and ship complete AI systems — and lead AI transformation.</p>
+            <p style="text-transform:uppercase; letter-spacing:1px; font-size:13px;">Hands-on Execution · Real Projects · Production-Ready · Mentor-Led</p>
             <div class="hero-actions">
-              <a class="button orange" href="#register">Reserve Your Free Seat</a>
+              <a class="button orange" href="#register">Register Now</a>
               <a class="button light" href="https://wa.me/918121306701?text=Hi%20ONROL%2C%20I%20want%20to%20talk%20to%20an%20advisor%20about%20the%20AI%20Architect%20Program." target="_blank" rel="noreferrer">Talk to Advisor</a>
             </div>
           </div>
 
-          <!-- TODO: confirm AI Architect cohort number and start date before launch -->
           <div class="cohort-card">
             <div>
-              <div class="tag">Cohort 03</div>
-              <div class="date">Sep<br />2026</div>
+              <div class="tag">The Program</div>
+              <div class="date">6+6<br />Months</div>
             </div>
             <div>
-              <div class="cohort-row"><span>Starts</span><strong>Sep 2026</strong></div>
+              <div class="cohort-row"><span>Modules</span><strong>20</strong></div>
+              <div class="cohort-row"><span>Live Hours</span><strong>250+</strong></div>
+              <div class="cohort-row"><span>Guided</span><strong>6 Months</strong></div>
               <div class="cohort-row"><span>Mode</span><strong>Live Online</strong></div>
-              <div class="cohort-row"><span>Duration</span><strong>3 Months</strong></div>
-              <div class="cohort-row"><span>Access</span><strong>6 Months LMS</strong></div>
               <div class="cohort-row"><span>Seats</span><strong>Limited</strong></div>
             </div>
           </div>
@@ -1358,15 +1478,15 @@
           <div class="faq-grid">
             <details>
               <summary>Do I need to be an expert coder?</summary>
-              <p>No, but basic coding or prior AI/automation experience helps. We focus on system design and AI engineering, not low-level algorithms.</p>
+              <p>No. The program starts with web, Python, and data foundations, then builds up to advanced AI architecture — so committed beginners can follow and developers can go deep.</p>
             </details>
             <details>
               <summary>What exactly will I build?</summary>
-              <p>Multi-agent systems, a RAG knowledge engine, a production AI API, an eval &amp; guardrail harness, and a deployed AI product.</p>
+              <p>AI applications, AI agents and multi-agent systems, automations, RAG and knowledge systems, analytics dashboards, marketing engines, and production-ready deployments — 20+ projects and a capstone.</p>
             </details>
             <details>
-              <summary>Will this help me get an AI Engineer role?</summary>
-              <p>Yes. You finish with a production portfolio and the architectural judgment that AI Engineer and AI Architect roles require.</p>
+              <summary>Will this help me get an AI role or clients?</summary>
+              <p>Yes. You finish with a portfolio, the ONROL AI Architect credential, and positioning for roles, consulting, and freelancing.</p>
             </details>
             <details>
               <summary>How do I register?</summary>
