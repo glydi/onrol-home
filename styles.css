@@ -11,7 +11,7 @@
   --line:rgba(255,255,255, calc(.45 * var(--la)));
   --band:42px;            /* space between the letters and the outer top/bottom lines */
   --tower:22px;           /* height of each vertical "space" cell */
-  --mono:'JetBrains Mono', ui-monospace, monospace;   /* modern thin monospace */
+  --mono:'JetBrains Mono', ui-monospace, 'SF Mono', SFMono-Regular, Menlo, Consolas, monospace;   /* modern thin monospace */
   /* brand orange — single source of truth */
   --orange-rgb:255,90,20;                  /* base RGB for alpha tints */
   --orange:rgb(var(--orange-rgb));         /* #ff5a14 — primary brand orange */
@@ -20,7 +20,7 @@
 
 body{
   background:#0c0c0c;
-  font-family:'Space Grotesk',sans-serif;
+  font-family:'Space Grotesk', system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
   overflow-x:clip;              /* stop sideways scroll WITHOUT a scroll container (keeps custom scrollbar) */
 }
 
@@ -234,7 +234,7 @@ html{
   margin-bottom:10px;
 }
 .pipe-title{
-  font-family:'Space Grotesk',sans-serif;
+  font-family:'Space Grotesk', system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
   font-size:clamp(24px,2.4vw,38px);
   font-weight:600;
   line-height:1.12;
@@ -386,7 +386,7 @@ html{
 .modal-text{ font-size:17px; line-height:1.6; color:#33363b; }
 
 .step-text h3{
-  font-family:'Space Grotesk',sans-serif;
+  font-family:'Space Grotesk', system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
   font-size:clamp(22px,2.1vw,32px);
   font-weight:600;
   color:#16181b;
@@ -544,7 +544,7 @@ html{
   flex-direction:column;
   justify-content:center;
   padding:7% 6%;
-  font-family:'Space Grotesk',sans-serif;
+  font-family:'Space Grotesk', system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
   font-weight:700;
   text-transform:lowercase;
   letter-spacing:-.02em;
@@ -575,7 +575,7 @@ html{
   box-shadow:inset 0 0 40px rgba(var(--orange-rgb),.05);
 }
 .build-title{
-  font-family:'Space Grotesk',sans-serif;
+  font-family:'Space Grotesk', system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
   font-size:clamp(26px,2.8vw,44px);
   font-weight:600;
   line-height:1.14;
@@ -640,7 +640,7 @@ html{
 .build-block.has-img > h3,
 .build-block.has-img > p{ position:relative; z-index:2; color:#fff; }   /* over image: stay white */
 .build-block .block-eyebrow{           /* must out-specify `.build-block p` (font-size:14px) */
-  font-family:'Space Grotesk',sans-serif;
+  font-family:'Space Grotesk', system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
   font-size:clamp(44px,7vw,132px);     /* big & fully visible — the vw term drives the size */
   font-weight:600;
   line-height:.9;
@@ -680,7 +680,7 @@ html{
   background:linear-gradient(180deg, rgba(8,5,3,.12) 0%, rgba(8,5,3,.35) 45%, rgba(8,5,3,.82) 100%);
 }
 .build-block h3{
-  font-family:'Space Grotesk',sans-serif;
+  font-family:'Space Grotesk', system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
   font-size:clamp(19px,1.6vw,25px);
   font-weight:600;
   margin-bottom:10px;
@@ -723,7 +723,7 @@ html{
   text-align:center;
 }
 .who-title{
-  font-family:'Space Grotesk',sans-serif;
+  font-family:'Space Grotesk', system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
   font-size:clamp(28px,4vw,56px);
   font-weight:600;
   line-height:1.06;
@@ -781,7 +781,7 @@ html{
   margin-bottom:18px;
 }
 .who-card h3{
-  font-family:'Space Grotesk',sans-serif;
+  font-family:'Space Grotesk', system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
   font-size:clamp(17px,1.4vw,21px);
   font-weight:600;
   line-height:1.2;
@@ -858,7 +858,7 @@ html{
   color:#fff;                    /* white like the rest of the CTA */
 }
 .cta-title{
-  font-family:'Space Grotesk',sans-serif;
+  font-family:'Space Grotesk', system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
   font-size:clamp(32px,5vw,72px);
   font-weight:600;
   line-height:1.04;
@@ -917,7 +917,7 @@ html{
   gap:clamp(28px,3vw,52px);
 }
 .f-brand h3{
-  font-family:'Space Grotesk',sans-serif;
+  font-family:'Space Grotesk', system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
   font-size:24px;
   font-weight:500;
   margin-bottom:12px;
@@ -1141,7 +1141,7 @@ body::after{  right:6vw; }
 }
 .cell .glyph text{
   fill:#fff;
-  font-family:'Space Grotesk',sans-serif;
+  font-family:'Space Grotesk', system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
   font-weight:500;
   font-size:100px;          /* arbitrary: the JS viewBox normalises it to the cell */
 }
