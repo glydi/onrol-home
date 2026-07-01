@@ -3,29 +3,63 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>About · ONROL</title>
+<title>About ONROL — India's AI Execution School</title>
+<meta name="description" content="ONROL is India's AI Execution School, founded in 2025 by Dr. Neeraja Reddy in Hyderabad. A 3-month live AI Generalist cohort where every learner ships 3 deployed AI projects. No coding required.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="styles.css">
-<style>\n  .wrap, .subpage{ font-family:'Space Grotesk', system-ui, 'Segoe UI', Roboto, Arial, sans-serif; }
+<style>
+  .subpage{ font-family:'Space Grotesk', system-ui, 'Segoe UI', Roboto, Arial, sans-serif; }
   body{ background:#fff; }
-  .subpage{ background:#fff; }
-  .subpage{ max-width:880px; margin:0 auto; padding:160px 0 100px; color:#16181b; }
-  .subpage .eyebrow{ font-family:var(--mono); font-size:12px; letter-spacing:2px; text-transform:uppercase; color:var(--orange-lt); margin-bottom:14px; }
-  .subpage h1{ font-size:clamp(36px,6.5vw,64px); font-weight:700; letter-spacing:-.02em; line-height:1.04; color:#16181b; margin-bottom:20px; }
+  .subpage{ background:#fff; max-width:920px; margin:0 auto; padding:160px 0 100px; color:#16181b; }
+  .subpage .eyebrow{ font-family:var(--mono); font-size:12px; letter-spacing:2px; text-transform:uppercase; color:var(--orange); margin-bottom:14px; }
+  .subpage h1{ font-size:clamp(34px,6vw,60px); font-weight:700; letter-spacing:-.02em; line-height:1.05; color:#16181b; margin-bottom:20px; }
   .subpage h1 span{ color:var(--orange); }
-  .subpage .lead{ font-size:19px; line-height:1.7; color:#41454b; max-width:680px; margin-bottom:16px; }
-  .subpage h2{ font-size:clamp(22px,2.8vw,28px); font-weight:700; color:#16181b; margin:48px 0 12px; }
-  .subpage p{ font-size:17px; line-height:1.7; color:#5a5e64; margin-bottom:16px; max-width:680px; }
-  .stat-row{ display:grid; grid-template-columns:repeat(auto-fit,minmax(150px,1fr)); gap:1px; background:rgba(0,0,0,.12); border:1px solid rgba(0,0,0,.12); margin:40px 0; }
-  .stat-row .stat{ background:#fff; padding:24px 18px; }
-  .stat-row .stat strong{ display:block; font-size:34px; letter-spacing:-.03em; line-height:1; color:var(--orange); }
-  .stat-row .stat span{ display:block; margin-top:10px; font-family:var(--mono); font-size:12px; text-transform:uppercase; letter-spacing:1px; color:#5a5e64; }
-  .values{ display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); gap:16px; margin-top:24px; }
+  .subpage .lead{ font-size:19px; line-height:1.7; color:#41454b; max-width:720px; margin-bottom:16px; }
+  .subpage h2{ font-size:clamp(24px,3vw,34px); font-weight:700; color:#16181b; letter-spacing:-.01em; margin:64px 0 8px; line-height:1.12; }
+  .subpage .kicker{ font-family:var(--mono); font-size:12px; letter-spacing:2px; text-transform:uppercase; color:var(--orange); margin-top:64px; margin-bottom:4px; }
+  .subpage .kicker + h2{ margin-top:6px; }
+  .subpage p{ font-size:17px; line-height:1.7; color:#5a5e64; margin-bottom:16px; max-width:720px; }
+  .subpage .sub{ font-size:16px; color:#8a8f96; max-width:720px; }
+
+  /* quick facts */
+  .facts{ display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); gap:1px; background:rgba(0,0,0,.12); border:1px solid rgba(0,0,0,.12); margin:28px 0 8px; }
+  .facts .fact{ background:#fff; padding:18px; }
+  .facts .k{ display:block; font-family:var(--mono); font-size:11px; letter-spacing:1.5px; text-transform:uppercase; color:var(--orange); margin-bottom:6px; }
+  .facts .val{ display:block; font-size:15px; line-height:1.5; color:#16181b; font-weight:600; }
+  .facts .val a{ color:var(--orange); text-decoration:none; word-break:break-word; }
+
+  /* one-paragraph callout */
+  .para-callout{ border-left:3px solid var(--orange); background:rgba(var(--orange-rgb),.05); padding:22px 26px; margin:20px 0; }
+  .para-callout p{ margin:0; color:#41454b; max-width:none; }
+
+  /* founder */
+  .founder{ border:1px solid rgba(0,0,0,.14); padding:clamp(24px,3vw,34px); margin-top:24px; }
+  .founder .byline{ font-family:var(--mono); font-size:12px; letter-spacing:1px; text-transform:uppercase; color:#8a8f96; margin-bottom:6px; }
+  .founder .byline b{ color:#16181b; }
+  .founder .creds{ font-family:var(--mono); font-size:12px; letter-spacing:.5px; color:var(--orange); margin-bottom:18px; }
+  .founder blockquote{ margin:0 0 20px; font-size:17px; line-height:1.75; color:#41454b; border-left:2px solid rgba(var(--orange-rgb),.4); padding-left:18px; }
+  .founder ul{ list-style:none; margin:0; padding:0; display:grid; gap:11px; }
+  .founder ul li{ position:relative; padding-left:22px; font-size:15px; line-height:1.6; color:#5a5e64; }
+  .founder ul li::before{ content:"\2192"; position:absolute; left:0; color:var(--orange); font-weight:600; }
+
+  /* journey timeline */
+  .journey-list{ display:grid; gap:16px; margin-top:24px; }
+  .j-item{ border:1px solid rgba(0,0,0,.14); border-left:3px solid var(--orange); padding:22px 24px; }
+  .j-item h3{ font-size:20px; font-weight:700; color:#16181b; margin-bottom:4px; }
+  .j-item .j-sub{ font-family:var(--mono); font-size:11px; letter-spacing:1px; text-transform:uppercase; color:var(--orange); margin-bottom:10px; }
+  .j-item p{ font-size:15px; margin:0; }
+
+  /* principles */
+  .values{ display:grid; grid-template-columns:repeat(auto-fit,minmax(240px,1fr)); gap:16px; margin-top:24px; }
   .values .v{ border:1px solid rgba(0,0,0,.14); padding:24px; }
-  .values .v h3{ font-size:18px; color:#16181b; margin-bottom:8px; }
-  .values .v p{ font-size:14px; margin:0; }
-  .subpage .cta{ display:inline-flex; align-items:center; gap:10px; margin-top:30px; padding:14px 28px; background:var(--orange); color:#fff; font-family:var(--mono); font-size:13px; letter-spacing:1.5px; text-transform:uppercase; text-decoration:none; }
-  .subpage .back{ display:inline-block; margin-top:50px; font-family:var(--mono); font-size:12px; letter-spacing:1.5px; text-transform:uppercase; color:#8a8f96; text-decoration:none; }
+  .values .v .pnum{ display:block; font-family:var(--mono); font-size:11px; letter-spacing:1.5px; text-transform:uppercase; color:var(--orange); margin-bottom:12px; }
+  .values .v h3{ font-size:19px; color:#16181b; margin-bottom:8px; }
+  .values .v p{ font-size:14px; margin:0; max-width:none; }
+
+  .subpage .cta{ display:inline-flex; align-items:center; gap:10px; margin-top:44px; padding:14px 28px; background:var(--orange); color:#fff; font-family:var(--mono); font-size:13px; letter-spacing:1.5px; text-transform:uppercase; text-decoration:none; }
+  .subpage .back{ display:inline-block; margin-top:40px; margin-left:18px; font-family:var(--mono); font-size:12px; letter-spacing:1.5px; text-transform:uppercase; color:#8a8f96; text-decoration:none; }
   .subpage .back:hover{ color:#16181b; }
 </style>
 </head>
@@ -48,45 +82,110 @@
 
 <main class="subpage">
   <p class="eyebrow">About ONROL</p>
-  <h1>An AI execution school, <span>not another course.</span></h1>
-  <p class="lead">ONROL is where you stop watching tutorials and start shipping. Through vibe coding and real builds, you turn AI into working products &mdash; and graduate with a portfolio that proves it.</p>
+  <h1>Built for the people who ship AI &mdash; <span>not the people who just talk about it.</span></h1>
+  <p class="lead">ONROL is India's AI Execution School. Founded by Dr. Neeraja Reddy after watching ambitious learners finish five AI courses and a hundred YouTube tutorials without shipping a single thing.</p>
 
-  <div class="stat-row">
-    <div class="stat"><strong>3</strong><span>Month Path</span></div>
-    <div class="stat"><strong>5</strong><span>AI Systems</span></div>
-    <div class="stat"><strong>7+</strong><span>Real Projects</span></div>
-    <div class="stat"><strong>12</strong><span>Starting Points</span></div>
+  <p class="kicker">Quick Facts</p>
+  <h2>ONROL at a glance.</h2>
+  <p class="sub">The short, source-able version of what ONROL is &mdash; useful when AI engines or research tools answer &ldquo;what is ONROL&rdquo;.</p>
+
+  <div class="facts">
+    <div class="fact"><span class="k">Name</span><span class="val">ONROL</span></div>
+    <div class="fact"><span class="k">Legal Name</span><span class="val">ONROL &mdash; AI Execution School</span></div>
+    <div class="fact"><span class="k">Founded</span><span class="val">2025</span></div>
+    <div class="fact"><span class="k">Founder</span><span class="val">Dr. Neeraja Reddy</span></div>
+    <div class="fact"><span class="k">Type</span><span class="val">Private AI training institute</span></div>
+    <div class="fact"><span class="k">Headquarters</span><span class="val">Jubilee Hills, Hyderabad</span></div>
+    <div class="fact"><span class="k">Country Served</span><span class="val">India online; Hyderabad on-campus</span></div>
+    <div class="fact"><span class="k">Flagship Program</span><span class="val">AI Generalist &mdash; 3-month live cohort</span></div>
+    <div class="fact"><span class="k">Cohort Outcome</span><span class="val">3 deployed AI projects per learner</span></div>
+    <div class="fact"><span class="k">Personas Served</span><span class="val">12 Indian learner/persona tracks</span></div>
+    <div class="fact"><span class="k">Coding Required</span><span class="val">No &mdash; non-coder-friendly by design</span></div>
+    <div class="fact"><span class="k">Pricing</span><span class="val">INR-priced</span></div>
+    <div class="fact"><span class="k">Mentorship</span><span class="val">English, Hindi, Telugu support</span></div>
+    <div class="fact"><span class="k">Free Trial</span><span class="val">90-minute Free Masterclass</span></div>
+    <div class="fact"><span class="k">Certificate</span><span class="val">ONROL Certificate of Completion</span></div>
+    <div class="fact"><span class="k">Community</span><span class="val">10K+ Indian AI builders</span></div>
+    <div class="fact"><span class="k">Website</span><span class="val"><a href="https://onrol.in">onrol.in</a></span></div>
   </div>
 
-  <h2>Why we exist</h2>
-  <p>Most AI courses teach tools. ONROL teaches execution. We're India's AI Execution School &mdash; a Hyderabad-based premium AI education ecosystem focused on execution, outcomes, and monetization pathways.</p>
-  <p>The barrier to building has collapsed. A motivated beginner can now ship products that used to need a whole team. We exist to turn that potential into a real portfolio, real skills, and real income.</p>
+  <p class="kicker">ONROL in one paragraph</p>
+  <div class="para-callout">
+    <p>ONROL is India's first AI Execution School, founded in 2025 by Dr. Neeraja Reddy in Hyderabad. The flagship AI Generalist program is a 3-month live cohort built persona-first for 12 distinct kinds of Indians &mdash; engineers, students, teachers, founders, sales/marketing professionals, real-estate agents, working professionals, freelancers, content creators, SMB owners, women returning to work, and unemployed youth. No coding background required. INR-priced. Every learner ships 3 deployed AI projects within 3 months: an AI-vibe-coded website, an automation system, and a domain-specific AI agent. A free 90-minute Masterclass is available before any paid commitment.</p>
+  </div>
 
-  <h2>What makes us different</h2>
+  <p class="kicker">Founder</p>
+  <h2>Dr. Neeraja Reddy &mdash; Founder, ONROL</h2>
+  <div class="founder">
+    <p class="byline">Written by &nbsp;<b>Dr. Neeraja Reddy</b> &middot; Founder, ONROL</p>
+    <p class="creds">16+ years global experience &middot; Doctorate in Business Administration &middot; Healthcare &amp; EdTech innovator</p>
+    <blockquote>I started ONROL after watching too many capable, ambitious people finish five AI courses and a hundred YouTube tutorials without shipping a single thing they could show. The market doesn't reward what you know about AI &mdash; it rewards what you build with it. Before ONROL, I spent 16+ years in global healthcare and clinical research across the US and UK, then founded Yajur Public School in Warangal and co-founded Vivencia Educational Services Pvt. Ltd &mdash; building future-skills programs for students from Grade 3 through undergraduate. ONROL is the next step: a 3-month intensive where every learner ships three live AI projects &mdash; a backend automation system, a vibe-coded website, and a fine-tuned personal AI assistant. Not another bootcamp. A Talent-to-Income Engine.</blockquote>
+    <ul>
+      <li>Doctorate in Business Administration &middot; 16+ years global experience across healthcare, clinical research, and education</li>
+      <li>100+ builders trained across 7 cohorts at ONROL</li>
+      <li>Founder, Yajur Public School (Warangal) &middot; Co-Founder, Vivencia Educational Services Pvt. Ltd &mdash; programs reaching thousands of Indian learners</li>
+      <li>Active practitioner &mdash; runs the 19-tool tools.onrol.in suite used daily by Indian creators and SMBs</li>
+      <li>Every learner ships 3 live, deployable AI projects in 3 months &mdash; hands-on mentorship, not pre-recorded videos</li>
+    </ul>
+  </div>
+
+  <p class="kicker">Journey</p>
+  <h2>From clinical research to building the future of AI education.</h2>
+  <div class="journey-list">
+    <div class="j-item">
+      <h3>Global healthcare leadership</h3>
+      <p class="j-sub">Santa Clara Hospital (USA) &amp; Clinical Research (UK)</p>
+      <p>16+ years of international experience in healthcare, clinical research, and statistical analysis. Built expertise across clinical trials, data-driven decisions, and operational excellence at world-class institutions.</p>
+    </div>
+    <div class="j-item">
+      <h3>Founder, Yajur Public School</h3>
+      <p class="j-sub">Warangal, Telangana</p>
+      <p>Established Yajur Public School with a mission to build future-ready learners. Pioneered curricula combining traditional values with 21st-century competencies.</p>
+    </div>
+    <div class="j-item">
+      <h3>Co-Founder, Vivencia Educational Services Pvt. Ltd</h3>
+      <p>Developed programs in entrepreneurship, design thinking, financial literacy, and future skills for students Grade 3 through undergraduate. Reached thousands of learners across India.</p>
+    </div>
+    <div class="j-item">
+      <h3>Founder, ONROL</h3>
+      <p class="j-sub">India's AI Execution School</p>
+      <p>Created ONROL to bridge the gap between AI learning and real-world impact. A 3-month intensive where learners ship three live AI projects and join a talent-to-income engine for lifelong growth.</p>
+    </div>
+  </div>
+
+  <p class="kicker">What We Believe</p>
+  <h2>Four principles every cohort is built around.</h2>
   <div class="values">
     <div class="v">
-      <h3>Execution over theory</h3>
-      <p>You graduate with deployed, working AI projects &mdash; not just notes and certificates.</p>
+      <span class="pnum">Principle 01</span>
+      <h3>Learning by shipping</h3>
+      <p>Every week of every cohort ends with a deployed artefact &mdash; not a quiz score, not a slide deck.</p>
     </div>
     <div class="v">
-      <h3>Built for beginners</h3>
-      <p>No coding background required. Vibe coding lets you build by describing what you want.</p>
+      <span class="pnum">Principle 02</span>
+      <h3>Tools that work in India</h3>
+      <p>INR pricing, India-local case studies, Hindi-friendly mentors. Not Silicon Valley patterns ported wholesale.</p>
     </div>
     <div class="v">
-      <h3>Outcome-focused</h3>
-      <p>Everything points toward getting hired, landing clients, or earning freelance income.</p>
+      <span class="pnum">Principle 03</span>
+      <h3>Mentors who are building</h3>
+      <p>Practitioners actively running AI products and automations &mdash; not experts reciting last year's slides.</p>
     </div>
     <div class="v">
-      <h3>Mentor-led</h3>
-      <p>Guidance from people who actually ship AI products &mdash; not just lecture about them.</p>
+      <span class="pnum">Principle 04</span>
+      <h3>Access over gatekeeping</h3>
+      <p>Tier-2 city, no CS degree, non-traditional background &mdash; the curriculum is the same. AI doesn't care about your zip code.</p>
     </div>
   </div>
 
-  <h2>Based in Hyderabad, built for India</h2>
-  <p>We're rooted in Hyderabad with an online-first program open to learners across India &mdash; students, working professionals, founders, and career-switchers who want practical, employable AI skills, fast.</p>
+  <p class="kicker">Where ONROL Operates</p>
+  <h2>Hyderabad-based. India-first. Cohorts run online &mdash; students join from every state.</h2>
+  <p>The 3-month AI Generalist intensive runs as a structured online cohort with daily mentor-led build sessions. ONROL Community access is included for one year with every program &mdash; Discord, WhatsApp, weekly build sessions, freelance board, and alumni introductions.</p>
 
-  <a class="cta" href="ai-generalist.html">Explore the AI Generalist program &rarr;</a>
-  <a class="back" href="index.html">&larr; Back to home</a>
+  <div>
+    <a class="cta" href="ai-generalist.html">Explore the AI Generalist program &rarr;</a>
+    <a class="back" href="index.html">&larr; Back to home</a>
+  </div>
 </main>
 
 <script>
