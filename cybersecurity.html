@@ -960,7 +960,7 @@
 
     @media (max-width: 640px) {
       .container {
-        width: min(100% - 24px, 1180px);
+        width: min(100% - 40px, 1180px);
       }
 
       .hero {
@@ -1025,14 +1025,14 @@
             </div>
 
             <div class="hero-actions">
-              <a class="button orange" href="#brochure">Send Me The Brochure</a>
+              <a class="button orange" href="#register">Register Now</a>
               <a class="button light" href="#build">View What You Build</a>
             </div>
           </div>
 
-          <aside class="form-card" id="brochure">
-            <h2>Get the Cyber Security brochure</h2>
-            <p>Fees, schedule, the full session-by-session syllabus, and cohort guide — in your WhatsApp within 24 hours.</p>
+          <aside class="form-card" id="register">
+            <h2>Register for the Cyber Security Program</h2>
+            <p>Reserve your seat — our team confirms your registration with fees, schedule, the full syllabus, and cohort guide on WhatsApp within 24 hours.</p>
             <form id="leadForm">
               <div class="field">
                 <label for="fullName">Full Name</label>
@@ -1057,7 +1057,7 @@
                   <option>Working Professional</option>
                 </select>
               </div>
-              <button class="button orange" type="submit" style="width:100%;">Send Me The Brochure</button>
+              <button class="button orange" type="submit" style="width:100%;">Register Now</button>
               <div class="form-note">No spam. Used only to confirm your seat.</div>
             </form>
           </aside>
@@ -1310,7 +1310,7 @@
             <h2>Your cyber security career starts now</h2>
             <p>6 months to go from zero to job-ready defender. Join the next batch and build the skills and portfolio companies hire for. Want to specialise in blue-team defense? Continue with the focused SOC Analyst Program.</p>
             <div class="hero-actions">
-              <a class="button orange" href="#brochure">Reserve Your Free Seat</a>
+              <a class="button orange" href="#register">Reserve Your Free Seat</a>
               <a class="button light" href="https://wa.me/918121306701?text=Hi%20ONROL%2C%20I%20want%20to%20talk%20to%20an%20advisor%20about%20the%20Cyber%20Security%20Program." target="_blank" rel="noreferrer">Talk to Advisor</a>
               <a class="button light" href="soc-analyst.html">Explore SOC Analyst →</a>
             </div>
@@ -1372,7 +1372,7 @@
       </div>
     </footer>
 
-    <div class="toast" id="toast">Opening WhatsApp with your brochure request...</div>
+    <div class="toast" id="toast">Opening WhatsApp with your registration...</div>
   </div>
 
   <script>
@@ -1413,7 +1413,7 @@
 
     function openWhatsAppFallback(name, phone, email, role) {
       const message =
-        `Hi ONROL, I want the ${COURSE} brochure.%0A%0AName: ${encodeURIComponent(name)}` +
+        `Hi ONROL, I want to register for the ${COURSE}.%0A%0AName: ${encodeURIComponent(name)}` +
         `%0APhone: ${encodeURIComponent(phone)}%0AEmail: ${encodeURIComponent(email)}` +
         `%0AI am a: ${encodeURIComponent(role)}`;
       window.open(`https://wa.me/${WHATSAPP_NUMBER}?text=${message}`, "_blank", "noopener,noreferrer");
@@ -1434,7 +1434,7 @@
 
       const payload = {
         access_key: WEB3FORMS_ACCESS_KEY,
-        subject: `New ${COURSE} brochure request — ${name}`,
+        subject: `New ${COURSE} registration — ${name}`,
         from_name: "ONROL Website",
         course: COURSE,
         source_page: window.location.href,
@@ -1453,7 +1453,7 @@
         const data = await res.json();
         if (data.success) {
           form.reset();
-          showToast("Thanks! Your brochure request is in — we'll be in touch shortly.");
+          showToast("Thanks! Your registration is in — we'll confirm on WhatsApp shortly.");
         } else {
           showToast("Opening WhatsApp to confirm your request…");
           openWhatsAppFallback(name, phone, email, role);

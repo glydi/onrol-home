@@ -960,7 +960,7 @@
 
     @media (max-width: 640px) {
       .container {
-        width: min(100% - 24px, 1180px);
+        width: min(100% - 40px, 1180px);
       }
 
       .hero {
@@ -1025,14 +1025,14 @@
             </div>
 
             <div class="hero-actions">
-              <a class="button orange" href="#brochure">Send Me The Brochure</a>
+              <a class="button orange" href="#register">Register Now</a>
               <a class="button light" href="#build">View What You Build</a>
             </div>
           </div>
 
-          <aside class="form-card" id="brochure">
-            <h2>Get the AI Architect brochure</h2>
-            <p>Fees, schedule, prerequisites, and the full cohort guide — in your WhatsApp within 24 hours.</p>
+          <aside class="form-card" id="register">
+            <h2>Register for the AI Architect Program</h2>
+            <p>Reserve your seat — our team confirms your registration with fees, schedule, prerequisites, and the cohort guide on WhatsApp within 24 hours.</p>
             <form id="leadForm">
               <div class="field">
                 <label for="fullName">Full Name</label>
@@ -1057,7 +1057,7 @@
                   <option>Student</option>
                 </select>
               </div>
-              <button class="button orange" type="submit" style="width:100%;">Send Me The Brochure</button>
+              <button class="button orange" type="submit" style="width:100%;">Register Now</button>
               <div class="form-note">No spam. Used only to confirm your seat.</div>
             </form>
           </aside>
@@ -1323,7 +1323,7 @@
             <h2>Your AI engineering career starts now</h2>
             <p>3 months to go from AI user to AI architect. Join the next cohort and design, evaluate, and deploy production-grade AI systems through practical, project-based execution.</p>
             <div class="hero-actions">
-              <a class="button orange" href="#brochure">Reserve Your Free Seat</a>
+              <a class="button orange" href="#register">Reserve Your Free Seat</a>
               <a class="button light" href="https://wa.me/918121306701?text=Hi%20ONROL%2C%20I%20want%20to%20talk%20to%20an%20advisor%20about%20the%20AI%20Architect%20Program." target="_blank" rel="noreferrer">Talk to Advisor</a>
             </div>
           </div>
@@ -1369,8 +1369,8 @@
               <p>Yes. You finish with a production portfolio and the architectural judgment that AI Engineer and AI Architect roles require.</p>
             </details>
             <details>
-              <summary>How will I get the brochure?</summary>
-              <p>Submit your details and the ONROL team will send fees, schedule, and the full cohort guide to your WhatsApp within 24 hours.</p>
+              <summary>How do I register?</summary>
+              <p>Submit the form and the ONROL team will confirm your seat with fees, schedule, and the full cohort guide on WhatsApp within 24 hours.</p>
             </details>
           </div>
         </div>
@@ -1384,7 +1384,7 @@
       </div>
     </footer>
 
-    <div class="toast" id="toast">Opening WhatsApp with your brochure request...</div>
+    <div class="toast" id="toast">Opening WhatsApp with your registration...</div>
   </div>
 
   <script>
@@ -1425,7 +1425,7 @@
 
     function openWhatsAppFallback(name, phone, email, role) {
       const message =
-        `Hi ONROL, I want the ${COURSE} brochure.%0A%0AName: ${encodeURIComponent(name)}` +
+        `Hi ONROL, I want to register for the ${COURSE}.%0A%0AName: ${encodeURIComponent(name)}` +
         `%0APhone: ${encodeURIComponent(phone)}%0AEmail: ${encodeURIComponent(email)}` +
         `%0AI am a: ${encodeURIComponent(role)}`;
       window.open(`https://wa.me/${WHATSAPP_NUMBER}?text=${message}`, "_blank", "noopener,noreferrer");
@@ -1446,7 +1446,7 @@
 
       const payload = {
         access_key: WEB3FORMS_ACCESS_KEY,
-        subject: `New ${COURSE} brochure request — ${name}`,
+        subject: `New ${COURSE} registration — ${name}`,
         from_name: "ONROL Website",
         course: COURSE,
         source_page: window.location.href,
@@ -1465,7 +1465,7 @@
         const data = await res.json();
         if (data.success) {
           form.reset();
-          showToast("Thanks! Your brochure request is in — we'll be in touch shortly.");
+          showToast("Thanks! Your registration is in — we'll confirm on WhatsApp shortly.");
         } else {
           showToast("Opening WhatsApp to confirm your request…");
           openWhatsAppFallback(name, phone, email, role);
