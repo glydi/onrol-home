@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Student Dashboard · ONROL LMS</title>
+  <meta name="robots" content="noindex,nofollow" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --orange-rgb:255,90,20; --orange:rgb(var(--orange-rgb)); --orange-lt:#ff8a4a;
+      --ink:#16181b; --muted:#5a5e64; --line:rgba(0,0,0,.14); --soft:#fff7f2; --green:#2e7d32;
+      --mono:'JetBrains Mono', ui-monospace, 'SF Mono', SFMono-Regular, Menlo, Consolas, monospace;
+      --sans:'Space Grotesk', system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+    }
+    *{ box-sizing:border-box; margin:0; padding:0; }
+    body{ font-family:var(--sans); color:var(--ink); background:#f5f5f4; line-height:1.5; }
+    a{ color:inherit; text-decoration:none; }
+
+    .nav{ position:fixed; top:18px; left:50%; transform:translateX(-50%); z-index:50; display:flex; align-items:center; padding:4px 14px;
+      background:rgba(10,10,12,.55); border:1px solid rgba(255,255,255,.2); box-shadow:0 6px 24px rgba(0,0,0,.28);
+      backdrop-filter:blur(20px) saturate(140%); -webkit-backdrop-filter:blur(20px) saturate(140%); }
+    .nav a{ color:#fff; font-family:var(--mono); font-size:12px; text-transform:uppercase; letter-spacing:1.5px; padding:6px 15px; transition:opacity .2s; white-space:nowrap; }
+    .nav a:hover{ opacity:.6; }
+    .nav .tagpill{ color:var(--orange-lt); }
+
+    .shell{ max-width:1120px; margin:0 auto; padding:104px 24px 60px; }
+    .eyebrow{ font-family:var(--mono); font-size:12px; letter-spacing:2px; text-transform:uppercase; color:var(--orange); margin-bottom:8px; }
+    h1{ font-size:clamp(28px,4vw,42px); font-weight:700; letter-spacing:-.02em; }
+    .switch{ font-family:var(--mono); font-size:12px; color:var(--muted); margin-top:8px; }
+    .switch a{ color:var(--orange); cursor:pointer; }
+
+    .bar{ height:8px; background:var(--line); overflow:hidden; }
+    .bar > i{ display:block; height:100%; background:var(--orange); transition:width .3s ease; }
+
+    /* level / xp banner */
+    .hero{ background:#0c0c0c; color:#fff; border:1px solid rgba(var(--orange-rgb),.35); padding:clamp(22px,3vw,30px); margin:22px 0 10px; position:relative; overflow:hidden; }
+    .hero::after{ content:""; position:absolute; inset:auto -60px -90px auto; width:340px; height:340px; background:radial-gradient(circle, rgba(var(--orange-rgb),.26), transparent 66%); }
+    .hero .lv{ display:flex; align-items:center; gap:16px; position:relative; z-index:1; flex-wrap:wrap; }
+    .hero .ring{ width:66px; height:66px; border:2px solid var(--orange); display:flex; flex-direction:column; align-items:center; justify-content:center; }
+    .hero .ring b{ font-size:22px; line-height:1; color:var(--orange-lt); }
+    .hero .ring span{ font-family:var(--mono); font-size:9px; letter-spacing:1px; text-transform:uppercase; color:rgba(255,255,255,.6); margin-top:2px; }
+    .hero .lvtext .xp{ font-size:22px; font-weight:700; }
+    .hero .lvtext .sub{ font-family:var(--mono); font-size:12px; color:rgba(255,255,255,.7); margin-top:2px; }
+    .hero .bar{ background:rgba(255,255,255,.16); margin-top:16px; max-width:560px; position:relative; z-index:1; }
+    .hero .barlab{ font-family:var(--mono); font-size:11px; color:rgba(255,255,255,.6); margin-top:8px; position:relative; z-index:1; }
+
+    .stats{ display:grid; grid-template-columns:repeat(4,1fr); gap:1px; background:var(--line); border:1px solid var(--line); margin:14px 0 8px; }
+    .stats .s{ background:#fff; padding:16px 18px; }
+    .stats .s strong{ display:block; font-size:26px; letter-spacing:-.02em; color:var(--orange); line-height:1; }
+    .stats .s span{ display:block; margin-top:8px; font-family:var(--mono); font-size:11px; text-transform:uppercase; letter-spacing:1px; color:var(--muted); }
+
+    .sec-title{ font-family:var(--mono); font-size:12px; letter-spacing:1.5px; text-transform:uppercase; color:var(--muted); margin:32px 0 14px; display:flex; justify-content:space-between; align-items:center; }
+    .sec-title a{ color:var(--orange); font-size:12px; }
+
+    .resume{ background:#fff; border:1px solid var(--line); border-left:3px solid var(--orange); padding:22px 24px; display:flex; align-items:center; justify-content:space-between; gap:18px; flex-wrap:wrap; }
+    .resume .info h3{ font-size:20px; font-weight:700; letter-spacing:-.01em; }
+    .resume .info .nx{ font-family:var(--mono); font-size:12px; color:var(--muted); margin-top:6px; }
+    .resume .info .bar{ margin-top:12px; width:min(420px,60vw); }
+
+    .btn{ display:inline-flex; align-items:center; justify-content:center; gap:8px; min-height:44px; padding:0 22px; border:1px solid var(--ink); background:var(--ink); color:#fff;
+      font-family:var(--mono); font-size:12px; letter-spacing:1px; text-transform:uppercase; cursor:pointer; transition:transform .15s, opacity .15s; }
+    .btn:hover{ transform:translateY(-1px); opacity:.92; }
+    .btn.orange{ background:var(--orange); border-color:var(--orange); }
+    .btn.ghost{ background:transparent; color:var(--ink); border-color:var(--line); }
+    .btn.small{ min-height:36px; padding:0 16px; font-size:11px; }
+
+    .course-grid{ display:grid; grid-template-columns:repeat(auto-fill,minmax(270px,1fr)); gap:16px; }
+    .cc{ background:#fff; border:1px solid var(--line); padding:22px; display:flex; flex-direction:column; }
+    .cc .cat{ font-family:var(--mono); font-size:11px; letter-spacing:1px; text-transform:uppercase; color:var(--orange); }
+    .cc h3{ font-size:19px; font-weight:700; letter-spacing:-.01em; margin:8px 0 6px; }
+    .cc .meta{ font-family:var(--mono); font-size:11px; color:var(--muted); text-transform:uppercase; letter-spacing:.5px; margin-bottom:12px; }
+    .cc .pctline{ display:flex; justify-content:space-between; font-family:var(--mono); font-size:11px; color:var(--muted); margin-bottom:6px; }
+    .cc .btn{ margin-top:16px; }
+
+    .subs{ display:grid; gap:10px; }
+    .subrow{ background:#fff; border:1px solid var(--line); border-left:3px solid var(--muted); padding:14px 16px; display:flex; align-items:center; justify-content:space-between; gap:14px; flex-wrap:wrap; }
+    .subrow.pending{ border-left-color:var(--orange); }
+    .subrow.approved{ border-left-color:var(--green); }
+    .subrow.rejected{ border-left-color:#c1361b; }
+    .subrow .t{ font-weight:600; }
+    .subrow .c{ font-family:var(--mono); font-size:12px; color:var(--muted); }
+    .status{ font-family:var(--mono); font-size:11px; letter-spacing:1px; text-transform:uppercase; padding:4px 9px; border:1px solid var(--line); }
+    .status.pending{ color:var(--orange); border-color:rgba(var(--orange-rgb),.4); }
+    .status.approved{ color:var(--green); border-color:rgba(46,125,50,.4); }
+    .status.rejected{ color:#c1361b; border-color:rgba(193,54,27,.4); }
+
+    .empty{ background:#fff; border:1px solid var(--line); padding:26px; font-family:var(--mono); font-size:13px; color:var(--muted); line-height:1.7; }
+    .empty a{ color:var(--orange); }
+
+    /* name gate */
+    .gate{ position:fixed; inset:0; z-index:1000; background:rgba(12,12,12,.82); backdrop-filter:blur(6px); -webkit-backdrop-filter:blur(6px); display:flex; align-items:center; justify-content:center; padding:20px; }
+    .gate form{ width:min(400px,100%); background:#fff; border:1px solid var(--line); padding:32px; }
+    .gate .eyebrow{ margin-bottom:8px; }
+    .gate h2{ font-size:26px; font-weight:700; letter-spacing:-.01em; margin-bottom:6px; }
+    .gate p{ font-family:var(--mono); font-size:12px; color:var(--muted); margin-bottom:18px; }
+    .gate label{ display:block; font-family:var(--mono); font-size:11px; letter-spacing:1px; text-transform:uppercase; color:var(--muted); margin-bottom:6px; }
+    .gate input{ width:100%; min-height:44px; border:1px solid var(--line); padding:8px 12px; font-family:var(--sans); font-size:15px; outline:none; margin-bottom:16px; }
+    .gate input:focus{ border-color:var(--orange); box-shadow:0 0 0 3px rgba(var(--orange-rgb),.12); }
+
+    @media (max-width:760px){ .stats{ grid-template-columns:1fr 1fr; } }
+  </style>
+</head>
+<body>
+  <nav class="nav">
+    <a class="tagpill" href="student.html">Dashboard</a>
+    <a href="learn.html">Learn</a>
+    <a href="submissions.html">Submit</a>
+    <a href="index.html">Site</a>
+  </nav>
+
+  <div id="gate" class="gate" style="display:none;">
+    <form id="gateForm">
+      <p class="eyebrow">ONROL LMS</p>
+      <h2>Welcome</h2>
+      <p>Sign in with your student account to open your dashboard.</p>
+      <label>Email</label>
+      <input id="gateEmail" type="text" placeholder="you@onrol.lms" autocomplete="username" required>
+      <label style="margin-top:12px;">Password</label>
+      <input id="gatePass" type="password" placeholder="password" autocomplete="current-password" required>
+      <div id="gateErr" style="color:#c1361b; font-family:var(--mono); font-size:12px; min-height:16px; margin-bottom:6px;"></div>
+      <button class="btn orange" type="submit" style="width:100%;">Sign in &rarr;</button>
+    </form>
+  </div>
+
+  <div class="shell" id="shell"></div>
+
+  <script>
+  (function(){
+    "use strict";
+    var CKEY = "onrol_courses_v1", PKEY = "onrol_progress_v1", SKEY = "onrol_submissions_v1", NKEY = "onrol_student", EKEY = "onrol_student_email";
+    var shell = document.getElementById("shell");
+    var gate = document.getElementById("gate");
+
+    // ---- student test accounts (edit or replace with a real backend) ----
+    var STUDENTS = [
+      { email:"arjun@onrol.lms",  pass:"onrol@123", name:"Arjun Rao" },
+      { email:"priya@onrol.lms",  pass:"onrol@123", name:"Priya Sharma" },
+      { email:"ravi@onrol.lms",   pass:"onrol@123", name:"Ravi Kumar" },
+      { email:"neha@onrol.lms",   pass:"onrol@123", name:"Neha Gupta" },
+      { email:"sofia@onrol.lms",  pass:"onrol@123", name:"Sofia Dsouza" },
+      { email:"karan@onrol.lms",  pass:"onrol@123", name:"Karan Mehta" },
+      { email:"anita@onrol.lms",  pass:"onrol@123", name:"Anita Reddy" },
+      { email:"dev@onrol.lms",    pass:"onrol@123", name:"Dev Patel" },
+      { email:"sara@onrol.lms",   pass:"onrol@123", name:"Sara Khan" },
+      { email:"vikram@onrol.lms", pass:"onrol@123", name:"Vikram Singh" }
+    ];
+
+    var courses = migrate(loadJSON(CKEY, []));
+    var progress = loadJSON(PKEY, {});
+    var subs = loadJSON(SKEY, []);
+    var student = localStorage.getItem(NKEY) || "";
+
+    function loadJSON(k, d){ try { return JSON.parse(localStorage.getItem(k)) || d; } catch(e){ return d; } }
+    function esc(s){ return String(s==null?"":s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;"); }
+    function migrate(list){ (list||[]).forEach(function(c){ (c.modules||[]).forEach(function(m){ if(!m.days){ m.days = m.lessons&&m.lessons.length?[{id:"d0",title:"Day 1",lessons:m.lessons}]:[]; } }); }); return list; }
+
+    function lessonsOf(c){ var a=[]; (c.modules||[]).forEach(function(m){ (m.days||[]).forEach(function(d){ (d.lessons||[]).forEach(function(l){ a.push({id:l.id,title:l.title,module:m.title,day:d.title}); }); }); }); return a; }
+    function isDone(cid,lid){ return !!(progress[cid] && progress[cid].done && progress[cid].done[lid]); }
+    function pct(c){ var ls=lessonsOf(c); if(!ls.length) return 0; var d=0; ls.forEach(function(l){ if(isDone(c.id,l.id)) d++; }); return Math.round(d/ls.length*100); }
+    function doneCount(c){ var n=0; lessonsOf(c).forEach(function(l){ if(isDone(c.id,l.id)) n++; }); return n; }
+    function nextLesson(c){ var ls=lessonsOf(c); for(var i=0;i<ls.length;i++) if(!isDone(c.id,ls[i].id)) return ls[i]; return ls.length?ls[ls.length-1]:null; }
+    function recentCourse(){ var best=null,ts=-1; courses.forEach(function(c){ var p=progress[c.id]; if(p&&p.ts>ts&&pct(c)<100){ ts=p.ts; best=c; } }); if(best) return best; for(var i=0;i<courses.length;i++){ if(progress[courses[i].id]&&pct(courses[i])<100) return courses[i]; } return null; }
+
+    function mySubs(){ return subs.filter(function(s){ return (s.student||"").toLowerCase() === student.toLowerCase(); }); }
+    function myXp(){ return mySubs().reduce(function(n,s){ return n + (s.status==="approved"?(s.xp||0):0); }, 0); }
+    function totalLessonsDone(){ return courses.reduce(function(n,c){ return n + doneCount(c); }, 0); }
+    function coursesInProgress(){ return courses.filter(function(c){ return progress[c.id] && pct(c)>0 && pct(c)<100; }).length; }
+
+    function render(){
+      if (!student){ gate.style.display="flex"; shell.innerHTML=""; return; }
+      gate.style.display="none";
+
+      var xp = myXp(), lvl = Math.floor(xp/500)+1, into = xp%500, need = 500;
+      var rc = recentCourse();
+
+      var resumeHtml = rc ? (function(){
+        var nx = nextLesson(rc);
+        return '<div class="resume"><div class="info"><h3>'+esc(rc.title)+'</h3>'
+          + '<div class="nx">Up next &mdash; '+esc(nx?nx.title:"Start")+' &middot; '+esc(nx?(nx.module+" / "+nx.day):"")+'</div>'
+          + '<div class="bar"><i style="width:'+pct(rc)+'%"></i></div></div>'
+          + '<a class="btn orange" href="learn.html">Resume learning &rarr;</a></div>';
+      })() : '<div class="empty">Nothing in progress yet. <a href="learn.html">Browse your courses &rarr;</a></div>';
+
+      var coursesHtml = courses.length ? '<div class="course-grid">'+courses.map(function(c){
+        var p=pct(c), started=progress[c.id]&&p>0;
+        return '<div class="cc"><span class="cat">'+esc(c.category||"Course")+(c.duration?" &middot; "+esc(c.duration):"")+'</span>'
+          + '<h3>'+esc(c.title)+'</h3>'
+          + '<div class="meta">'+c.modules.length+' modules &middot; '+lessonsOf(c).length+' lessons</div>'
+          + '<div class="pctline"><span>'+p+'% complete</span></div><div class="bar"><i style="width:'+p+'%"></i></div>'
+          + '<a class="btn '+(p>=100?"ghost":"orange")+' small" href="learn.html">'+(p>=100?"Review":(started?"Continue":"Start"))+' &rarr;</a></div>';
+      }).join("")+'</div>' : '<div class="empty">No courses yet. An instructor builds them in the <a href="course-builder.html">Course Builder</a>.</div>';
+
+      var ms = mySubs().slice().reverse();
+      var subsHtml = ms.length ? '<div class="subs">'+ms.map(function(s){
+        var xpb = s.status==="approved" ? ' &middot; +'+s.xp+' XP' : '';
+        return '<div class="subrow '+s.status+'"><div><div class="t">'+esc(s.project||"Untitled")+'</div>'
+          + '<div class="c">'+esc(s.course||"")+' &middot; '+esc(s.createdAt||"")+'</div></div>'
+          + '<span class="status '+s.status+'">'+s.status+xpb+'</span></div>';
+      }).join("")+'</div>' : '<div class="empty">No submissions yet. <a href="submissions.html">Submit a project &rarr;</a></div>';
+
+      shell.innerHTML =
+        '<p class="eyebrow">ONROL LMS &middot; Student</p>'
+        + '<h1>Hi, '+esc(student)+' 👋</h1>'
+        + '<p class="switch">Not you? <a data-action="switch">Switch student</a></p>'
+
+        + '<div class="hero"><div class="lv">'
+        +   '<div class="ring"><b>'+lvl+'</b><span>Level</span></div>'
+        +   '<div class="lvtext"><div class="xp">'+xp+' XP</div><div class="sub">'+(need-into)+' XP to Level '+(lvl+1)+'</div></div>'
+        + '</div><div class="bar"><i style="width:'+Math.round(into/need*100)+'%"></i></div>'
+        + '<div class="barlab">Earn XP by submitting projects and getting them approved.</div></div>'
+
+        + '<div class="stats">'
+        +   '<div class="s"><strong>'+coursesInProgress()+'</strong><span>In progress</span></div>'
+        +   '<div class="s"><strong>'+totalLessonsDone()+'</strong><span>Lessons done</span></div>'
+        +   '<div class="s"><strong>'+xp+'</strong><span>Total XP</span></div>'
+        +   '<div class="s"><strong>'+mySubs().filter(function(s){return s.status==="approved";}).length+'</strong><span>Approved</span></div>'
+        + '</div>'
+
+        + '<div class="sec-title"><span>Resume learning</span><a href="learn.html">My Learning &rarr;</a></div>'+resumeHtml
+        + '<div class="sec-title"><span>My courses</span></div>'+coursesHtml
+        + '<div class="sec-title"><span>My submissions</span><a href="submissions.html">Submit a project &rarr;</a></div>'+subsHtml;
+    }
+
+    document.getElementById("gateForm").addEventListener("submit", function(e){
+      e.preventDefault();
+      var email = (document.getElementById("gateEmail").value || "").trim().toLowerCase();
+      var pass = document.getElementById("gatePass").value || "";
+      var acct = null;
+      for (var i=0;i<STUDENTS.length;i++){ if (STUDENTS[i].email===email && STUDENTS[i].pass===pass){ acct=STUDENTS[i]; break; } }
+      if (!acct){ document.getElementById("gateErr").textContent = "Invalid email or password."; return; }
+      student = acct.name;
+      localStorage.setItem(NKEY, acct.name);
+      localStorage.setItem(EKEY, acct.email);
+      render();
+    });
+
+    document.addEventListener("click", function(e){
+      var el = e.target.closest("[data-action]"); if (!el) return;
+      if (el.dataset.action==="switch"){
+        student=""; localStorage.removeItem(NKEY); localStorage.removeItem(EKEY);
+        var ge=document.getElementById("gateEmail"); if (ge) ge.value="";
+        var gp=document.getElementById("gatePass"); if (gp) gp.value="";
+        render();
+      }
+    });
+
+    render();
+  })();
+  </script>
+</body>
+</html>
